@@ -18,7 +18,25 @@ public class ListTest {
 		// Collections.addAll(null);
 		// method4();
 		// method5();
-		method6();
+		// method6();
+		method7();
+	}
+
+	/**
+	 * 测试 break
+	 *
+	 * 2018-12-13 10:27:42 void
+	 */
+	private static void method7() {
+		for (int i = 0; i < 2; i++) {
+			System.out.println("1");
+			for (int j = 0; j < 2; j++) {
+				System.out.println("2");
+				if (j == 0) break;
+				System.out.println("3");
+			}
+			System.out.println("4");
+		}
 	}
 
 	private static void method6() {
