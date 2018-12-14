@@ -10,7 +10,14 @@ public class StringTest {
 	public static void main(String[] args) {
 		// method1();
 		// method2();
-		method4();
+		// method4();
+		method5();
+	}
+
+	private static void method5() {
+		String a = "--";
+		Object o = "--";
+		System.out.println(a.equals(o));
 	}
 
 	private static void method4() {
