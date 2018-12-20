@@ -2,16 +2,50 @@ package com.geo.source.testmain.publictest;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.time.DateUtils;
 
+@SuppressWarnings("unused")
 public class StringTest {
 
 	public static void main(String[] args) {
 		// method1();
 		// method2();
 		// method4();
-		method5();
+		// method5();
+//		method6();
+		method7();
+	}
+
+	private static void method7() {
+		String count = "0001";
+		System.out.println(Integer.parseInt(count));
+		while (count.length() > 1 && "0".equals(count.substring(0, 1))) {
+			count = count.substring(1, count.length());
+			System.out.println("长度：" + count.length());
+		}
+		
+		System.out.println(count);
+	}
+
+	private static void method6() {
+		String body = "{var globalRepeatSubmitToken = 'x000000000000000000000000000000x',"
+				+ "'key_check_isChange':'X111111111111111111111111111111111111111111111111111111X2'}";
+		
+		Pattern pattern = Pattern
+				.compile("var globalRepeatSubmitToken = '[0-9 | a-z]{32}");
+		Pattern pattern2 = Pattern
+				.compile("'key_check_isChange':'[0-9 | A-Z]{56,59}");
+		Matcher matcher = pattern.matcher(body);
+		Matcher matcher2 = pattern2.matcher(body);
+		while (matcher.find()) {
+			System.out.println(matcher.group().replaceFirst("var globalRepeatSubmitToken = '", ""));
+		}
+		while (matcher2.find()) {
+			System.out.println(matcher2.group().replaceFirst("'key_check_isChange':'", ""));
+		}
 	}
 
 	private static void method5() {

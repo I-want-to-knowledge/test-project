@@ -6,7 +6,7 @@ public class RandomTest {
 
 	public static void main(String[] args) {
 		Random r = new Random();
-		double d = r.nextInt(10000);
+		double d = r.nextInt(10);
 		System.out.println(d);
 	}
 }

@@ -19,7 +19,23 @@ public class ListTest {
 		// method4();
 		// method5();
 		// method6();
-		method7();
+		// method7();
+		method8();
+	}
+
+	/**
+	 * 测试标签
+	 *
+	 * 2018-12-19 10:25:02 void
+	 */
+	private static void method8() {
+		boolean b = true;
+		int i = 1;
+		flag:if (b) {
+			System.out.println("进来" + (i++) +"次！");
+			
+			break flag;
+		}
 	}
 
 	/**
