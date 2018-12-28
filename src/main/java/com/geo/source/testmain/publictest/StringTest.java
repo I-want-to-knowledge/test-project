@@ -75,13 +75,11 @@ public class StringTest {
     /**
      * 2018-10-22 14:20:49 void
      */
-    @SuppressWarnings("unused")
     private static void method1() {
         Letter l = new Letter();
         try {
             System.out.println(l.getClass().getMethod("getA", String.class));
         } catch (NoSuchMethodException | SecurityException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
