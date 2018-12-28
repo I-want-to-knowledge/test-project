@@ -1,12 +1,10 @@
 package com.geo.source.testmain.publictest;
 
-import java.io.File;
+import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
+import java.io.File;
 
 /**
  * 文件

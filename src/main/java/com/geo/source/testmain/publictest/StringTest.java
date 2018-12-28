@@ -16,18 +16,17 @@ public class StringTest {
         // method4();
         // method5();
 //		method6();
-        // method7();
+        // method7("0001");
         System.out.println("1");
         System.out.println("123");
 
     }
 
 
-    private static void method7() {
-        String count = "0001";
+    private static void method7(String count) {
         System.out.println(Integer.parseInt(count));
         while (count.length() > 1 && "0".equals(count.substring(0, 1))) {
-            count = count.substring(1, count.length());
+            count = count.substring(1);
             System.out.println("长度：" + count.length());
         }
 
@@ -39,9 +38,9 @@ public class StringTest {
                 + "'key_check_isChange':'X111111111111111111111111111111111111111111111111111111X2'}";
 
         Pattern pattern = Pattern
-                .compile("var globalRepeatSubmitToken = '[0-9 | a-z]{32}");
+                .compile("var globalRepeatSubmitToken = '[0-9|a-z]{32}");
         Pattern pattern2 = Pattern
-                .compile("'key_check_isChange':'[0-9 | A-Z]{56,59}");
+                .compile("'key_check_isChange':'[0-9|A-Z]{56,59}");
         Matcher matcher = pattern.matcher(body);
         Matcher matcher2 = pattern2.matcher(body);
         while (matcher.find()) {
@@ -81,10 +80,7 @@ public class StringTest {
         Letter l = new Letter();
         try {
             System.out.println(l.getClass().getMethod("getA", String.class));
-        } catch (NoSuchMethodException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SecurityException e) {
+        } catch (NoSuchMethodException | SecurityException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
