@@ -11,7 +11,7 @@ public class BowAndArrowBehavior implements WeaponBehavior {
 
 	@Override
 	public void useWeapon() {
-		System.out.print("Bow and arrow ");
+		System.out.print("bow and arrow ");
 	}
 
 }

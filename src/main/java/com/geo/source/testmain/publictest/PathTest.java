@@ -20,7 +20,9 @@ public class PathTest {
 		// 第一种：获取类加载的根路径 
 		// D:\Users\Administrator\workspace\test-project\target\classes
 		File f = new File(this.getClass().getResource("/").getPath());
-		System.out.println(f);
+		System.out.println("Path:" + f.getPath());
+		File f1 = new File(PathTest.class.getResource("/").getPath());
+		System.out.println("Path:" + f1.getPath());
 
 		// 获取当前类的所在工程路径; 如果不加“/” 获取当前类的加载目录 
 		// D:\Users\Administrator\workspace\test-project\target\classes\com\geo\source\testmain\publictest
