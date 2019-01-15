@@ -11,16 +11,16 @@ import com.geo.source.head_first.design_mode.factory.pizza2.pizzafactory.Pizza2;
 public abstract class PizzaStore {
 
     public Pizza2 orderPizza(String type) {
-        Pizza2 pizza2;
-        pizza2 = createPizza2(type);
+        Pizza2 pizza3;
+        pizza3 = createPizza2(type);
 
         // 制作
-        pizza2.prepare();
-        pizza2.bake();
-        pizza2.cut();
-        pizza2.box();
+        pizza3.prepare();
+        pizza3.bake();
+        pizza3.cut();
+        pizza3.box();
 
-        return pizza2;
+        return pizza3;
     }
 
     abstract Pizza2 createPizza2(String type);
