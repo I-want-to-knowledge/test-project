@@ -7,7 +7,7 @@ package com.geo.source.testmain.publictest;
  */
 public class SwitchTest {
 	public static void main(String[] args) {
-		method1();
+		String a = "1";method1(a);
 	}
 
 	/**
@@ -15,8 +15,7 @@ public class SwitchTest {
 	 *
 	 * 2018-12-14 16:21:30 void
 	 */
-	private static void method1() {
-		String a = "1";
+	private static void method1(String a) {
 		switch (a) {
 			case "1":
 			case "2":
@@ -30,7 +29,7 @@ public class SwitchTest {
 			case "3":
 				System.out.println("3");
 				break;
-				
+
 			default:
 				break;
 		}
