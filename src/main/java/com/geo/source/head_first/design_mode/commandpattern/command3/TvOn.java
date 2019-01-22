@@ -20,6 +20,6 @@ public class TvOn implements Command3 {
 
     @Override
     public void undo() {
-
+        this.tv.off();
     }
 }

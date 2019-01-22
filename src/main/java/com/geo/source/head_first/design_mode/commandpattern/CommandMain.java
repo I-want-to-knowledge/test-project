@@ -52,7 +52,8 @@ public class CommandMain {
         remoteControl3.onButtonWasPushed(0);
         System.out.println();
         remoteControl3.offButtonWasPushed(0);
-
+        System.out.println();
+        remoteControl3.undoCommand();
     }
 
 

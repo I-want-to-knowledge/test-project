@@ -22,6 +22,8 @@ public class MacroCommand implements Command3 {
 
     @Override
     public void undo() {
-
+        for (Command3 command3 : command3s) {
+            command3.undo();
+        }
     }
 }

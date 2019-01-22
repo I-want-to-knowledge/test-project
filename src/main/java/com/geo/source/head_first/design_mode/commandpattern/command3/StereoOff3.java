@@ -19,6 +19,8 @@ public class StereoOff3 implements Command3 {
 
     @Override
     public void undo() {
-
+        this.stereo.on();
+        this.stereo.setCD();
+        this.stereo.setVolume(StereoOn3.volume);
     }
 }
