@@ -6,7 +6,7 @@ package com.geo.source.testmain.sort;
  * @author YanZhen
  * @since 2019-03-16 11:33
  */
-public class Utils {
+class Utils {
     private Utils() {
     }
 
