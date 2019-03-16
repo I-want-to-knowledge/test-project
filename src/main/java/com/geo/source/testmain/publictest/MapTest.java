@@ -1,5 +1,6 @@
 package com.geo.source.testmain.publictest;
 
+import javax.swing.text.Document;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.Map;
 public class MapTest {
 
 	public static void main(String[] args) {
+		test1();
+	}
+
+	private static void test1() {
 		Map<Integer, Integer> map = new HashMap<>();
 		List<Integer> list = new ArrayList<>();
 		int lenth = 10000000;
@@ -19,7 +24,7 @@ public class MapTest {
 		mathod2(list, 1);
 		long end1 = System.currentTimeMillis();
 		System.out.println(end1 - start1);
-		
+
 		long start2 = System.currentTimeMillis();
 		mathod1(map, 1);
 		long end2 = System.currentTimeMillis();
