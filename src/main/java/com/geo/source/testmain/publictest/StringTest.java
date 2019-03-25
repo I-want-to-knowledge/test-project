@@ -17,13 +17,13 @@ public class StringTest {
         // method5();
 //		method6();
         // method7("0001");
-        String name = "123";
+        /*String name = "123";
         String a = "'Pizza3':{'name':'" + name + "'}";
         String substring = a.substring(1, 4);
         System.out.println("结果1：" + substring);
         String substring1 = substring.substring(2, 2);
-        System.out.println("结果2：" + substring1);
-
+        System.out.println("结果2：" + substring1);*/
+        System.out.println(new Integer(1).equals(1));
     }
 
 
