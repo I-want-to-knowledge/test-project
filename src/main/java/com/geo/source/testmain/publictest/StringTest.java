@@ -23,7 +23,8 @@ public class StringTest {
         System.out.println("结果1：" + substring);
         String substring1 = substring.substring(2, 2);
         System.out.println("结果2：" + substring1);*/
-        System.out.println(new Integer(1).equals(1));
+        // System.out.println(new Integer(1).equals(1));
+        System.out.println("Windows 7".startsWith("Windows"));
     }
 
 

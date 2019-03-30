@@ -2,26 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-  <bean id="p1" class="com.geo.source.testmain.publictest.Abc">
-
-
+  <bean id="p1" class="com.geo.source.testmain.bean.Abc">
     <property name="name" value="张三"/>
-
-
     <property name="id" value="18"/>
-
-
   </bean>
 
-
-  <bean name="p2" class="com.geo.source.testmain.publictest.Abc">
-
-
+  <bean name="p2" class="com.geo.source.testmain.bean.Abc">
     <property name="name" value="李四"/>
-
-
     <property name="id" value="20"/>
+  </bean>
 
+  <bean name="p3" class="com.geo.source.testmain.bean.AbcFactory" factory-method="getPersonInstance" scope="prototype">
+
+    <constructor-arg name="name" value="null"/>
+    <constructor-arg name="id" value="null"/>
 
   </bean>
 </beans>

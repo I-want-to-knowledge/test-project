@@ -1,4 +1,4 @@
-package com.geo.source.testmain.publictest;
+package com.geo.source.testmain.bean;
 
 /**
  * 测试对象
