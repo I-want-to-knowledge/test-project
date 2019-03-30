@@ -10,7 +10,7 @@ import com.geo.source.head_first.design_mode.factory.pizza2.pizzafactory.newyork
  * @ClassName NYPizzaStore
  * @Author YanZhen
  * 2019-01-11 16:50
- * @Description TODO
+ * @Description 纽约披萨商店
  */
 public class NYStylePizzaStore extends PizzaStore {
 
