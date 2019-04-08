@@ -24,7 +24,12 @@ public class StringTest {
         String substring1 = substring.substring(2, 2);
         System.out.println("结果2：" + substring1);*/
         // System.out.println(new Integer(1).equals(1));
-        System.out.println("Windows 7".startsWith("Windows"));
+        /*System.out.println("Windows 7".startsWith("Windows"));*/
+        String a = "A";
+        char b = 65;
+        System.out.println(a.getBytes().length);
+        System.out.println(a.chars().max().orElse(0));
+        System.out.println(b);
     }
 
 
