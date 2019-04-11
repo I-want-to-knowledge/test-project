@@ -4,10 +4,17 @@ import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 文件
@@ -20,7 +27,37 @@ public class FileTest {
 
   public static void main(String[] args) {
     // m1();
-    m2();
+    // m2();
+    // m3();
+    // m4();
+    m5();
+  }
+
+  private static void m5() {
+    final ArrayList<Integer> objects = new ArrayList<>();
+    objects.add(1);
+    objects.add(2);
+    objects.add(3);
+    objects.add(4);
+    final Optional<Integer> any = objects.stream().filter(integer -> integer == 0).findAny();
+    if (any.isPresent()){
+      System.out.println(true);
+      any.ifPresent(System.out::println);
+    }
+    System.out.println(any.orElse(0));
+  }
+
+  private static void m4() {
+    Stream.iterate(new int[]{0, 1}, n -> new int[] {n[1], n[0] + n[1]}).limit(20).forEach(ints -> System.out.println(ints[0] + ":" + ints[1]));
+  }
+
+  private static void m3() {
+    long a = 0;
+    try (Stream<String> lines = Files.lines(Paths.get("D:\\test\\a.txt"), Charset.forName("GBK"))) {
+      lines.flatMap(s -> Arrays.stream(s.split(" "))).distinct().forEach(System.out::println);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   private static void m2() {

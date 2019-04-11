@@ -5,6 +5,7 @@ import com.geo.source.testmain.iterator_class.ListIteratorTest;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @SuppressWarnings("unused")
@@ -21,10 +22,17 @@ public class ListTest {
     // m10();
     // m11();
     // m12();
-    method1(1);
-    method1(2);
-    method1(3);
-    method1(4);
+    // method1(1);
+    // method1(2);
+    // method1(3);
+    // method1(4);
+    m13();
+  }
+
+  private static void m13() {
+    long count = IntStream.range(1, 100).count();
+    long count1 = IntStream.rangeClosed(1, 100).count();
+    System.out.println(count + ":" + count1);
   }
 
   private static void m12() {

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 @SuppressWarnings("unused")
 public class StringTest {
@@ -25,6 +26,16 @@ public class StringTest {
         System.out.println("结果2：" + substring1);*/
         // System.out.println(new Integer(1).equals(1));
         /*System.out.println("Windows 7".startsWith("Windows"));*/
+        // m8();
+        m9();
+    }
+
+    private static void m9() {
+        Stream<String> stringStream = Stream.of("Java 8", "C#", "JavaScript");
+        stringStream.map(String::toUpperCase).forEach(System.out::println);
+    }
+
+    private static void m8() {
         String a = "A";
         char b = 65;
         System.out.println(a.getBytes().length);
