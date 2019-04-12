@@ -27,9 +27,25 @@ public class StringTest {
         // System.out.println(new Integer(1).equals(1));
         /*System.out.println("Windows 7".startsWith("Windows"));*/
         // m8();
-        m9();
+        // m9();
+//        m10();
+        m11();
     }
 
+    private static void m11() {
+
+    }
+
+    /**
+     * 处理器数量获取
+     */
+    private static void m10() {
+        System.out.println(Runtime.getRuntime().availableProcessors());
+    }
+
+    /**
+     * 全部转大写
+     */
     private static void m9() {
         Stream<String> stringStream = Stream.of("Java 8", "C#", "JavaScript");
         stringStream.map(String::toUpperCase).forEach(System.out::println);

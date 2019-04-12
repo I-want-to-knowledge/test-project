@@ -26,7 +26,18 @@ public class ListTest {
     // method1(2);
     // method1(3);
     // method1(4);
-    m13();
+//    m13();
+    m14();
+  }
+
+  private static void m14() {
+    List<String> list = new ArrayList<>();
+    list.add("1 ");
+    list.add("4 ");
+    list.add("3 ");
+    list.add("2 ");
+    System.out.println(list.subList(0, 3));
+    System.out.println(list.subList(2, 3));
   }
 
   private static void m13() {

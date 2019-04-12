@@ -2,6 +2,7 @@ package com.geo.source.testmain.publictest;
 
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 /**
  * math
@@ -16,7 +17,34 @@ public class MathTest {
 		// m1();
 //		m2();
 //		m3();
-		m4();
+//		m4();
+//		m5();
+		m6();
+	}
+
+	private static void m6() {
+		long a = 1000;
+		Number number = a;
+	}
+
+	private static void m5() {
+		long n = 10_000_000;
+		long fastest = Long.MAX_VALUE;
+		for (int i = 0; i < 10; i++) {
+			long a = 0;
+			XxxUtils.start();
+			final long reduce = LongStream.iterate(1, operand -> operand + 1).unordered().limit(n).reduce(0, Long::sum);
+			// LongStream.rangeClosed(0, n).parallel().reduce(0, Long::sum);
+			/*for (int j = 1; j <= n; j++) {
+				a = a + j;
+			}*/
+			System.out.println(reduce);
+			final long l = XxxUtils.end();
+			if (l < fastest) {
+				fastest = l;
+			}
+		}
+		System.out.println("时间最少得一个：" + fastest);
 	}
 
 	private static void m4() {
