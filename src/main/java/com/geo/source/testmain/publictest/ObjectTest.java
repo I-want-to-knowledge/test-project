@@ -1,5 +1,7 @@
 package com.geo.source.testmain.publictest;
 
+import com.geo.source.testmain.bean.Abc;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +17,19 @@ import static java.lang.System.*;
 public class ObjectTest {
   public static void main(String[] args) {
     // m();
-    m4();
+    //m4();
+    // m5();
+    m6();
+  }
+
+  private static void m6() {
+    final Abc abc = new Abc();
+    abc.setId("1");
+    abc.setName("abc");
+    out.println(abc);
+  }
+
+  private static void m5() {
     int a = 1;
     Integer b = null;
     out.println(a == b);

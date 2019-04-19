@@ -24,7 +24,11 @@ public class MathTest {
 
 	private static void m6() {
 		long a = 1000;
-		Number number = a;
+		Object o = a;
+		Number number = (Number) o;
+		System.out.println(o);
+		System.out.println(number);
+
 	}
 
 	private static void m5() {

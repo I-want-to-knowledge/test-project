@@ -2,8 +2,11 @@ package com.geo.source.testmain.publictest;
 
 import org.apache.commons.lang.time.DateUtils;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -33,7 +36,11 @@ public class StringTest {
     }
 
     private static void m11() {
-
+        final Optional<BigDecimal> optionalBigDecimal = Optional.of(new BigDecimal(0));
+        optionalBigDecimal.filter(bigDecimal1 -> bigDecimal1.equals(BigDecimal.ZERO))
+                .map(bigDecimal -> true).ifPresent(System.out::println);
+        optionalBigDecimal.ifPresent(System.out::println);
+        // System.out.println(bigDecimal);
     }
 
     /**

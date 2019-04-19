@@ -1,20 +1,23 @@
 package com.geo.source.testmain.publictest;
 
 import org.w3c.dom.Document;
+import sun.nio.cs.ext.GBK;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * 文件
@@ -30,7 +33,31 @@ public class FileTest {
     // m2();
     // m3();
     // m4();
-    m5();
+//    m5();
+    m6();
+  }
+
+  private static void m6() {
+    try {
+      final String s = processFile(bufferedReader -> bufferedReader.readLine());
+      System.out.println(s);
+      final String s2 = processFile(bufferedReader -> bufferedReader.readLine()
+              + new String(bufferedReader.readLine().getBytes("GBK")));
+      System.out.println(s2);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static String processFile(BufferedReaderProcessor processor) throws IOException {
+    try (BufferedReader br = new BufferedReader(new FileReader("D:\\test\\a.txt"))) {
+      return processor.process(br);
+    }
+  }
+
+  @FunctionalInterface
+  private interface BufferedReaderProcessor {
+    String process(BufferedReader bufferedReader) throws IOException;
   }
 
   private static void m5() {
