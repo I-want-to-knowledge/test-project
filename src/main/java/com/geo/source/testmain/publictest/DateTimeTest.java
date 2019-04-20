@@ -3,7 +3,9 @@ package com.geo.source.testmain.publictest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,7 +16,22 @@ public class DateTimeTest {
   public static void main(String[] args) {
     // m1();
 //    m2();
-    m3();
+//    m3();
+    m4();
+  }
+
+  private static void m4() {
+    final LocalDateTime now = LocalDateTime.now();
+    System.out.println("BASIC_ISO_DATE : "+now.format(DateTimeFormatter.BASIC_ISO_DATE));
+    System.out.println("ISO_DATE : "+now.format(DateTimeFormatter.ISO_DATE));
+    System.out.println("ISO_DATE_TIME : "+now.format(DateTimeFormatter.ISO_DATE_TIME));
+    System.out.println("ISO_LOCAL_DATE : "+now.format(DateTimeFormatter.ISO_LOCAL_DATE));
+    System.out.println("ISO_LOCAL_DATE_TIME : "+now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    System.out.println("ISO_LOCAL_TIME : "+now.format(DateTimeFormatter.ISO_LOCAL_TIME));
+    System.out.println("ISO_ORDINAL_DATE : "+now.format(DateTimeFormatter.ISO_ORDINAL_DATE));
+    System.out.println("ISO_TIME : "+now.format(DateTimeFormatter.ISO_TIME));
+    System.out.println("ISO_WEEK_DATE : "+now.format(DateTimeFormatter.ISO_WEEK_DATE));
+    System.out.println("自定义 : "+now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
   }
 
   private static void m3() {
@@ -25,6 +42,7 @@ public class DateTimeTest {
     LocalDateTime now = LocalDateTime.now();
     System.out.println(now);
     System.out.println(new Date());
+    System.out.println(Instant.now());
   }
 
   private static void m1() {
