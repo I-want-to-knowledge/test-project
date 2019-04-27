@@ -27,6 +27,7 @@ public class ObjectTest {
 
   /**
    * java反射机制
+   * NoSuchFieldException异常原因：①没有对应字段；②属性为私有时获取Field用的方法不是getDeclaredField
    */
   private static void m8() {
     /*final Class<Aa> aaClass = Aa.class;// 不会初始化
