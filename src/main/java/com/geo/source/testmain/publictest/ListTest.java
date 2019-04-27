@@ -27,7 +27,52 @@ public class ListTest {
     // method1(3);
     // method1(4);
 //    m13();
-    m14();
+//    m14();
+//    m15();
+    m16();
+  }
+
+  private static void m16() {
+    List<String> list = new ArrayList<>();
+    List<String> linkedlist = new LinkedList<>();
+    for (int i = 0; i < 10000000; i++) {
+      list.add("ABC" + i);
+      linkedlist.add("ABC" + i);
+    }
+
+    XxxUtils.start();
+    list.add(9999999, "-ABC0");
+    XxxUtils.end();
+    System.out.println("==========================================");
+    XxxUtils.start();
+    linkedlist.add(9999999, "-ABC0");
+    XxxUtils.end();
+
+    //list.forEach(System.out::println);
+    System.out.println("==========================================");
+    System.out.println("==========================================");
+    System.out.println(list.size());
+    // linkedlist.forEach(System.out::println);
+    System.out.println(linkedlist.size());
+  }
+
+  private static void m15() {
+    long a = 1;
+    long sum = 0;
+    XxxUtils.start();
+    while (a != 100001) {
+      sum += a;
+      a++;
+    }
+    XxxUtils.end();
+    System.out.println(sum);
+    sum = 0;
+    XxxUtils.start();
+    for (int i = 1; i <= 100000; i++) {
+      sum += i;
+    }
+    XxxUtils.end();
+    System.out.println(sum);
   }
 
   private static void m14() {

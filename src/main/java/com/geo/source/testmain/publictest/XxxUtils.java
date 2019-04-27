@@ -19,6 +19,7 @@ public class XxxUtils {
 
   /**
    * 时间差
+   * @return 时间差
    */
   public static long end() {
     final long l = (System.nanoTime() - time) / 1000_000;

@@ -1,12 +1,13 @@
-package com.geo.source.testmain.bean;
+package com.geo.source.testmain.publictest;
 
 /**
  * 测试对象
  *
  * @author YanZhen
- * @since 2019-03-25 12:41
+ * @since 2019-04-27 09:25
  */
-public class Abc {
+public class Aa {
+
   private String id;
   private String name;
 
@@ -16,14 +17,6 @@ public class Abc {
 
   public String getName() {
     return name;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   @Override

@@ -3,9 +3,9 @@ package com.geo.source.testmain.publictest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,7 +17,34 @@ public class DateTimeTest {
     // m1();
 //    m2();
 //    m3();
-    m4();
+//    m4();
+//    m5();
+    m6();
+  }
+
+  private static void m6() {
+    final LocalDate localDate = LocalDate.of(2019, 4, 21);
+    final ZoneId zone = ZoneId.of("Europe/Rome");
+    final ZonedDateTime zonedDateTime = localDate.atStartOfDay(zone);
+    System.out.println(zonedDateTime);
+    final Instant now = Instant.now();
+    final ZonedDateTime zonedDateTime1 = now.atZone(zone);
+    System.out.println(zonedDateTime1);
+
+    final LocalDateTime localDateTime = LocalDateTime.now();
+    System.out.println(localDateTime);
+    final Instant instant = localDateTime.toInstant(ZoneOffset.of("-01:00"));
+    System.out.println(instant);
+    final LocalDateTime localDateTime1 = LocalDateTime.ofInstant(instant, zone);
+    System.out.println(localDateTime1);
+  }
+
+  private static void m5() {
+    final LocalDate localDate = LocalDate.of(2019, 4, 20);
+    final LocalDate date1 = localDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+    final LocalDate date2 = date1.with(TemporalAdjusters.lastDayOfMonth());
+    System.out.println(date1);
+    System.out.println(date2);
   }
 
   private static void m4() {

@@ -1,15 +1,22 @@
 package com.geo.source.testmain.publictest;
 
 import javax.swing.text.Document;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MapTest {
 
 	public static void main(String[] args) {
-		test1();
+		// test1();
+		m1();
+	}
+
+	private static void m1() {
+		Map<String, String> map = new HashMap<>();
+		map.put(null, "null值");
+		System.out.println(map.get(null));
+		Map<String, String> tab = new Hashtable<>();
+		tab.put(null, "null值");
+		System.out.println(tab.get(null));
 	}
 
 	private static void test1() {

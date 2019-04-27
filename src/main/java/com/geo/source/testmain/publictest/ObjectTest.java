@@ -2,6 +2,7 @@ package com.geo.source.testmain.publictest;
 
 import com.geo.source.testmain.bean.Abc;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,14 +20,63 @@ public class ObjectTest {
     // m();
     //m4();
     // m5();
-    m6();
+//    m6();
+//    m7();
+    m8();
+  }
+
+  /**
+   * java反射机制
+   */
+  private static void m8() {
+    /*final Class<Aa> aaClass = Aa.class;// 不会初始化
+    try {
+      final Aa aa = aaClass.newInstance();
+      final Field id = aaClass.getDeclaredField(aaClass.getDeclaredFields()[0].getName());
+      id.setAccessible(true);// 启用禁用访问安全检查开关，true禁用
+      id.set(aa, "1");
+      final Field name = aaClass.getDeclaredField(aaClass.getDeclaredFields()[1].getName());
+      name.setAccessible(true);// 启用禁用访问安全检查开关，true禁用
+      name.set(aa, "2");
+      out.println(aa);
+    } catch (InstantiationException | IllegalAccessException | NoSuchFieldException e) {
+      e.printStackTrace();
+    }*/
+
+    try {
+      final Class<?> abcClass = Class.forName("com.geo.source.testmain.bean.Abc");// 会初始化
+//      abcClass.getConstructors();//获取公用构造方法
+//      abcClass.getDeclaredConstructors();// 获取所有构造方法
+//      abcClass.getConstructor(null);// 获取公有无惨构造方法
+      final Object instance = abcClass.newInstance();
+      final Field id = abcClass.getDeclaredField(abcClass.getDeclaredFields()[0].getName());
+      id.setAccessible(true);// 启用禁用访问安全检查开关，true禁用
+      id.set(instance, "1");
+      final Field name = abcClass.getDeclaredField(abcClass.getDeclaredFields()[1].getName());
+      name.setAccessible(true);// 启用禁用访问安全检查开关，true禁用
+      name.set(instance, "2");
+      out.println((Abc) instance);
+    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchFieldException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static void m7() {
+    /*Abc a = new Abc();
+    a.setName("1");
+    a.setId("1.1");
+    Abc b = a;// 指针引用
+    b.setId("2");
+    b.setName("2.1");
+    out.println("a="+a);
+    out.println("b="+b);*/
   }
 
   private static void m6() {
-    final Abc abc = new Abc();
+    /*final Abc abc = new Abc();
     abc.setId("1");
     abc.setName("abc");
-    out.println(abc);
+    out.println(abc);*/
   }
 
   private static void m5() {

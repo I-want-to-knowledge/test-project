@@ -32,7 +32,14 @@ public class StringTest {
         // m8();
         // m9();
 //        m10();
-        m11();
+        // m11();
+        m12();
+    }
+
+    private static void m12() {
+        System.out.println(" ".hashCode());
+        System.out.println("1".hashCode());
+        System.out.println("1.0".hashCode());
     }
 
     private static void m11() {
