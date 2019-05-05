@@ -3,6 +3,8 @@ package com.geo.source.testmain.publictest;
 import org.apache.commons.lang.time.DateUtils;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
@@ -33,7 +35,14 @@ public class StringTest {
         // m9();
 //        m10();
         // m11();
-        m12();
+        // m12();
+        m13();
+    }
+
+    private static void m13() {
+        final byte[] bytes = "first commit!(啊)".getBytes(StandardCharsets.UTF_8);
+        System.out.println("byte = " + Arrays.toString(bytes));
+        System.out.println("string = " + new String(bytes, StandardCharsets.UTF_8));
     }
 
     private static void m12() {

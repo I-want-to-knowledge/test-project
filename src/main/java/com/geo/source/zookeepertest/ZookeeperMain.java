@@ -2,6 +2,7 @@ package com.geo.source.zookeepertest;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.apache.zookeeper.KeeperException;
@@ -57,7 +58,7 @@ public class ZookeeperMain {
 		
 		byte[] by = zkm.getData(path);
 		if (by != null) {
-			String str = new String(by, "utf-8");
+			String str = new String(by, StandardCharsets.UTF_8);
 			System.out.println(str);
 		}
 	}

@@ -19,7 +19,57 @@ public class DateTimeTest {
 //    m3();
 //    m4();
 //    m5();
-    m6();
+//    m6();
+    m7();
+  }
+
+  private static void m7() {
+//    final LocalDateTime now = LocalDateTime.now();
+//    final LocalTime localTime = now.toLocalTime();
+//    final int toSecondOfDay = localTime.toSecondOfDay();// 今天得总秒数
+
+    final LocalTime start = LocalTime.of(20, 30, 0);
+    final LocalTime end = LocalTime.of(20, 0, 0);
+    final LocalTime nowTime = LocalTime.now();
+    final int startSecondOfDay = start.toSecondOfDay();
+    final int endSecondOfDay = end.toSecondOfDay();
+    final int nowSecondOfDay = nowTime.toSecondOfDay();
+
+    if (start.isBefore(end)) {
+      if (nowTime.isAfter(start) && nowTime.isBefore(end)) {
+        final int b = endSecondOfDay - nowSecondOfDay;
+        System.out.println("距离结束："+b);
+        System.out.println("YES");
+      } else {
+        final int b;
+        if (nowTime.isBefore(start)) {
+          b = startSecondOfDay - nowSecondOfDay;
+        } else {
+          b = 86400 - nowSecondOfDay + startSecondOfDay;
+        }
+        System.out.println("距离开始："+b);
+        System.out.println("NO");
+      }
+    } else {
+      if (nowTime.isBefore(start) && nowTime.isAfter(end)) {
+        final int b = startSecondOfDay - nowSecondOfDay;
+        System.out.println("距离开始："+b);
+        System.out.println("NO");
+      } else {
+        final int b;
+        if (nowTime.isBefore(end)) {
+          b = endSecondOfDay - nowSecondOfDay;
+        } else {
+          b = 86400 - nowSecondOfDay + endSecondOfDay;
+        }
+
+        System.out.println("距离结束："+b);
+        System.out.println("YES");
+      }
+    }
+//    System.out.println(nowTime.toString());
+//    System.out.println(Duration.between(start, end).getSeconds());
+//    System.out.println(Duration.between(end, start).getSeconds());
   }
 
   private static void m6() {
