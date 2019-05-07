@@ -6,6 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
 
+import java.nio.charset.Charset;
+
 /**
  * netty 
  *
@@ -20,7 +22,7 @@ public class DiscardServerHandler extends ChannelHandlerAdapter {
 //		super.channelRead(ctx, msg);
 		try {
 			ByteBuf in = (ByteBuf) msg;
-			System.out.println(in.toString(CharsetUtil.UTF_8));
+			System.out.println(in.toString(Charset.forName("GBK")));
 		} finally {
 			ReferenceCountUtil.release(msg);
 		}
