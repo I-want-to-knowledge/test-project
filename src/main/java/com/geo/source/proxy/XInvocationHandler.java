@@ -10,10 +10,10 @@ import java.lang.reflect.Proxy;
  * @author YanZhen
  * @since 2019-04-27 15:12
  */
-public class XInvocationHandler implements InvocationHandler {
-  private Object obj;
+public class XInvocationHandler<T> implements InvocationHandler {
+  private T obj;
 
-  XInvocationHandler(Object obj) {
+  XInvocationHandler(T obj) {
     this.obj = obj;
   }
 

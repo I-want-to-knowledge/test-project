@@ -1,8 +1,5 @@
 package com.geo.source.proxy;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
-
 /**
  * 动态代理测试
  *
@@ -11,7 +8,7 @@ import java.lang.reflect.Proxy;
  */
 public class XMain {
   public static void main(String[] args) {
-    final X x = (X) new XInvocationHandler(new XImpl()).get(X.class);
+    final X x = (X) new XInvocationHandler<X>(new XImpl()).get(X.class);
     x.a();
     x.b();
   }
