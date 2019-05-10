@@ -2,9 +2,8 @@ package com.geo.source.testmain.publictest;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class ThreedTest {
+public class ThreadTest {
 
   public static void main(String[] args) {
     // m1();
