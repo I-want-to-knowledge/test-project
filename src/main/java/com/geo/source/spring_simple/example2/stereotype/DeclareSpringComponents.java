@@ -4,7 +4,7 @@ import com.geo.source.spring_simple.example.MessageRenderer;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 /**
- * TODO
+ * spring 控件
  *
  * @author YanZhen
  * @since 2019-05-16 12:53

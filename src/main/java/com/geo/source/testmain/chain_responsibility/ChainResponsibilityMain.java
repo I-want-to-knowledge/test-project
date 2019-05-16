@@ -4,7 +4,7 @@ import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 /**
- * TODO
+ * 责任链模式
  *
  * @author YanZhen
  * @since 2019-04-13 13:56

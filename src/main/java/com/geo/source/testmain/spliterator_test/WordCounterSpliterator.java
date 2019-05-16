@@ -4,7 +4,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * TODO
+ * 拆分迭代器
  *
  * @author YanZhen
  * @since 2019-04-12 13:22
@@ -14,7 +14,7 @@ public class WordCounterSpliterator implements Spliterator<Character> {
   private final String string;// 字符串
   private int currentChar = 0;// 拆分的位置
 
-  public WordCounterSpliterator(String string) {
+  WordCounterSpliterator(String string) {
     this.string = string;
     System.out.println(Thread.currentThread().getName());
   }

@@ -3,7 +3,7 @@ package com.geo.source.testmain.bean;
 import java.lang.reflect.Method;
 
 /**
- * TODO
+ * 静态工厂注入
  *
  * @author YanZhen
  * @since 2019-03-25 13:22
