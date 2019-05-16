@@ -2,6 +2,7 @@ package com.geo.source.testmain.netty.simple1;
 
 /**
  * netty 启动
+ * netty http请求及响应
  *
  * @author YanZhen
  * 2018-11-17 17:09:07

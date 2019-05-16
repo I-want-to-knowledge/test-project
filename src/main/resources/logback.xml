@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-  <property name="log.maxHistory" value="30"/>
-  <property name="log.level" value="debug"/>
+  <!--<property name="log.maxHistory" value="30"/>-->
+  <property name="log.level" value="info"/>
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
     <filter class="ch.qos.logback.classic.filter.LevelFilter">
-      <level>DEBUG</level>
+      <level>ERROR</level>
     </filter>
     <encoder>
       <pattern>

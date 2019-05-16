@@ -1,30 +1,22 @@
 package com.geo.source.testmain.netty.simple1;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.http.HttpHeaders;
-
 import com.alibaba.fastjson.JSONObject;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.FullHttpResponse;
-import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import io.netty.handler.codec.http.HttpVersion;
-import io.netty.handler.codec.http.QueryStringDecoder;
+import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.multipart.DefaultHttpDataFactory;
 import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
 import io.netty.handler.codec.http.multipart.InterfaceHttpData;
 import io.netty.handler.codec.http.multipart.MemoryAttribute;
 import io.netty.util.CharsetUtil;
+import org.springframework.http.HttpHeaders;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * netty 服务器处理程序
@@ -37,37 +29,45 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 	
 	// 处理请求
 	@Override
-	protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
+	protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request) {
 		System.out.println(request);
 		
 		// 响应数据
-		FullHttpResponse response = null;
+		FullHttpResponse response;
 		if (request.method() == HttpMethod.GET) {
 			System.out.println(getGetParamsFromChannel(request));
 			ByteBuf buf = Unpooled.copiedBuffer("GET method over!", CharsetUtil.UTF_8);
 			response = responseOk(HttpResponseStatus.OK, buf);
 		} else if (request.method() == HttpMethod.POST) {
 			System.out.println(getPostParamsFromChannel(request));
-			ByteBuf buf = Unpooled.copiedBuffer("GET method over!", CharsetUtil.UTF_8);
+			ByteBuf buf = Unpooled.copiedBuffer("POST method over!", CharsetUtil.UTF_8);
 			response = responseOk(HttpResponseStatus.OK, buf);
 		} else {
-			response = responseOk(HttpResponseStatus.INTERNAL_SERVER_ERROR, null);
+			ByteBuf buf = Unpooled.copiedBuffer("Other method over!", CharsetUtil.UTF_8);
+			response = responseOk(HttpResponseStatus.INTERNAL_SERVER_ERROR, buf);
 		}
 		
 		// ctx.write("成功！");
 		// 发送响应
 		ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+		/*ctx.channel().write(response);
+		ctx.channel().flush();
+		try {
+			ctx.channel().closeFuture().sync();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
 	}
 	
 	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
 		// super.exceptionCaught(ctx, cause);
 		cause.printStackTrace();
 		ctx.close();
 	}
 
 	@Override
-	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+	public void channelReadComplete(ChannelHandlerContext ctx) {
 		ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
 	}
 	
@@ -75,13 +75,17 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 	 * 处理post请求
 	 *
 	 * 2018-11-17 15:26:15
-	 * @param request
+	 * @param request 请求数据
 	 * @return Map<String, Object>
 	 */
 	private Map<String, Object> getPostParamsFromChannel(FullHttpRequest request) {
 		if (request.method() == HttpMethod.POST) {
-			String strContentType = request.headers().get("Content-Type").toString().trim();
-			if (strContentType.contains("x-www-form-urlencoded")) {
+			final CharSequence sequence = request.headers().get("Content-Type");
+			if (sequence == null) {
+				return null;
+			}
+			String strContentType = sequence.toString().trim();
+			if (strContentType.contains("form-data")) {
 				return getFormParams(request);
 			} else if (strContentType.contains("application/json")) {
 				return getJsonParams(request);
@@ -94,7 +98,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 	 * 解析‘json’请求数据
 	 *
 	 * 2018-11-17 15:54:40
-	 * @param request
+	 * @param request 请求数据
 	 * @return Map<String,Object>
 	 */
 	private Map<String, Object> getJsonParams(FullHttpRequest request) {
@@ -114,7 +118,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 	 * 解析‘x-www-form-urlencoded’请求数据
 	 *
 	 * 2018-11-17 15:37:54
-	 * @param request
+	 * @param request 请求
 	 * @return Map<String,Object>
 	 */
 	private Map<String, Object> getFormParams(FullHttpRequest request) {
@@ -134,7 +138,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 	 * get请求数据解析
 	 *
 	 * 2018-11-17 14:58:33
-	 * @param msg
+	 * @param request 请求
 	 * @return Map<String, Object>
 	 */
 	private Map<String, Object> getGetParamsFromChannel(FullHttpRequest request) {
@@ -158,16 +162,14 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 	 * 返回
 	 *
 	 * 2018-11-17 15:23:46
-	 * @param ok
-	 * @param buf
+	 * @param ok 状态
+	 * @param buf 消息
 	 * @return FullHttpResponse
 	 */
 	private FullHttpResponse responseOk(HttpResponseStatus ok, ByteBuf buf) {
 		FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, ok, buf);
-		if (buf != null) {
-			response.headers().set(HttpHeaders.CONTENT_TYPE, "text/plain;charset=UTF-8");
-			response.headers().set(HttpHeaders.CONTENT_LENGTH, response.content().readableBytes()+"");
-		}
+		response.headers().set(HttpHeaders.CONTENT_TYPE, "text/plain;charset=UTF-8");
+		response.headers().set(HttpHeaders.CONTENT_LENGTH, response.content().readableBytes()+"");
 		return response;
 	}
 

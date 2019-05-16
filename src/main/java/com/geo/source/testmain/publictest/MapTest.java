@@ -1,5 +1,7 @@
 package com.geo.source.testmain.publictest;
 
+import com.google.common.collect.Maps;
+
 import javax.swing.text.Document;
 import java.util.*;
 
@@ -7,7 +9,18 @@ public class MapTest {
 
 	public static void main(String[] args) {
 		// test1();
-		m1();
+//		m1();
+		m2();
+	}
+
+	private static void m2() {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("A", 1);
+		map.put("B", 2);
+		map.put("C", 3);
+		System.out.println("before="+map);
+		map = Maps.filterKeys(map, p -> Objects.equals(p, "A"));
+		System.out.println("after="+map);
 	}
 
 	private static void m1() {
