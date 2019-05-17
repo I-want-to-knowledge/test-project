@@ -3,6 +3,7 @@ package com.geo.source.spring_simple.resource_VS_autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +19,12 @@ import java.util.List;
 public class ResourceAutowiredConfiguration {
 
   @Bean
+  public A1 a1() {
+    return new A1("");
+  }
+
+  @Bean
+  // @Primary
   public ResourceAutowired resourceAutowired() {
     return new ResourceAutowired("123456");
   }

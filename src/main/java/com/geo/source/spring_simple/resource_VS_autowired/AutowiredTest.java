@@ -1,10 +1,10 @@
 package com.geo.source.spring_simple.resource_VS_autowired;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,12 +18,21 @@ public class AutowiredTest {
   @Autowired
   private List<ResourceAutowired> resourceAutowiredList;
 
-  /*@Autowired  // 该注入会报 类转换异常
-  private ResourceAutowired resourceAutowired;*/
+  /*public AutowiredTest(List<ResourceAutowired> resourceAutowiredList) {
+    this.resourceAutowiredList = resourceAutowiredList;
+  }*/
+
+  @Autowired  // 该注入会报 类转换异常
+  @Qualifier("resourceAutowired")
+  private ResourceAutowired resourceAutowired;
+
+  @Autowired  // 该注入会报 类转换异常
+  @Qualifier("resourceAutowired2")
+  private ResourceAutowired resourceAutowired2;
 
   public static void main(String[] args) {
     final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ResourceAutowiredConfiguration.class);
-    final AutowiredTest resourceTest = (AutowiredTest) context.getBean("resourceTest");
+    final AutowiredTest resourceTest = (AutowiredTest) context.getBean("autowiredTest");
     System.out.println(resourceTest);
   }
 
