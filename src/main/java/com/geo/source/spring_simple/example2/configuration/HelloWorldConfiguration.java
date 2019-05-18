@@ -17,14 +17,14 @@ import org.springframework.context.annotation.Configuration;
 public class HelloWorldConfiguration {
 
   @Bean
-  public MessageProvider provider() {
+  public MessageProvider provider3() {
     return new HelloWorldMessageProvider();
   }
 
   @Bean
-  public MessageRenderer renderer() {
+  public MessageRenderer renderer3() {
     final StandardOutMessageRenderer2 messageRenderer2 = new StandardOutMessageRenderer2();
-    messageRenderer2.setMessageProvider(provider());// DI
+    messageRenderer2.setMessageProvider(provider3());// DI
     return messageRenderer2;
   }
 }

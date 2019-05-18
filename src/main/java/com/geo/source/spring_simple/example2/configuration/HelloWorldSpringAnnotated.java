@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * spring configuration 注解
+ * app-context-xml.xml
  *
  * @author YanZhen
  * @since 2019-05-16 14:14
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class HelloWorldSpringAnnotated {
   public static void main(String[] args) {
     final ApplicationContext context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
-    final MessageRenderer renderer = context.getBean("renderer", MessageRenderer.class);
+    final MessageRenderer renderer = context.getBean("renderer3", MessageRenderer.class);
     renderer.render();
   }
 }

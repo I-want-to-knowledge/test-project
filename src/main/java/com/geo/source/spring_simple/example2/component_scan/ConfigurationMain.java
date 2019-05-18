@@ -19,7 +19,7 @@ public class ConfigurationMain {
 
     // ImportResource xml注入
     final ApplicationContext context2 = new AnnotationConfigApplicationContext(HelloWorldConfiguration2.class);
-    final MessageRenderer renderer2 = context2.getBean("renderer", MessageRenderer.class);
+    final MessageRenderer renderer2 = context2.getBean("renderer2", MessageRenderer.class);
     renderer2.render();
   }
 }
