@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+  <!--default-lazy-init属性表示该XML中的bean使用时在加载-->
+  <!--beans标签的default-init-method属性与bean标签中的init-method属于同类型，default-init-method用于全部bean的回调，但是回调方法必须全部相同！-->
+  <bean id="initOne" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest"
+        init-method="init" p:name="yz" p:age="27"/>
+  <bean id="initTwo" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest"
+        init-method="init" p:age="26"/>
+  <bean id="initThree" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest"
+        init-method="init" p:name="y"/>
+
+  <!--使用InitializingBean接口的情况-->
+  <bean id="init1" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest2"
+        p:name="yz" p:age="27"/>
+  <bean id="init2" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest2"
+        p:age="26"/>
+  <bean id="init3" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest2"
+        p:name="y"/>
+
+  <!--使用@PostConstruct注解，调用回调方法-->
+  <context:annotation-config/>
+  <bean id="initA" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest3"
+        p:name="yz" p:age="27"/>
+  <bean id="initB" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest3"
+        p:age="26"/>
+  <bean id="initC" class="com.geo.source.spring_simple.example4_chapter.initMethod.InitMethodTest3"
+        p:name="y"/>
+</beans>

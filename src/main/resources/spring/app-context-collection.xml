@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-  <bean id="lyricHolder" class="com.geo.source.spring_simple.example2.MapPropsSetList.LyricHolder"/>
-  <bean id="collectionInjection" class="com.geo.source.spring_simple.example2.MapPropsSetList.CollectionInjection">
+  <bean id="lyricHolder" class="com.geo.source.spring_simple.example2_3_chapter.MapPropsSetList.LyricHolder"/>
+  <bean id="collectionInjection" class="com.geo.source.spring_simple.example2_3_chapter.MapPropsSetList.CollectionInjection">
     <property name="map">
       <map>
         <entry key="someValue" value="It's a Friday, we finally made it"/>

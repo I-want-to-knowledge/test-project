@@ -3,9 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="oracle" name="wiseworm" class="com.geo.source.spring_simple.example2.BeanFactoryImpl.BookwormOracle"/>
+  <bean id="oracle" name="wiseworm" class="com.geo.source.spring_simple.example2_3_chapter.BeanFactoryImpl.BookwormOracle"/>
 
-  <bean id="injectRef" class="com.geo.source.spring_simple.example2.inject_setter.InjectRef">
+  <bean id="injectRef" class="com.geo.source.spring_simple.example2_3_chapter.inject_setter.InjectRef">
     <property name="oracle" ref="oracle"/>
   </bean>
 </beans>

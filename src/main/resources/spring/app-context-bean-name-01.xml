@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!--不同的命名规则-->
+  <bean id="string1" class="java.lang.String"/>
+  <bean name="string2" class="java.lang.String"/>
+  <bean class="java.lang.String"/>
+  <bean class="java.lang.String"/>
+
+  <!--定义多个名称，利用alias标签定义别名-->
+  <bean id="john" name="jon johnny,jonathan;jim" class="java.lang.String"/>
+  <alias name="john" alias="ion"/>
+
+  <bean name="a b,c;e" class="java.lang.String"/>
+  <bean id="a b,c;e" class="java.lang.String"/>
+</beans>

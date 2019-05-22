@@ -6,8 +6,8 @@
   <bean id="renderer" class="com.geo.source.spring_simple.example.example1.StandardOutMessageRenderer"
         p:messageProvider-ref="provider"/>
 
-  <bean id="injectSimpleConfig" class="com.geo.source.spring_simple.example2.SpEL.InjectSimpleConfig"/>
-  <bean id="injectSimpleSpel" class="com.geo.source.spring_simple.example2.SpEL.InjectSimpleSpel"
+  <bean id="injectSimpleConfig" class="com.geo.source.spring_simple.example2_3_chapter.SpEL.InjectSimpleConfig"/>
+  <bean id="injectSimpleSpel" class="com.geo.source.spring_simple.example2_3_chapter.SpEL.InjectSimpleSpel"
   p:name="#{injectSimpleConfig.name}"
   p:age="#{injectSimpleConfig.age + 1}"
   p:height="#{injectSimpleConfig.height}"

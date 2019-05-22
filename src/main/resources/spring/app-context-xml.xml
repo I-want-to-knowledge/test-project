@@ -3,17 +3,63 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
   <!--依赖注入-->
-  <bean id="provider2" class="com.geo.source.spring_simple.example2.stereotype.HelloWorldMessageProvider"/>
-  <bean id="renderer2" class="com.geo.source.spring_simple.example2.stereotype.StandardOutMessageRenderer2"
+  <bean id="provider2" class="com.geo.source.spring_simple.example2_3_chapter.stereotype.HelloWorldMessageProvider"/>
+  <bean id="renderer2" class="com.geo.source.spring_simple.example2_3_chapter.stereotype.StandardOutMessageRenderer2"
         p:messageProvider-ref="provider2"/>
 
   <!--查找方法注入-->
-  <bean id="singer" class="com.geo.source.spring_simple.example2.lookup.Singer" scope="prototype"/>
-  <bean id="abstractLookupBean" class="com.geo.source.spring_simple.example2.lookup.AbstractLookupDemoBean">
+  <bean id="singer" class="com.geo.source.spring_simple.example2_3_chapter.LookupMethodInjection.Singer" scope="prototype"/>
+  <bean id="abstractLookupBean" class="com.geo.source.spring_simple.example2_3_chapter.LookupMethodInjection.AbstractLookupDemoBean">
     <lookup-method name="getMySinger" bean="singer"/><!--标记查找getMySinger方法并覆盖，后返回singer！-->
   </bean>
-  <bean id="standardLookupBean" class="com.geo.source.spring_simple.example2.lookup.StandardLookupDemoBean">
+  <bean id="standardLookupBean" class="com.geo.source.spring_simple.example2_3_chapter.LookupMethodInjection.StandardLookupDemoBean">
     <property name="mySinger" ref="singer"/><!--setter方法直接注入-->
   </bean>
 
+  <!--查找方法替换-->
+  <bean id="methodReplacer" class="com.geo.source.spring_simple.example2_3_chapter.LookupMethodReplacer.FormatMessageReplacer"/>
+  <bean id="replacementTarget" class="com.geo.source.spring_simple.example2_3_chapter.LookupMethodReplacer.ReplacementTarget">
+    <replaced-method name="formatMessage" replacer="methodReplacer">
+      <arg-type>String</arg-type>
+    </replaced-method>
+  </bean>
+  <bean id="standardTarget" class="com.geo.source.spring_simple.example2_3_chapter.LookupMethodReplacer.ReplacementTarget"/>
+
+  <!--解析依赖项-->
+  <bean id="dependsOnTest" class="com.geo.source.spring_simple.example2_3_chapter.depends_on.DependsOnTest" depends-on="gopher"/>
+  <bean id="gopher" class="com.geo.source.spring_simple.example2_3_chapter.depends_on.Guiter"/>
+
+  <!--自动装配bean-->
+  <bean id="fooOne" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Foo"/>
+  <bean id="barOne" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Bar"/>
+  <bean id="targetName" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Target"
+        lazy-init="true">
+    <!--以下标签和bean标签的autowire属性等价，写 autowire="byName"  时以下标签可以省略-->
+    <property name="bar" ref="bar"/>
+    <property name="fooOne" ref="fooOne"/>
+  </bean>
+  <bean id="targetType" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Target"
+        lazy-init="true">
+    <!--以下标签和bean标签的autowire属性等价，写 autowire="byType"  时以下标签可以省略-->
+    <property name="fooTwo" ref="fooOne"/>
+    <property name="bar" ref="bar"/>
+    <property name="fooOne" ref="fooOne"/>
+  </bean>
+  <bean id="targetConstructor" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Target"
+        lazy-init="true">
+    <!--以下标签和bean标签的autowire属性等价，写 autowire="constructor"  时以下标签可以省略-->
+    <constructor-arg type="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Bar" ref="bar"/>
+    <constructor-arg type="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Foo" ref="fooOne"/>
+  </bean>
+
+  <!--自动装配bean，例2: bean出现冲突时首选primary属性为true的bean-->
+  <bean id="foo1" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.FooImpl1" primary="true"/>
+  <bean id="foo2" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.FooImpl1"/>
+  <bean id="bar" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Bar" primary="true"/>
+  <bean id="targetByType" class="com.geo.source.spring_simple.example2_3_chapter.AutomaticAssembly.Target2" lazy-init="true">
+    <!--以下标签和bean标签的autowire属性等价，写 autowire="byType" 时以下标签可以省略-->
+    <property name="bar" ref="bar"/>
+    <property name="foo2Two" ref="fooImpl2"/>
+    <property name="foo2One" ref="fooImpl2"/>
+  </bean>
 </beans>

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-  <bean id="childTitle" class="java.lang.String" c:_0="Daughters"/><!--参数常量-->
+  <bean id="childTitleParent" class="java.lang.String" c:_0="Daughters"/><!--参数常量-->
   <bean id="parentTitle" class="java.lang.String" c:_0="Gravity"/><!--参数常量-->
+
+  <!--Bean继承-->
+  <bean id="inheritanceParent" class="com.geo.source.spring_simple.example2_3_chapter.BeanExtends.BeanExtends"
+        p:name="yz" p:age="27"/>
+  <bean id="inheritanceChild" parent="inheritanceParent"
+        class="com.geo.source.spring_simple.example2_3_chapter.BeanExtends.BeanExtends" p:age="0"/>
 </beans>

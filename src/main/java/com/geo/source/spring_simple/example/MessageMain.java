@@ -23,7 +23,7 @@ public class MessageMain {
 
   private static void m4() {
     final ApplicationContext context = new AnnotationConfigApplicationContext(HelloConfiguration.class);
-    final MessageRenderer messageRenderer = context.getBean("renderer", MessageRenderer.class);
+    final MessageRenderer messageRenderer = context.getBean("messageRenderer", MessageRenderer.class);
     messageRenderer.render();
   }
 
