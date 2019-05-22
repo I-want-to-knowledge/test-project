@@ -15,9 +15,9 @@ import org.springframework.context.annotation.Configuration;
 public class HelloConfiguration {
 
   @Bean
-  public MessageRenderer renderer() {
+  public MessageRenderer messageRenderer() {
     final MessageRenderer renderer = new StandardOutMessageRenderer();
-    renderer.setMessageProvider(() -> "已注入的形式");
+    renderer.setMessageProvider(() -> "以注入的形式");
     return renderer;
   }
 }
