@@ -5,9 +5,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
   <!--利用PropertyEditor匹配类型-->
+  <!--像spring的ApplicationContext注册编辑器-->
   <bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer"
         p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList"/>
-  <util:list id="propertyEditorRegistrarsList">
+  <util:list id="propertyEditorRegistrarsList"><!--要注册的编辑器-->
     <bean class="com.geo.source.spring_simple.example4_chapter.propertyEditor.PropertyEditorBean$CustomPropertyEditorRegistrar"/>
   </util:list>
   <bean id="builtInSample" class="com.geo.source.spring_simple.example4_chapter.propertyEditor.PropertyEditorBean"
