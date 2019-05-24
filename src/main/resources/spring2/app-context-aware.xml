@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+  <!--使用BeanNameAware接口注入Bean的名称-->
+  <bean id="beanNameAwareTest" class="com.geo.source.spring_simple.example4_chapter.aware.UseBeanNameAware$BeanNameAwareTest"/>
+
+  <!--使用ApplicationContextAware接口注入Bean，来实现查找和销毁-->
+  <context:annotation-config/>
+  <bean id="shutdownHookBean"
+        class="com.geo.source.spring_simple.example4_chapter.aware.UseApplicationContextAware$ShutdownHookBean"/>
+  <bean id="destructiveBeanWithInterface"
+        class="com.geo.source.spring_simple.example4_chapter.aware.UseApplicationContextAware$DestructiveBeanWithInterface"
+        p:filePath="d:/test.txt"/>
+
+  <!--使用FactoryBean接口不用new运算符创建依赖项-->
+  <bean id="messageDigestFactoryBean1"
+        class="com.geo.source.spring_simple.example4_chapter.aware.MessageDigestFactoryBean"
+        p:algorithmName="SHA1"/>
+  <bean id="messageDigestFactoryBean2"
+        class="com.geo.source.spring_simple.example4_chapter.aware.MessageDigestFactoryBean"/>
+  <bean id="messageDigestTest"
+        class="com.geo.source.spring_simple.example4_chapter.aware.MessageDigestTest"
+        p:messageDigest1-ref="messageDigestFactoryBean1" p:messageDigest2-ref="messageDigestFactoryBean2"/>
+
+  <!--使用factory-bean和factory-method属性-->
+  <bean id="sha1Digest"
+        class="com.geo.source.spring_simple.example4_chapter.aware.MessageDigestConfigDemo$MessageDigestFactory"
+        p:algorithmName="SHA1"/>
+  <bean id="defaultDigest"
+        class="com.geo.source.spring_simple.example4_chapter.aware.MessageDigestConfigDemo$MessageDigestFactory"/>
+  <bean id="sha" factory-bean="sha1Digest" factory-method="createInstance"/><!--获取sha1Digest的createInstance方法并创建新的sha-->
+  <bean id="default" factory-bean="defaultDigest" factory-method="createInstance"/><!--获取defaultDigest的createInstance方法并创建新的default-->
+  <bean id="messageDigestTest2" class="com.geo.source.spring_simple.example4_chapter.aware.MessageDigestTest"
+        p:messageDigest1-ref="sha" p:messageDigest2-ref="default"/>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+  <!--以指定销毁方法的形式，使用属性 destroy-method -->
+  <bean id="destructiveBean" class="com.geo.source.spring_simple.example4_chapter.destroyMethod.DestructiveBean"
+        destroy-method="destroy" p:filePath="d:/test.txt"/>
+
+  <!--以实现DisposableBean接口的形式，-->
+  <bean id="disposableBeanTest" class="com.geo.source.spring_simple.example4_chapter.destroyMethod.DisposableBeanTest"
+        p:filePath="d:/test.txt"/>
+
+  <!--以注解@PreDestroy实现销毁Bean前回调方法-->
+  <context:annotation-config/><!--自动加载注解配置-->
+  <bean id="preDestroyTest" class="com.geo.source.spring_simple.example4_chapter.destroyMethod.PreDestroyTest"
+        p:filePath="d:/test.txt"/>
+</beans>

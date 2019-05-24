@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+  <!--利用PropertyEditor匹配类型-->
+  <bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer"
+        p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList"/>
+  <util:list id="propertyEditorRegistrarsList">
+    <bean class="com.geo.source.spring_simple.example4_chapter.propertyEditor.PropertyEditorBean$CustomPropertyEditorRegistrar"/>
+  </util:list>
+  <bean id="builtInSample" class="com.geo.source.spring_simple.example4_chapter.propertyEditor.PropertyEditorBean"
+        p:character="A" p:bytes="yz" p:cls="java.lang.String" p:bool="true" p:list="stringList"
+        p:inputStream="test.txt" p:floatV="123.45678" p:date="2019-05-24 00:00:01" p:file="test.txt" p:locale="en_US"
+        p:pattern="a*b" p:properties="name=yz age=27" p:trimString=" String need trimming " p:url="https://spring.io/"/>
+  <util:list id="stringList">
+    <value>String member 1</value>
+    <value>String member 2</value>
+  </util:list>
+</beans>

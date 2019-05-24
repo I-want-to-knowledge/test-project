@@ -1,5 +1,7 @@
 package com.geo.source.spring_simple;
 
+import java.nio.charset.Charset;
+
 /**
  * spring 测试类
  * 主要测试构造函数注入
@@ -9,5 +11,7 @@ package com.geo.source.spring_simple;
  * @since 2019-05-09 11:42
  */
 public class main {
+  public static void main(String[] args) {
 
+  }
 }
