@@ -21,12 +21,16 @@ public class ResourceDemo {
     final File file = File.createTempFile("test", "txt", new File("d:/"));
     file.deleteOnExit();// 程序终止时删除
 
-    final Resource resource1 = context.getResource("file://" + file.getPath());
+    final Resource resource1 = context.getResource("file:" + file.getPath());
     displayInfo(resource1);
     final Resource resource2 = context.getResource("classpath:test.txt");
     displayInfo(resource2);
     final Resource resource3 = context.getResource("http://www.baidu.com");
     displayInfo(resource3);
+
+    if (file.delete()) {
+      System.out.println("删除成功！");
+    }
   }
 
   private static void displayInfo(Resource resource) throws IOException {
