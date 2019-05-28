@@ -17,20 +17,20 @@ import java.io.IOException;
 public class ResourceDemo {
 
   public static void main(String[] args) throws IOException {
+    // 创建资源的实例，ApplicationContext的ResourceLoader实现
     final ApplicationContext context = new ClassPathXmlApplicationContext();
     final File file = File.createTempFile("test", "txt", new File("d:/"));
-    file.deleteOnExit();// 程序终止时删除
+    file.deleteOnExit();// 程序出错终止时删除
 
+    // 访问文件
     final Resource resource1 = context.getResource("file:" + file.getPath());
     displayInfo(resource1);
+    // 访问类路径
     final Resource resource2 = context.getResource("classpath:test.txt");
     displayInfo(resource2);
+    // 访问URL资源
     final Resource resource3 = context.getResource("http://www.baidu.com");
     displayInfo(resource3);
-
-    if (file.delete()) {
-      System.out.println("删除成功！");
-    }
   }
 
   private static void displayInfo(Resource resource) throws IOException {

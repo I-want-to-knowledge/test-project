@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
 
   <!--利用PropertyEditor匹配类型-->
   <!--像spring的ApplicationContext注册编辑器-->
@@ -19,4 +21,9 @@
     <value>String member 1</value>
     <value>String member 2</value>
   </util:list>
+
+  <!--利用属性文件注入属性常量-->
+  <context:property-placeholder location="test.properties" local-override="true"/><!--添加local-override属性值为true时，加载属性文件为主，否则PropertySource抽象为主-->
+  <bean id="appProperty" class="com.geo.source.spring_simple.example4_chapter.property_source.APPProperty"
+        p:applicationHome="${application.home}" p:userHome="${user.home}"/>
 </beans>

@@ -21,7 +21,7 @@ public class Publisher implements ApplicationContextAware {
     this.applicationContext = applicationContext;
   }
 
-  void publish(String msg) {
+  public void publish(String msg) {
     applicationContext.publishEvent(new MessageEvent(this, msg));
   }
 }
