@@ -1,4 +1,4 @@
-package com.geo.source.spring_simple.example5_AOP.pointcut;
+package com.geo.source.spring_simple.example5_AOP.pointcut.static_pointcut;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;

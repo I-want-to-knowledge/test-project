@@ -1,6 +1,5 @@
-package com.geo.source.spring_simple.example5_AOP.pointcut;
+package com.geo.source.spring_simple.example5_AOP.pointcut.static_pointcut;
 
-import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 

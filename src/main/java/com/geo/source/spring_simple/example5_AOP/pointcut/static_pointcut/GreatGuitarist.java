@@ -1,4 +1,4 @@
-package com.geo.source.spring_simple.example5_AOP.pointcut;
+package com.geo.source.spring_simple.example5_AOP.pointcut.static_pointcut;
 
 import com.geo.source.spring_simple.example5_AOP.advice.simple_before_advice.Singer;
 
