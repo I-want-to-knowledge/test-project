@@ -2,6 +2,7 @@ package com.geo.source.testmain.publictest;
 
 import com.geo.source.testmain.iterator_class.ArrayIteratorTest;
 import com.geo.source.testmain.iterator_class.ListIteratorTest;
+import org.apache.tools.ant.filters.StringInputStream;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,7 +30,13 @@ public class ListTest {
 //    m13();
 //    m14();
 //    m15();
-    m16();
+    // m16();
+    m17();
+  }
+
+  private static void m17() {
+    List<String> asList = Stream.of("", "").collect(Collectors.toList());
+    asList.forEach(System.out::println);
   }
 
   private static void m16() {
