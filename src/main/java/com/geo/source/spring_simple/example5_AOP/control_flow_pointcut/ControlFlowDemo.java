@@ -17,6 +17,7 @@ public class ControlFlowDemo {
   }
 
   private void run() {
+    // 创建顾问，控制流切入点，在ControlFlowDemo类中的test方法执行通知
     final DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(
             new ControlFlowPointcut(ControlFlowDemo.class, "test"), new SimpleBeforeAdvice());
 
