@@ -15,15 +15,15 @@ public class GrammyGuitarist implements Singer {
     System.out.println("sing: Gravity is working against me And gravity wants to bring me down");
   }
 
-  void sing(Guitar guitar) {
+  public void sing(Guitar guitar) {
     System.out.println("play: " + guitar.play());
   }
 
-  void rest() {
+  public void rest() {
     System.out.println("zzz");
   }
 
-  void talk() {
+  public void talk() {
     System.out.println("talk");
   }
 }

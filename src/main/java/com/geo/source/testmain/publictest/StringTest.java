@@ -36,7 +36,13 @@ public class StringTest {
 //        m10();
         // m11();
         // m12();
-        m13();
+        // m13();
+        m14();
+    }
+
+    private static void m14() {
+        String a = null;
+        System.out.println("null".equals(a));
     }
 
     private static void m13() {

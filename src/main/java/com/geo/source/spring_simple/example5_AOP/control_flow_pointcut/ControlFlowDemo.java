@@ -18,6 +18,7 @@ public class ControlFlowDemo {
 
   private void run() {
     // 创建顾问，控制流切入点，在ControlFlowDemo类中的test方法执行通知
+    // 为ControlFlowDemo类的test方法创建一个ControlFlowPointcut实例
     final DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(
             new ControlFlowPointcut(ControlFlowDemo.class, "test"), new SimpleBeforeAdvice());
 
@@ -30,9 +31,18 @@ public class ControlFlowDemo {
     proxy.foo();
     System.out.println("\n\tTrying under ControlFlowDemo.test()");
     test(proxy);
+
+    System.out.println("最后一次调用：");
+    proxy.foo();
   }
 
   private void test(TestBean proxy) {
+    proxy.foo();
+    System.out.println("\n\tTrying under ControlFlowDemo.test().test2()");
+    test2(proxy);
+  }
+
+  private void test2(TestBean proxy) {
     proxy.foo();
   }
 }
