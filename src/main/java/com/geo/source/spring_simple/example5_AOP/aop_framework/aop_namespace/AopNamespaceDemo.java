@@ -28,6 +28,7 @@ public class AopNamespaceDemo {
 
   /**
    * 用SpEL表达式匹配通知的升级版
+   * 前置通知
    */
   private static void m2() {
     final GenericXmlApplicationContext context = new GenericXmlApplicationContext("spring3/aop_namespace-01.xml");
