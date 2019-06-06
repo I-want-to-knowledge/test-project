@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+  <bean id="grammyGuitarist3" class="com.geo.source.spring_simple.example5_AOP.pointcut.static_name_pointcut.GrammyGuitarist"/>
+  <bean id="auditAdvice" class="com.geo.source.spring_simple.example5_AOP.aop_framework.proxy_factory_bean.AuditAdvice"/>
+
+  <bean id="documentaristOne" class="com.geo.source.spring_simple.example5_AOP.aop_framework.proxy_factory_bean.Documentarist"
+        p:grammyGuitarist-ref="proxy1"/>
+
+  <bean id="proxy1" class="org.springframework.aop.framework.ProxyFactoryBean"
+        p:target-ref="grammyGuitarist3"
+        p:interceptorNames-ref="interceptorAdviceNames" p:proxyTargetClass="true"/>
+  <util:list id="interceptorAdviceNames">
+    <value>auditAdvice</value>
+  </util:list>
+
+  <bean id="documentaristTwo" class="com.geo.source.spring_simple.example5_AOP.aop_framework.proxy_factory_bean.Documentarist"
+        p:grammyGuitarist-ref="proxy2"/>
+
+  <bean id="proxy2" class="org.springframework.aop.framework.ProxyFactoryBean"
+        p:target-ref="grammyGuitarist3"
+        p:interceptorNames-ref="interceptorAdvisorNames" p:proxyTargetClass="true"/>
+  <util:list id="interceptorAdvisorNames">
+    <value>advisor</value>
+  </util:list>
+
+  <bean id="advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+        p:advice-ref="auditAdvice">
+    <property name="pointcut">
+      <bean class="org.springframework.aop.aspectj.AspectJExpressionPointcut"
+            p:expression="execution(* sing*(..))"/>
+    </property>
+  </bean>
+</beans>

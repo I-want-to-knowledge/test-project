@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+  <aop:config proxy-target-class="true">
+    <aop:pointcut id="singExecution1"
+                  expression="execution(* sing*(com.geo.source.spring_simple.example5_AOP.pointcut.static_name_pointcut.Guitar)) and args(value) and bean(grammy*)"/>
+    <aop:aspect ref="complexAdvice">
+      <aop:before pointcut-ref="singExecution1" method="simpleBeforeAdvice"/>
+    </aop:aspect>
+  </aop:config>
+
+  <bean id="complexAdvice" class="com.geo.source.spring_simple.example5_AOP.aop_framework.aop_namespace.ComplexAdvice"/>
+  <bean id="grammyGuitarist1"
+        class="com.geo.source.spring_simple.example5_AOP.pointcut.static_name_pointcut.GrammyGuitarist"/>
+  <bean id="newDocumentarist1"
+        class="com.geo.source.spring_simple.example5_AOP.aop_framework.aop_namespace.NewDocumentarist"
+        p:grammyGuitarist-ref="grammyGuitarist1"/>
+</beans>

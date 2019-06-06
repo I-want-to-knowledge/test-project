@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+  <bean id="guitarist" class="com.geo.source.spring_simple.example5_AOP.introduction.Contact"
+        p:name="yz"/>
+  <bean id="isModifiedAdvisor" class="com.geo.source.spring_simple.example5_AOP.introduction.IsModifiedAdvisor"/>
+  <util:list id="interceptorAdvisorNames2">
+    <value>isModifiedAdvisor</value>
+  </util:list>
+
+  <bean id="introductionBean" class="org.springframework.aop.framework.ProxyFactoryBean"
+        p:target-ref="guitarist" p:interceptorNames-ref="interceptorAdvisorNames2" p:proxyTargetClass="true"/>
+</beans>

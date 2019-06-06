@@ -1,6 +1,7 @@
 package com.geo.source.spring_simple.example5_AOP.pointcut.static_name_pointcut;
 
 import com.geo.source.spring_simple.example5_AOP.advice.simple_before_advice.Singer;
+import org.springframework.stereotype.Component;
 
 /**
  * 格莱美吉他手奖
@@ -8,6 +9,7 @@ import com.geo.source.spring_simple.example5_AOP.advice.simple_before_advice.Sin
  * @author YanZhen
  * @since 2019-05-31 10:53
  */
+@Component
 public class GrammyGuitarist implements Singer {
 
   @Override

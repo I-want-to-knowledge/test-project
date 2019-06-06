@@ -8,9 +8,9 @@ import org.springframework.aop.support.DefaultIntroductionAdvisor;
  * @author YanZhen
  * @since 2019-06-05 09:41
  */
-class IsModifiedAdvisor extends DefaultIntroductionAdvisor {
+public class IsModifiedAdvisor extends DefaultIntroductionAdvisor {
 
-  IsModifiedAdvisor() {
+  public IsModifiedAdvisor() {
     super(new IsModifiedMixin());
   }
 }
