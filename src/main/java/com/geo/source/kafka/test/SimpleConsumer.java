@@ -2,6 +2,7 @@ package com.geo.source.kafka.test;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.CyclicBarrier;
 
@@ -31,8 +32,8 @@ public class SimpleConsumer {
 	 * 消费者1
 	 *
 	 * 2018-07-17 14:45:49 void
-	 * @param ipPort 
-	 * @param groupName 
+	 * @param ipPort ip端口
+	 * @param groupName 组名
 	 */
 	private static void consumer1(String ipPort, String groupName) {
 		
@@ -49,12 +50,12 @@ public class SimpleConsumer {
 		p.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<>(p);
-		consumer.subscribe(Arrays.asList(topicName));
+		consumer.subscribe(Collections.singleton(topicName));
 		System.out.println("Subscribed to topic " + topicName);
 		
 		try {
 			while(true) {
-				ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+				ConsumerRecords<String, String> records = consumer.poll(/*Duration.ofMillis(100)*/100);
 				records.forEach(record -> {
 					System.out.printf("------------ip:%s，group name:%s！", ipPort, groupName);
 					// print the offset,key and value for the consumer records.

@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="true" scanPeriod="60 seconds" debug="false">
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
   <!--<property name="log.maxHistory" value="30"/>-->
-  <property name="log.level" value="info"/>
+  <property name="log.level" value="debug"/>
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
     <filter class="ch.qos.logback.classic.filter.LevelFilter">
-      <level>ERROR</level>
+      <level>DEBUG</level>
     </filter>
     <encoder>
       <pattern>
         <!-- 设置日志输出格式：例	2018-09-21 14:35:00.011 [DEBUG] tsleasing.shipment.grab.Application - Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE -->
-        %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger - %msg%n
+        %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger{5} - %msg%n
       </pattern>
     </encoder>
   </appender>
 
-  <root>
-    <level value="${log.level}"/>
+  <logger name="com.geo.source.spring_simple.example6_chapter" level="debug"/>
+  <logger name="org.springframework.jdbc" level="debug"/>
+
+  <root level="${log.level}">
     <appender-ref ref="console"/>
   </root>
 </configuration>

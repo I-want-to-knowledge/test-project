@@ -1,13 +1,11 @@
 package com.geo.source.net.jcip;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.apache.storm.shade.org.apache.http.annotation.GuardedBy;
 import org.apache.storm.shade.org.apache.http.annotation.Immutable;
 import org.apache.storm.shade.org.apache.http.annotation.NotThreadSafe;
 import org.apache.storm.shade.org.apache.http.annotation.ThreadSafe;
 
-import clojure.lang.Volatile;
+import java.util.concurrent.atomic.AtomicLong;
 
 @NotThreadSafe
 @ThreadSafe

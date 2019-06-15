@@ -1,6 +1,7 @@
 package com.geo.source.head_first.design_mode.factory.pizza2.pizzafactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description 一个Pizza
@@ -11,7 +12,7 @@ public abstract class Pizza2 {
     protected String name;
     protected String dough;
     protected String sauce;
-    protected ArrayList toppings = new ArrayList();
+    protected List<String> toppings = new ArrayList<>();
 
     public void prepare() {
         System.out.println("Preparing " + name);

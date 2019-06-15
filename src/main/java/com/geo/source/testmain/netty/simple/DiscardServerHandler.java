@@ -17,8 +17,8 @@ import java.nio.charset.Charset;
  */
 public class DiscardServerHandler extends ChannelHandlerAdapter {
 
-	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+	// @Override
+	public void channelRead(ChannelHandlerContext ctx, Object msg) {
 //		super.channelRead(ctx, msg);
 		try {
 			ByteBuf in = (ByteBuf) msg;
@@ -29,7 +29,7 @@ public class DiscardServerHandler extends ChannelHandlerAdapter {
 	}
 	
 	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
 		// super.exceptionCaught(ctx, cause);
 		cause.printStackTrace();
 		ctx.close();

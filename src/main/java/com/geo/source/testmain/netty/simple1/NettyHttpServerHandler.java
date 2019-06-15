@@ -28,7 +28,7 @@ import java.util.Map;
 public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 	
 	// 处理请求
-	@Override
+	// @Override
 	protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request) {
 		System.out.println(request);
 		
@@ -173,4 +173,8 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 		return response;
 	}
 
+	@Override
+	protected void channelRead0(ChannelHandlerContext channelHandlerContext, FullHttpRequest fullHttpRequest) throws Exception {
+
+	}
 }
