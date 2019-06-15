@@ -1,7 +1,7 @@
 package com.geo.source.spring_simple.example6_chapter.example2_spring_jdbc;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,41 +20,41 @@ import java.sql.SQLException;
  * @author YanZhen
  * @since 2019-06-12 12:56
  */
-public class DbConfigTest {
+class DbConfigTest {
   private static Logger logger = LoggerFactory.getLogger(DbConfigTest.class);
 
   @Test
-  public void testOne() throws SQLException {
+  void testOne() throws SQLException {
     final GenericXmlApplicationContext context = new GenericXmlApplicationContext("spring6/drivermanager-cfg-01.xml");
     final DataSource datasource1 = context.getBean("driverManagerDatasource1", DataSource.class);
-    Assert.assertNotNull(datasource1);
+    Assertions.assertNotNull(datasource1);
     testDataSource(datasource1);
     context.close();
   }
 
   @Test
-  public void testTwo() throws SQLException {
+  void testTwo() throws SQLException {
     final GenericApplicationContext context = new AnnotationConfigApplicationContext(DbConfig.class);
     final DataSource dataSource = context.getBean("dataSource", DataSource.class);
-    Assert.assertNotNull(dataSource);
+    Assertions.assertNotNull(dataSource);
     testDataSource(dataSource);
     context.close();
   }
 
   @Test
-  public void testThree() throws SQLException {
+  void testThree() throws SQLException {
     final GenericXmlApplicationContext context = new GenericXmlApplicationContext("spring6/drivermanager-cfg-02.xml");
     final DataSource datasource2 = context.getBean("driverManagerDatasource2", DataSource.class);
-    Assert.assertNotNull(datasource2);
+    Assertions.assertNotNull(datasource2);
     testDataSource(datasource2);
     context.close();
   }
 
   @Test
-  public void testFour() throws SQLException {
+  void testFour() throws SQLException {
     final GenericXmlApplicationContext context = new GenericXmlApplicationContext("spring6/drivermanager-cfg-03.xml");
     final DataSource datasource3 = context.getBean("driverManagerDatasource3", DataSource.class);
-    Assert.assertNotNull(datasource3);
+    Assertions.assertNotNull(datasource3);
     testDataSource(datasource3);
     context.close();
   }
@@ -65,7 +65,7 @@ public class DbConfigTest {
       final ResultSet resultSet = statement.executeQuery();
       while (resultSet.next()) {
         final int anInt = resultSet.getInt(1);
-        Assert.assertEquals(1, anInt);
+        Assertions.assertEquals(1, anInt);
       }
       statement.close();
     } catch (SQLException e) {

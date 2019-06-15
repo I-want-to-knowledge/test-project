@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class EnumerationIterator implements Iterator<String> {
     private Enumeration<String> enumeration;
 
-    public EnumerationIterator(Enumeration enumeration) {
+    public EnumerationIterator(Enumeration<String> enumeration) {
         this.enumeration = enumeration;
     }
 

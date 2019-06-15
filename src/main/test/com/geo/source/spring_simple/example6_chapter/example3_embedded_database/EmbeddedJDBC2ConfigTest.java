@@ -2,13 +2,12 @@ package com.geo.source.spring_simple.example6_chapter.example3_embedded_database
 
 import com.geo.source.spring_simple.example6_chapter.entity1.Singer;
 import com.geo.source.spring_simple.example6_chapter.example1_jdbc.SingerDao;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * 嵌入式数据库，测试
@@ -16,24 +15,24 @@ import static org.junit.Assert.*;
  * @author YanZhen
  * @since 2019-06-13 09:56
  */
-public class EmbeddedJDBC2ConfigTest {
+class EmbeddedJDBC2ConfigTest {
   @Test
-  public void testOne() {
+  void testOne() {
     final GenericApplicationContext context = new AnnotationConfigApplicationContext(EmbeddedJDBC2Config.class);
     final SingerDao singerDao = context.getBean(SingerDao.class);
-    assertNotNull(singerDao);
+    Assertions.assertNotNull(singerDao);
     final String singerName = singerDao.findNameById(2L);
-    assertEquals("John Mayer", singerName);
+    Assertions.assertEquals("John Mayer", singerName);
     context.close();
   }
 
   @Test
-  public void testRowMapper() {
+  void testRowMapper() {
     final GenericApplicationContext context = new AnnotationConfigApplicationContext(EmbeddedJDBC2Config.class);
     final SingerDao singerDao = context.getBean(SingerDao.class);
-    assertNotNull(singerDao);
+    Assertions.assertNotNull(singerDao);
     final List<Singer> singers = singerDao.findAll();
-    assertEquals(4, singers.size());
+    Assertions.assertEquals(4, singers.size());
     singers.forEach(System.out::println);
     context.close();
   }
@@ -42,12 +41,12 @@ public class EmbeddedJDBC2ConfigTest {
    * 结果集提取器 测试
    */
   @Test
-  public void testResultSetExtractor() {
+  void testResultSetExtractor() {
     final GenericApplicationContext context = new AnnotationConfigApplicationContext(EmbeddedJDBC2Config.class);
     final SingerDao singerDao = context.getBean(SingerDao.class);
-    assertNotNull(singerDao);
+    Assertions.assertNotNull(singerDao);
     final List<Singer> singers = singerDao.findAllWithAlbums();
-    assertEquals(4, singers.size());
+    Assertions.assertEquals(4, singers.size());
     singers.forEach(System.out::println);
     context.close();
   }

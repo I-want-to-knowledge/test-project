@@ -55,7 +55,7 @@ public class SimpleConsumer {
 		
 		try {
 			while(true) {
-				ConsumerRecords<String, String> records = consumer.poll(/*Duration.ofMillis(100)*/100);
+				ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
 				records.forEach(record -> {
 					System.out.printf("------------ip:%s，group name:%s！", ipPort, groupName);
 					// print the offset,key and value for the consumer records.

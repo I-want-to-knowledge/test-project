@@ -4,6 +4,7 @@ import com.geo.source.spring_simple.example6_chapter.entity1.Album;
 import com.geo.source.spring_simple.example6_chapter.entity1.Singer;
 import com.geo.source.spring_simple.example6_chapter.example1_jdbc.SingerDao;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -13,9 +14,6 @@ import org.springframework.context.support.GenericApplicationContext;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * jdbc注解，测试
@@ -42,7 +40,7 @@ class JDBCSingerDaoImplTest {
   @Test
   void testAnnotation() {
     singerDao = context.getBean("singerDao", SingerDao.class);
-    assertNotNull(singerDao);
+    Assertions.assertNotNull(singerDao);
     final List<Singer> singers = singerDao.findAll();
     singers.forEach(System.out::println);
   }
@@ -53,7 +51,7 @@ class JDBCSingerDaoImplTest {
   @Test
   void testMappingSqlQuery() {
     singerDao = context.getBean("singerDao2", SingerDao.class);
-    assertNotNull(singerDao);
+    Assertions.assertNotNull(singerDao);
     final List<Singer> singers = singerDao.findAll();
     singers.forEach(singer -> logger.info(singer.toString()));
   }
@@ -64,7 +62,7 @@ class JDBCSingerDaoImplTest {
   @Test
   void testMappingSqlQuery2() {
     final SingerDao singerDao2 = context.getBean("singerDao2", SingerDao.class);
-    assertNotNull(singerDao2);
+    Assertions.assertNotNull(singerDao2);
     final List<Singer> johnInfo = singerDao2.findByFirstName("John");
     johnInfo.forEach(singer -> logger.info(singer.toString()));
   }
@@ -75,7 +73,7 @@ class JDBCSingerDaoImplTest {
   @Test
   void testSqlUpdate() {
     final SingerDao singerDao2 = context.getBean("singerDao2", SingerDao.class);
-    assertNotNull(singerDao2);
+    Assertions.assertNotNull(singerDao2);
     final Singer singer = new Singer();
     singer.setId(1L);
     singer.setFirstName("yan");
@@ -93,14 +91,14 @@ class JDBCSingerDaoImplTest {
   @Test
   void testInsetSinger() {
     final SingerDao singerDao2 = context.getBean("singerDao2", SingerDao.class);
-    assertNotNull(singerDao2);
+    Assertions.assertNotNull(singerDao2);
     final Singer singer = new Singer();
     singer.setFirstName("y2");
     singer.setLastName("z2");
     singer.setBirthDate(LocalDate.of(1993, 5, 19));
     singerDao2.insert(singer);
 
-    assertNotNull("Singer id required!", singer.getId());
+    Assertions.assertNotNull(singer.getId(), "Singer id required!");
     logger.info("主键为：{}", singer.getId());
 
     final List<Singer> singers = singerDao2.findAll();
@@ -113,7 +111,7 @@ class JDBCSingerDaoImplTest {
   @Test
   void testBatchSqlUpdate() {
     final SingerDao singerDao2 = context.getBean("singerDao2", SingerDao.class);
-    assertNotNull(singerDao2);
+    Assertions.assertNotNull(singerDao2);
     Singer singer = new Singer();
     singer.setFirstName("y3");
     singer.setLastName("z3");
@@ -131,9 +129,9 @@ class JDBCSingerDaoImplTest {
   @Test
   void testSqlFunction() {
     final SingerDao singerDao2 = context.getBean("singerDao2", SingerDao.class);
-    assertNotNull(singerDao2);
+    Assertions.assertNotNull(singerDao2);
     final String firstNameById = singerDao2.findFirstNameById(3L);
-    assertEquals("Eric", firstNameById);
+    Assertions.assertEquals("Eric", firstNameById);
     logger.info("名字：{}", firstNameById);
   }
 }

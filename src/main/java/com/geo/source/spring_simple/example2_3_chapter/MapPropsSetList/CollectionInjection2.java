@@ -23,9 +23,9 @@ public class CollectionInjection2 {
   @Resource
   private Properties properties;
   @Resource
-  private Set set;
+  private Set<String> set;
   @Resource
-  private List list;
+  private List<String> list;
 
   public static void main(String[] args) {
     final GenericXmlApplicationContext context = new GenericXmlApplicationContext();

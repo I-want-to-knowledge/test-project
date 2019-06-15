@@ -172,9 +172,4 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 		response.headers().set(HttpHeaders.CONTENT_LENGTH, response.content().readableBytes()+"");
 		return response;
 	}
-
-	@Override
-	protected void channelRead0(ChannelHandlerContext channelHandlerContext, FullHttpRequest fullHttpRequest) throws Exception {
-
-	}
 }

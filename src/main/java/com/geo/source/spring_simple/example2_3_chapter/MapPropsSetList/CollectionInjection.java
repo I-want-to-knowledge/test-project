@@ -17,8 +17,8 @@ import java.util.Set;
 public class CollectionInjection {
   private Map<String, Object> map;
   private Properties properties;
-  private Set set;
-  private List list;
+  private Set<String> set;
+  private List<String> list;
 
   public static void main(String[] args) {
     final GenericXmlApplicationContext context = new GenericXmlApplicationContext();
@@ -29,7 +29,7 @@ public class CollectionInjection {
     context.close();
   }
 
-  void displayInfo() {
+  private void displayInfo() {
     System.out.println("==========Map contents:=========");
     map.forEach((k, v) -> System.out.println("key : " + k + " - value : " + v));
     System.out.println("==========Properties contents:=========");
@@ -48,11 +48,11 @@ public class CollectionInjection {
     this.properties = properties;
   }
 
-  public void setSet(Set set) {
+  public void setSet(Set<String> set) {
     this.set = set;
   }
 
-  public void setList(List list) {
+  public void setList(List<String> list) {
     this.list = list;
   }
 }

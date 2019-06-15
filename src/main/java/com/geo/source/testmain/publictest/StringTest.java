@@ -1,14 +1,9 @@
 package com.geo.source.testmain.publictest;
 
-import org.apache.commons.lang.time.DateUtils;
-
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -124,7 +119,7 @@ public class StringTest {
     }
 
     private static void method4() {
-        System.out.println(DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH));
+        // System.out.println(DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH));
     }
 
     private static void method2() {

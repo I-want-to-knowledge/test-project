@@ -1,5 +1,6 @@
 package com.geo.source.spring_simple.example6_chapter.example2_spring_jdbc;
 
+import com.mysql.cj.jdbc.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.sql.DataSource;
-import java.sql.Driver;
 
 /**
  * data source 配置
@@ -39,7 +39,8 @@ public class DbConfig {
   public DataSource dataSource() {
     final SimpleDriverDataSource driverDataSource = new SimpleDriverDataSource();
     try {
-      driverDataSource.setDriverClass((Class<? extends Driver>) Class.forName(driverClassName));
+      final Class<?> aClass = Class.forName(driverClassName);
+      driverDataSource.setDriverClass(aClass.asSubclass(Driver.class));
       driverDataSource.setUrl(url);
       driverDataSource.setUsername(username);
       driverDataSource.setPassword(password);
