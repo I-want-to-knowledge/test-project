@@ -1,0 +1,17 @@
+DELIMITER $$
+
+CREATE
+    /*[DEFINER = { user | CURRENT_USER }]*/
+    FUNCTION getFirstNameById(in_id INT)
+    RETURNS VARCHAR(60)
+    /*LANGUAGE SQL
+    | [NOT] DETERMINISTIC
+    | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
+    | SQL SECURITY { DEFINER | INVOKER }
+    | COMMENT 'string'*/
+    BEGIN
+	RETURN (SELECT first_name FROM singer WHERE id = in_id);
+
+    END$$
+
+DELIMITER ;
