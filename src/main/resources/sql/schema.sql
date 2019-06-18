@@ -16,7 +16,7 @@ CREATE TABLE album (
     version int not null default 0,
 	UNIQUE uq_singer_album_1 (singer_id, title),
 	PRIMARY KEY (id),
-	CONSTRAINT fk_album FOREIGN KEY (singer_id) REFERENCES singer (id)
+	CONSTRAINT fk_album_singer FOREIGN KEY (singer_id) REFERENCES singer (id)
 );
 
 CREATE TABLE instrument (

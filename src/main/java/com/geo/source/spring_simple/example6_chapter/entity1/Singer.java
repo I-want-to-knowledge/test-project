@@ -51,9 +51,9 @@ public class Singer implements Serializable {
     return birthDate;
   }
 
-  public void setAlbums(List<Album> albums) {
+  /*public void setAlbums(List<Album> albums) {
     this.albums = albums;
-  }
+  }*/
 
   public List<Album> getAlbums() {
     return albums;
