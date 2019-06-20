@@ -1,6 +1,7 @@
 package com.geo.source.spring_simple.example8_chapter;
 
-import com.geo.source.spring_simple.example7_chapter.entity.Singer;
+import com.geo.source.spring_simple.example8_chapter.entity.Singer;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 
@@ -22,4 +23,12 @@ public interface SingerService {
   void delete(Singer singer);
 
   List<Singer> findAllByNativeQuery();
+
+  default List displayAllSingerSummary() {
+    throw new NotImplementedException("Method displayAllSingerSummary() not implement!");
+  }
+
+  default List<Singer> findByCriteriaQuery(String firstName, String lastName) {
+    throw new NotImplementedException("Method findByCriteriaQuery() not implement!");
+  }
 }

@@ -1,4 +1,4 @@
-package com.geo.source.spring_simple.example7_chapter;
+package com.geo.source.spring_simple.example8_chapter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @since 2019-06-18 10:06
  */
 @MappedSuperclass
-public class AbstractEntity implements Serializable {
+public class AbstractEntity8 implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)// 如何生成id
   @Column(updatable = false)// 不可更新

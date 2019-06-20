@@ -4,6 +4,7 @@ import org.hibernate.dialect.H2Dialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -26,6 +27,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.geo.source.spring_simple.example8_chapter")
+@EnableJpaRepositories({"com.geo.source.spring_simple.example8_chapter"})// Spring data JPA 存储库唯一配置元素，扫描Repository扩展类
 public class JpaConfig {
   @Bean
   public DataSource dataSource() {
@@ -53,7 +55,7 @@ public class JpaConfig {
     hibernateProperties.put("hibernate.max_fetch_depth", 3);
     hibernateProperties.put("hibernate.jdbc.batch_size", 10);
     hibernateProperties.put("hibernate.jdbc.fetch_size", 50);
-    // hibernateProperties.put("hibernate.jdbc.tatch_versioned_data", true);
+    // hibernateProperties.put("hibernate.enable_lazy_load_no_trans", true);
     return hibernateProperties;
   }
 

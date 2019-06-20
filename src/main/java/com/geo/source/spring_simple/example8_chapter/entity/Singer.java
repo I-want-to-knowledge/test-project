@@ -1,6 +1,6 @@
-package com.geo.source.spring_simple.example7_chapter.entity;
+package com.geo.source.spring_simple.example8_chapter.entity;
 
-import com.geo.source.spring_simple.example7_chapter.AbstractEntity;
+import com.geo.source.spring_simple.example8_chapter.AbstractEntity8;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +17,7 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "singer")
 @NamedQueries({
+        @NamedQuery(name = Singer.FIND_ALL, query = "select s from Singer s"),
         @NamedQuery(name = Singer.FIND_BY_ID,
                 query = "select distinct s from Singer s" +
                         " left join fetch s.albums a left join fetch s.instruments i " +
@@ -24,9 +25,12 @@ import java.util.StringJoiner;
         @NamedQuery(name = Singer.FIND_ALL_WITH_ALBUM,
                 query = "select distinct s from Singer s" +
                         " left join fetch s.albums a left join fetch s.instruments i")})
-public class Singer extends AbstractEntity {
-  static final String FIND_BY_ID = "Singer.findById";
-  static final String FIND_ALL_WITH_ALBUM = "Singer.findAllWithAlbum";
+// 该注解第8章使用
+@SqlResultSetMapping(name = "singerResult", entities = @EntityResult(entityClass = Singer.class))
+public class Singer extends AbstractEntity8 {
+  public static final String FIND_ALL = "Singer.findAll";
+  public static final String FIND_BY_ID = "Singer.findById";
+  public static final String FIND_ALL_WITH_ALBUM = "Singer.findAllWithAlbum";
 
   @Column(name = "first_name")
   private String firstName;
@@ -59,8 +63,6 @@ public class Singer extends AbstractEntity {
     this.lastName = lastName;
   }
 
-  // @Temporal(TemporalType.DATE)
-
   public LocalDate getBirthDate() {
     return birthDate;
   }
@@ -79,6 +81,10 @@ public class Singer extends AbstractEntity {
   public boolean addAlbum(Album album) {
     album.setSinger(this);
     return getAlbums().add(album);
+  }
+
+  public boolean removeAlbum(Album album) {
+    return getAlbums().remove(album);
   }
 
   public Set<Instrument> getInstruments() {

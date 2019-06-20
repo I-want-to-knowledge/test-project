@@ -161,6 +161,36 @@
       <version>5.4.3.Final</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>1.0.2.Final</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-jpamodelgen -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>5.4.3.Final</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+      <version>2.1.9.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.mysema.querydsl/querydsl-apt -->
+    <!--<dependency>
+      <groupId>com.mysema.querydsl</groupId>
+      <artifactId>querydsl-apt</artifactId>
+      <version>3.7.4</version>
+      <scope>provided</scope>
+    </dependency>-->
+
   </dependencies>
 
   <build>
@@ -198,15 +228,35 @@
           </execution>
         </executions>
       </plugin>
-      <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version> <configuration> <archive>                     <manifest>
-                                <addClasspath>true</addClasspath>               
-                 <classpathPrefix>lib/</classpathPrefix>                         <mainClass>com.geo.source.storm.test.LogAnalyserStorm</mainClass>
-                            </manifest>                 </archive> </configuration>
-        </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId>
-        <executions> <execution> <id>copy</id> <phase>package</phase> <goals> <goal>copy-dependencies</goal>
-        </goals> <configuration> <outputDirectory>${project.build.directory}/lib</outputDirectory>
-        </configuration> </execution> </executions> </plugin> -->
+
+      <!--元模型生成-->
+      <plugin>
+        <groupId>org.bsc.maven</groupId>
+        <artifactId>maven-processor-plugin</artifactId>
+        <version>2.0.5</version>
+        <executions>
+          <execution>
+            <id>process</id>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+              <processors>
+                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+              </processors>
+            </configuration>
+          </execution>
+        </executions>
+        <!--<dependencies>
+          <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>4.3.5.Final</version>
+          </dependency>
+        </dependencies>-->
+      </plugin>
+
     </plugins>
   </build>
 </project>

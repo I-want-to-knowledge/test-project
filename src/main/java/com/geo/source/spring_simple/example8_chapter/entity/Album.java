@@ -1,6 +1,6 @@
-package com.geo.source.spring_simple.example7_chapter.entity;
+package com.geo.source.spring_simple.example8_chapter.entity;
 
-import com.geo.source.spring_simple.example7_chapter.AbstractEntity;
+import com.geo.source.spring_simple.example8_chapter.AbstractEntity8;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ import java.util.StringJoiner;
  */
 @Entity
 @Table(name = "album")
-public class Album extends AbstractEntity {
+public class Album extends AbstractEntity8 {
   @Column
   private String title;
   @Column(name = "release_date")
@@ -28,7 +28,9 @@ public class Album extends AbstractEntity {
   }
 
   public Album(Long id, String title, LocalDate releaseDate) {
-    super.setId(id);
+    if (id != null) {
+      super.setId(id);
+    }
     this.title = title;
     this.releaseDate = releaseDate;
   }
