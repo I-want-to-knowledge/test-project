@@ -14,7 +14,7 @@ public class SetTest {
 	}
 
 	private static void mathod2() {
-		Set<Integer> set = new HashSet<Integer>();
+		Set<Integer> set = new HashSet<>();
 		set.add(10);
 		set.add(11);
 		set.add(14);

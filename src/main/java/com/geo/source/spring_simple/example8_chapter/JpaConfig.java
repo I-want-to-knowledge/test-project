@@ -55,7 +55,7 @@ public class JpaConfig {
     hibernateProperties.put("hibernate.max_fetch_depth", 3);
     hibernateProperties.put("hibernate.jdbc.batch_size", 10);
     hibernateProperties.put("hibernate.jdbc.fetch_size", 50);
-    // hibernateProperties.put("hibernate.enable_lazy_load_no_trans", true);
+    hibernateProperties.put("hibernate.enable_lazy_load_no_trans", true);
     return hibernateProperties;
   }
 
