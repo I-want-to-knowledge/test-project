@@ -15,7 +15,7 @@ import org.springframework.context.support.GenericApplicationContext;
 import java.util.List;
 
 /**
- * Spring Date JPA CrudRepository扩展进行数据库操作，实现类
+ * Spring Date JPA CrudRepository扩展进行数据库操作，测试
  *
  * @author YanZhen
  * @since 2019-06-21 16:55

@@ -48,6 +48,13 @@
       <version>${spring.version}</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
     <dependency>
       <groupId>commons-io</groupId>
@@ -69,18 +76,19 @@
     </dependency>
 
     <!--aspectJ切入点表达式-->
+    <!-- spring-data-jpa包已存在 -->
     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-    <dependency>
+    <!--<dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>1.9.4</version>
-    </dependency>
+    </dependency>-->
     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
-    <dependency>
+    <!--<dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
       <version>1.9.4</version>
-    </dependency>
+    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
     <dependency>
@@ -181,6 +189,12 @@
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
       <version>2.1.9.RELEASE</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.mysema.querydsl/querydsl-apt -->

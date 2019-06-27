@@ -1,4 +1,4 @@
-package com.geo.source.spring_simple.example8_chapter;
+package com.geo.source.spring_simple.example8_chapter.repository;
 
 import com.geo.source.spring_simple.example8_chapter.entity.Singer;
 import org.springframework.data.repository.CrudRepository;

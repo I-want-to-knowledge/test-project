@@ -23,8 +23,8 @@ import java.util.List;
 @Service
 @Repository
 public class SingerServiceImpl implements SingerService {
-  static final String ALL_SINGER_NATIVE_QUERY = "select id, first_name, last_name, birth_date, version from singer";
-  Logger logger = LoggerFactory.getLogger(SingerServiceImpl.class);
+  private static final String ALL_SINGER_NATIVE_QUERY = "select id, first_name, last_name, birth_date, version from singer";
+  private Logger logger = LoggerFactory.getLogger(SingerServiceImpl.class);
 
   @PersistenceContext
   private EntityManager em;

@@ -1,7 +1,7 @@
 package com.geo.source.spring_simple.example8_chapter.impl;
 
 import com.geo.source.spring_simple.example8_chapter.SingerDataJPAService;
-import com.geo.source.spring_simple.example8_chapter.SingerRepository;
+import com.geo.source.spring_simple.example8_chapter.repository.SingerRepository;
 import com.geo.source.spring_simple.example8_chapter.entity.Singer;
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
