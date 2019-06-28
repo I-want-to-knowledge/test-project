@@ -58,6 +58,16 @@ public class JpaConfig {
     hibernateProperties.put("hibernate.jdbc.batch_size", 10);
     hibernateProperties.put("hibernate.jdbc.fetch_size", 50);
     // hibernateProperties.put("hibernate.enable_lazy_load_no_trans", true);
+
+    // Properties for Hibernate Envers
+    hibernateProperties.put("org.hibernate.envers.audit_table_suffix", "_H");
+    hibernateProperties.put("org.hibernate.envers.revision_field_name", "audit_revision");
+    hibernateProperties.put("org.hibernate.envers.revision_type_field_name", "action_type");
+    hibernateProperties.put("org.hibernate.envers.audit_strategy", "org.hibernate.envers.ValidityAuditStrategy");
+    hibernateProperties.put("org.hibernate.envers.audit_strategy_validity_end_rev_field_name", "audit_revision_end");
+    hibernateProperties.put("org.hibernate.envers.audit_strategy_validity_store_revend_timestamp", "True");
+    hibernateProperties.put("org.hibernate.envers.audit_strategy_validity_revend_timestamp_field_name", "audit_revision_end_ts");
+
     return hibernateProperties;
   }
 
