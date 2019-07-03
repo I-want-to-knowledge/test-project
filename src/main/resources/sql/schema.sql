@@ -66,7 +66,7 @@ CREATE TABLE singer_audit_h
     action_type INT COMMENT '操作类型，值： 0添加，1修改，2删除',
     audit_revision_end INT COMMENT '历史记录最终版',
     audit_revision_end_ts DATETIME COMMENT '最终更新的时间',
-    UNIQUE uq_singer_audit_1 (first_name, last_name),
+    UNIQUE uq_singer_audit_h_1 (first_name, last_name),
     PRIMARY KEY (id, audit_revision)
 );
 

@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
   <!--<property name="log.maxHistory" value="30"/>-->
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
       <pattern>
         <!-- 设置日志输出格式：例	2018-09-21 14:35:00.011 [DEBUG] tsleasing.shipment.grab.Application - Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE -->
-        %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger{36} - %msg%n
+        <!--%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger{36} - %msg%n-->
+        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{50}) - %highlight(%msg) %n
       </pattern>
     </encoder>
   </appender>
 
-  <logger name="com.geo.source.spring_simple.example6_chapter" level="INFO"/>
+  <logger name="com.geo.source.spring_simple" level="INFO"/>
   <logger name="org.springframework.jdbc" level="DEBUG"/>
+  <logger name="org.springframework.transaction" level="INFO"/>
+  <logger name="org.springframework.SQL" level="DEBUG"/>
 
   <root level="INFO">
     <appender-ref ref="console"/>
