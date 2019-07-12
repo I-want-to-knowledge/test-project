@@ -38,6 +38,10 @@ public class StringTest {
     private static void m14() {
         String a = null;
         System.out.println("null".equals(a));
+
+        String b = "aa";
+        System.out.println(b.equals("aa"));
+        System.out.println(b == "aa");
     }
 
     private static void m13() {

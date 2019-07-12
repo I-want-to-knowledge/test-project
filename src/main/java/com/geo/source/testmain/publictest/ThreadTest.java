@@ -1,6 +1,8 @@
 package com.geo.source.testmain.publictest;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ThreadTest {
@@ -22,6 +24,7 @@ public class ThreadTest {
 
     System.out.println("初始值1：" + ThreadId.get());
     for (int i = 0; i < 10; i++) {
+      // new ThreadPoolExecutor(1, 100, 500, TimeUnit.MILLISECONDS, null, new ThreadFactory());
       final Thread thread = new Thread(() -> {
         ThreadId.set();
         System.out.println(Thread.currentThread().getName() + ":" + ThreadId.get());
