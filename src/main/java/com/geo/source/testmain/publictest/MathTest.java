@@ -19,7 +19,15 @@ public class MathTest {
 //		m3();
 //		m4();
 //		m5();
-		m6();
+//		m6();
+		m7();
+	}
+
+	/**
+	 * 相除，进位
+	 */
+	private static void m7() {
+		System.out.println(Math.ceil((float)11/5));
 	}
 
 	private static void m6() {
