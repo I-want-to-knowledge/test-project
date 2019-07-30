@@ -30,6 +30,7 @@ public class TestMain {
         m1();
     }
 
+    /** 测试接口 */
     private static String getUserUrl = "http://rongchuang.natapp4.cc/YYGH_12580_SERVICE/service.htm";
 
     private static void m1() {
@@ -37,7 +38,7 @@ public class TestMain {
         String code = null;
         String appId = "p9gbs1lwjzt1u8hstio2sjbivl19wgkx";
         String scope = "snsapi_userinfo";
-        String token = "";
+        String token = "cbfcf270-716a-447b-95df-02da62c5e8a4";
 
         String userId = "0";
         GetUserAppRequest getUserAppRequest = new GetUserAppRequest();
