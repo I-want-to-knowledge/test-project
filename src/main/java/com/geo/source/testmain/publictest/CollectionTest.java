@@ -13,7 +13,12 @@ public class CollectionTest {
 
   public static void main(String[] args) {
     // m1();
-    m2();
+//    m2();
+    m3();
+  }
+
+  private static void m3() {
+    System.out.println(Arrays.asList(null, null, null));
   }
 
   private static void m2() {

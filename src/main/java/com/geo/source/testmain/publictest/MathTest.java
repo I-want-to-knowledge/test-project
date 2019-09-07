@@ -20,7 +20,12 @@ public class MathTest {
 //		m4();
 //		m5();
 //		m6();
-		m7();
+//		m7();
+		m8();
+	}
+
+	private static void m8() {
+		System.out.println(Double.valueOf("-16.1").intValue());
 	}
 
 	/**
