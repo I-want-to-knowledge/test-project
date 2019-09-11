@@ -32,7 +32,12 @@ public class StringTest {
         // m11();
         // m12();
         // m13();
-        m14();
+//        m14();
+        m15();
+    }
+
+    private static void m15() {
+        System.out.println(new BigDecimal("23.0000003").longValue());
     }
 
     private static void m14() {
