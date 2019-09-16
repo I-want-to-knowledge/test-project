@@ -21,7 +21,12 @@ public class MathTest {
 //		m5();
 //		m6();
 //		m7();
-		m8();
+//		m8();
+		m9();
+	}
+
+	private static void m9() {
+		Long.valueOf(null);
 	}
 
 	private static void m8() {
