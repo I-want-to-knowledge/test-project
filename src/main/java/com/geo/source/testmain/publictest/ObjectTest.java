@@ -22,7 +22,17 @@ public class ObjectTest {
     // m5();
 //    m6();
 //    m7();
-    m8();
+//    m8();
+    m9();
+  }
+
+  private static void m9() {
+    Map<String, Aa> p = new HashMap<>(1);
+    final Aa value = new Aa("1", "2");
+    p.put("aa", value);
+    final Aa aa = p.get("aa");
+    aa.setName("10");
+    out.println(p.get("aa"));
   }
 
   /**
