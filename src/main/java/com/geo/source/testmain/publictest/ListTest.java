@@ -31,8 +31,39 @@ public class ListTest {
 //    m15();
         // m16();
         // m17();
-        m18();
-        m19();
+//        m18();
+//        m19();
+        m20();
+    }
+
+    /**
+     * continue 不会被 catch 掉，但异常会使 continue 失效！
+     */
+    private static void m20() {
+        final List<String> list = Arrays.asList("1", "2", "3");
+        for (String s : list) {
+            Map<String, String> params = null;
+            try {
+                if ("1".equals(s)) {
+                    params = null;
+                    params.get("");
+                } else {
+                    params = new HashMap<>();
+                    params.put(s, s);
+                }
+                if (params == null) {
+                    continue;
+                }
+            } catch (Exception e) {
+                System.err.println("异常");
+            }
+
+            System.out.println(params.get("1"));
+//            if ("2".equals(s)) {
+//                continue;
+//            }
+//            System.out.println(s);
+        }
     }
 
     private static void m19() {
