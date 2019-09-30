@@ -1,5 +1,7 @@
 package com.geo.source.testmain.publictest;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -33,7 +35,18 @@ public class StringTest {
         // m12();
         // m13();
 //        m14();
-        m15();
+//        m15();
+//        m16();
+        m17();
+    }
+
+    private static void m17() {
+        System.out.println("你好".length());
+    }
+
+    private static void m16() {
+        Long orgPartnerStoreId = null;
+        System.out.println(String.valueOf(orgPartnerStoreId));
     }
 
     private static void m15() {

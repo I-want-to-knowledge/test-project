@@ -44,13 +44,7 @@ public class ListTest {
         for (String s : list) {
             Map<String, String> params = null;
             try {
-                if ("1".equals(s)) {
-                    params = null;
-                    params.get("");
-                } else {
-                    params = new HashMap<>();
-                    params.put(s, s);
-                }
+                params = getStringStringMap(s, params);
                 if (params == null) {
                     continue;
                 }
@@ -59,11 +53,17 @@ public class ListTest {
             }
 
             System.out.println(params.get("1"));
-//            if ("2".equals(s)) {
-//                continue;
-//            }
-//            System.out.println(s);
         }
+    }
+
+    private static Map<String, String> getStringStringMap(String s, Map<String, String> params) {
+        if ("1".equals(s)) {
+            params.get("");
+        } else {
+            params = new HashMap<>(1);
+            params.put(s, s);
+        }
+        return params;
     }
 
     private static void m19() {
