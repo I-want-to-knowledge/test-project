@@ -2,6 +2,7 @@ package com.geo.source.testmain.publictest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -41,7 +42,19 @@ public class StringTest {
     }
 
     private static void m17() {
-        System.out.println("你好".length());
+        System.out.println("UTF_8 : " + ("你好123".getBytes(StandardCharsets.UTF_8).length));
+        System.out.println("UTF_16 : " + ("你好123".getBytes(StandardCharsets.UTF_16).length));
+        System.out.println("ISO_8859_1 : " + ("你好123".getBytes(StandardCharsets.ISO_8859_1).length));
+        System.out.println("US_ASCII : " + ("你好123".getBytes(StandardCharsets.US_ASCII).length));
+        System.out.println("UTF_16BE : " + ("你好123".getBytes(StandardCharsets.UTF_16BE).length));
+        System.out.println("UTF_16LE : " + ("你好123".getBytes(StandardCharsets.UTF_16LE).length));
+        try {
+            System.out.println("GBK : " + ("你好123".getBytes("GBK").length));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("app_order_insurance_schedule".length());
     }
 
     private static void m16() {
