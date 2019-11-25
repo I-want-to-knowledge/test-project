@@ -8,12 +8,12 @@ import java.util.regex.Pattern;
  * @date 2019/11/25 09:09
  **/
 public class InterfaceClassTest {
-    private interface a {
+    private interface A {
         Pattern P = Pattern.compile("\\d");
     }
 
     public static void main(String[] args) {
-        final Matcher matcher = a.P.matcher("1");
+        final Matcher matcher = A.P.matcher("1");
         System.out.println(matcher.find());
     }
 }
