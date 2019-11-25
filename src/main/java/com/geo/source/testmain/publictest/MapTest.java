@@ -3,6 +3,7 @@ package com.geo.source.testmain.publictest;
 import com.google.common.collect.Maps;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MapTest {
 
@@ -16,19 +17,17 @@ public class MapTest {
     }
 
     private static void m5() {
-        final HashMap<Long, Long> map = new HashMap<>(1);
+        final Map<Long, Long> map = new LinkedHashMap<>(1);
         map.put(1L, 1L);
         map.forEach((key, value) -> map.remove(key));
         System.out.println(map);
     }
 
     private static void m4() {
-        final HashMap<Long, Long> map = new HashMap<>(1);
+        final Map<Long, Long> map = new LinkedHashMap<>(1);
         map.put(1L, 1L);
         for (Map.Entry<Long, Long> entry : map.entrySet()) {
-            final Long key = entry.getKey();
-            final Long value = entry.getValue();
-            map.remove(key);
+            map.remove(entry.getKey());
         }
 
         System.out.println(map);
