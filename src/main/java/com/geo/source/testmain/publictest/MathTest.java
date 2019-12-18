@@ -22,7 +22,13 @@ public class MathTest {
 //		m6();
 //		m7();
 //		m8();
-		m9();
+//		m9();
+		m10();
+	}
+
+	private static void m10() {
+		final int i = 96355 % 1000;
+		System.out.println(i);
 	}
 
 	private static void m9() {

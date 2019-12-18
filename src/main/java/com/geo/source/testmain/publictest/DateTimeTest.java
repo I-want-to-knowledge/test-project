@@ -22,7 +22,9 @@ public class DateTimeTest {
   }
 
   private static void m8() {
-    System.out.println(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+    System.out.println(System.nanoTime());
+    System.out.println(System.currentTimeMillis());
+//    System.out.println(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
   }
 
   private static void m7() {

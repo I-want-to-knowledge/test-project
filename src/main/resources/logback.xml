@@ -15,6 +15,7 @@
   </appender>
 
   <logger name="com.geo.source.spring_simple" level="INFO"/>
+  <logger name="com.geo.source.testmain.fast_dfs" level="DEBUG"/>
   <logger name="org.springframework.jdbc" level="DEBUG"/>
   <logger name="org.springframework.transaction" level="INFO"/>
   <logger name="org.springframework.SQL" level="DEBUG"/>
