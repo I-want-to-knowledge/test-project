@@ -3,7 +3,9 @@ package com.geo.source.rong_chuang.push;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 /**
  * IOS消息通知
@@ -98,6 +100,21 @@ public abstract class IOSNotification extends UmengNotification {
 	 */
 	public void setAlert(String token) throws Exception {
     	setPredefinedKeyValue("alert", token);
+    }
+
+	/**
+	 * 报警
+	 * @param title 标题
+	 * @param subtitle 副标题
+	 * @param body 消息体
+	 * @throws Exception 检查
+	 */
+	public void setAlert(String title, String subtitle, String body) throws Exception {
+		Map<String, String> params = new HashMap<>(3);
+		params.put("title", title);
+		params.put("subtitle", subtitle);
+		params.put("body", body);
+    	setPredefinedKeyValue("alert", params);
     }
 
 	/**

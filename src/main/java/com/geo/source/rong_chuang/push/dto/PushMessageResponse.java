@@ -19,6 +19,10 @@ public class PushMessageResponse {
      */
     private String taskId;
     /**
+     * 当"ret"为"SUCCESS"时
+     */
+    private String msgId;
+    /**
      * 消息状态: 0-排队中, 1-发送中，2-发送完成，
      * 3-发送失败，4-消息被撤销，5-消息过期,
      * 6-筛选结果为空，7-定时任务尚未开始处理

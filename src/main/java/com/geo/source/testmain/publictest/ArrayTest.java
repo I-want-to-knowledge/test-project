@@ -1,5 +1,6 @@
 package com.geo.source.testmain.publictest;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,9 +16,9 @@ public class ArrayTest {
   public static void main(String[] args) {
     // method1();
     m1();
-    m2();
-    m3();
-    m4();
+//    m2();
+//    m3();
+//    m4();
   }
 
   /**
@@ -27,6 +28,7 @@ public class ArrayTest {
     int[] a = {11, 12, 13, 14};
     int[] b = {0, 1, 2, 3};
     System.out.println("m1():" + a[(a = b)[3]]);
+    System.out.println(Arrays.toString(a));
   }
 
   /**

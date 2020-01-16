@@ -23,7 +23,23 @@ public class MathTest {
 //		m7();
 //		m8();
 //		m9();
-		m10();
+//		m10();
+		M11();
+	}
+
+	private static void M11() {
+		System.out.println(getNumber(10L, 2L));
+	}
+
+	private static double getNumber(Long number1, Long number2) {
+		double prefix = number1 / number2;
+		double number3 = number1 / (double) number2;
+		double number4 = number3 - (long) number3;
+		boolean flag = number4 >= 0.5 && number4 < 1;
+		if (flag) {
+			prefix += 0.5;
+		}
+		return prefix;
 	}
 
 	private static void m10() {

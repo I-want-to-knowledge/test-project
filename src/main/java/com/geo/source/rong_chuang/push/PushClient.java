@@ -239,7 +239,6 @@ class PushClient {
      * @return 响应信息
      */
     PushMessageResponse sendAndRespond(UmengNotification msg) {
-        PushMessageResponse pushMessageResponse = new PushMessageResponse();
         final JSONObject jsonObject = pushSend(msg);
         PushMessageResponse status;
         if (jsonObject != null) {
@@ -265,6 +264,7 @@ class PushClient {
         JSONObject data = jsonObject.getJSONObject("data");
         if (Ret.SUCCESS.getValue().equals(ret)) {
             status.setTaskId(data.getString("task_id"));
+            status.setTaskId(data.getString("msg_id"));
             status.setStatus(data.getShort("status"));
             status.setSentCount(data.getInteger("sent_count"));
             status.setOpenCount(data.getInteger("open_count"));
@@ -294,6 +294,7 @@ class PushClient {
             msg.setPredefinedKeyValue("timestamp", timestamp);
             String url = host + postPath;
             String postBody = msg.getPostBody();
+            logger.info("push请求参数：{}", postBody);
             String sign = DigestUtils.md5Hex(("POST" + url + postBody + msg.getAppMasterSecret()).getBytes(StandardCharsets.UTF_8));
             url = url + "?sign=" + sign;
             post = new HttpPost(url);

@@ -72,6 +72,27 @@ public final class UmengService {
     }
 
     /**
+     * 推送
+     * @param alias 身份证号或token，用‘,’隔开
+     * @param title 标题
+     * @param subTitle 副标题
+     * @param body 消息体
+     * @return 是否成功
+     * @throws Exception 检查
+     */
+    public static boolean sendIOSCustomizedcast(String alias, String title, String subTitle, String body) throws Exception {
+        logger.info("IOS的普通推送,参数：[alias={}, str={}]", alias, title);
+        IOSCustomizedcast customizedcast = new IOSCustomizedcast(appkey_ios, appMasterSecret_ios);
+        customizedcast.setAlias(alias, "IDCARD");
+        customizedcast.setAlert(title, subTitle, body);
+        customizedcast.setBadge(0);
+        customizedcast.setSound("default");
+        // customizedcast.setTestMode();
+        customizedcast.setProductionMode();
+        return client.send(customizedcast);
+    }
+
+    /**
      * ANDROID带参数的推送
      *
      * @param alias 证件号/token
@@ -319,7 +340,7 @@ public final class UmengService {
     }
 
     /**
-     * IOS根据fileId给用户发送消息
+     * IOS根据alias给用户发送消息
      *
      * @param alias     用户上传的证件号
      * @param aliasType 自定义文件中内容类型（身份证号/token）
@@ -335,6 +356,30 @@ public final class UmengService {
         // Umeng返回的文件Id
         customizedcast.setAlias(alias, aliasType);
         customizedcast.setAlert(alert);
+        customizedcast.setBadge(0);
+        customizedcast.setSound("default");
+        customizedcast.setProductionMode();
+        return client.sendAndRespond(customizedcast);
+    }
+
+    /**
+     * 消息推送
+     * @param alias 证件号
+     * @param aliasType 证件类型
+     * @param title 标题
+     * @param subTitle 副标题
+     * @param body 消息体
+     * @return 响应结果
+     * @throws Exception 检查异常
+     */
+    public static PushMessageResponse iosSendAlias(String alias, String aliasType, String title, String subTitle, String body) throws Exception {
+
+        // 初始化IOS自定义实体
+        IOSCustomizedcast customizedcast = new IOSCustomizedcast(appkey_ios, appMasterSecret_ios);
+
+        // Umeng返回的文件Id
+        customizedcast.setAlias(alias, aliasType);
+        customizedcast.setAlert(title, subTitle, body);
         customizedcast.setBadge(0);
         customizedcast.setSound("default");
         customizedcast.setProductionMode();
@@ -490,6 +535,10 @@ public final class UmengService {
         return statusNum;
     }
 
+    /**
+     * IOS消息体实例：{"policy":{"expire_time":"2019-12-30 11:17:25"},"description":"啊","production_mode":true,"appkey":"5434f700fd98c5364c03acd3","payload":{"aps":{"alert":{"title":"啊啊啊","subtitle":"12345678901234567890-威尔与； ","body":"12345678901234567890-威尔与；12345678901234567890-威尔与；12345678901234567890-威尔与；"},"sound":"default"}},"alias":"412726199305191655","alias_type":"IDCARD","type":"customizedcast","timestamp":"1577416740032"}
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             // sendIOSCustomizedcastFile("412726199305191655\n412726199305191655", "IDCARD", "嗨嗨你好");
@@ -504,8 +553,9 @@ public final class UmengService {
 //            logger.info(jsonObject.getString(PushMessageConstants.ANDROID_TASK_ID) + "==="
 //                    + jsonObject.getString(PushMessageConstants.IOS_TASK_ID));
             // final boolean b = sendAndroidCustomizedcast("66993322,412726199305191655", "你好", "这是一个标题");
-            final PushMessageResponse response = androidSendAlias("412726199305191655", "IDCARD", "标题1", "标题2", "内容");
-            logger.info("是否成功：{}", response.toString());
+//            final PushMessageResponse response = androidSendAlias("412726199305191655", "IDCARD", "标题1", "标题2", "内容");
+            final boolean b = sendIOSCustomizedcast("412726199305191655,412726199305191655", "标题", "副标题", "消息体");
+            logger.info("是否成功：{}", b);
         } catch (Exception e) {
             e.printStackTrace();
         }

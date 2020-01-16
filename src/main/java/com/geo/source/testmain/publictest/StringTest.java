@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,7 +39,13 @@ public class StringTest {
 //        m14();
 //        m15();
 //        m16();
-        m17();
+//        m17();
+        m18();
+    }
+
+    private static void m18() {
+        Long a = null;
+        System.out.println(Objects.toString(a, ""));
     }
 
     private static void m17() {

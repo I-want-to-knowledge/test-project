@@ -37,4 +37,8 @@ public class Aa {
     System.out.println(getClass().getName() + "@" + Integer.toHexString(hashCode()));
     return "{'id':" + id + ", 'name':" + name + "}";
   }
+
+  public String redisKey() {
+    return (id + name).hashCode() + "";
+  }
 }
