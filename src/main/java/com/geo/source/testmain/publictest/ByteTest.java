@@ -3,7 +3,6 @@ package com.geo.source.testmain.publictest;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Base64;
 
 /**
  * 字节 测试
@@ -16,7 +15,24 @@ public class ByteTest {
     // m1();
     // m2();
 //    m3();
-    m4();
+//    m4();
+    m5();
+  }
+
+  private static void m5() {
+    java.lang.String a = "abc";
+    System.out.println(Arrays.toString(a.getBytes(StandardCharsets.UTF_8)));
+    char a1 = 97;
+    char b1 = 98;
+    char c1 = 99;
+    System.out.println(a1);
+    System.out.println(b1);
+    System.out.println(c1);
+    byte[] abc = new byte[3];
+    abc[0] = 97;
+    abc[1] = 98;
+    abc[2] = 99;
+    System.out.println(new java.lang.String(abc, StandardCharsets.UTF_8));
   }
 
   private static void m4() {
