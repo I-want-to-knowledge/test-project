@@ -26,7 +26,15 @@ public class ObjectTest {
 //    m7();
 //    m8();
 //    m9();
-    m10();
+//    m10();
+    m11();
+  }
+
+  private static void m11() {
+    out.println(Aa.class.getName());
+    out.println(Aa.class.getSimpleName());
+    out.println(Aa.class.getCanonicalName());
+    out.println(Aa.class.getTypeName());
   }
 
   private static void m10() {

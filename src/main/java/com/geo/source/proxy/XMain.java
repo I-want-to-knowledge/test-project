@@ -8,7 +8,24 @@ package com.geo.source.proxy;
  */
 public class XMain {
   public static void main(String[] args) {
-    final X x = (X) new XInvocationHandler<X>(new XImpl()).get(X.class);
+    m1();
+    m2();
+  }
+
+  /**
+   * 动态代理v2版
+   */
+  private static void m2() {
+    final X x = new XInvocationHandler().setT(new XImpl(), X.class);
+    x.a();
+    x.b();
+  }
+
+  /**
+   * 动态代理
+   */
+  private static void m1() {
+    final X x = (X) new XInvocationHandler(new XImpl()).newProxy(X.class);
     x.a();
     x.b();
   }
