@@ -16,7 +16,17 @@ public class ByteTest {
     // m2();
 //    m3();
 //    m4();
-    m5();
+//    m5();
+    m6();
+  }
+
+  private static void m6() {
+    String str = "1qwr\"123\"wedd";
+    String str1 = "12a";
+    char a = '"';
+    System.out.println((byte) a);
+    System.out.println(str.replace("\"", "\"\""));
+    System.out.println(str1.matches("^[0-9]*$"));
   }
 
   private static void m5() {

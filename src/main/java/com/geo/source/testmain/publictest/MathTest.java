@@ -24,7 +24,48 @@ public class MathTest {
 //		m8();
 //		m9();
 //		m10();
-		M11();
+//		M11();
+//		m12();
+//		m13();
+		m14();
+	}
+
+	private static void m14() {
+		final long i =  ((long)1 << 63) - 1;
+		System.out.println(i);
+		float f = 9999999999999999999.01f;
+		System.out.println(f);
+	}
+
+	private static void m13() {
+		double d = Double.MAX_VALUE;
+		System.out.println("d :" + d);
+		d = Double.MIN_VALUE;
+		System.out.println("d :" + d);
+		float f = Float.MAX_VALUE;
+		System.out.println("f :" + f);
+		f = Float.MIN_VALUE;
+		System.out.println("f :" + f);
+		long l = Long.MAX_VALUE;
+		System.out.println("l :" + l);
+		l = Long.MIN_VALUE;
+		System.out.println("l :" + l);
+		int i = Integer.MAX_VALUE;
+		System.out.println("i :" + i);
+		i = Integer.MIN_VALUE;
+		System.out.println("i :" + i);
+		short s = Short.MAX_VALUE;
+		System.out.println("s :" + s);
+		s = Short.MIN_VALUE;
+		System.out.println("s :" + s);
+	}
+
+	private static void m12() {
+		int a = 1;
+		int b = 1;
+		System.out.println(a++);
+		System.out.println(++b);
+		System.out.println(a);
 	}
 
 	private static void M11() {

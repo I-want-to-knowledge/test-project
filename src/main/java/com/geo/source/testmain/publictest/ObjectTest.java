@@ -4,9 +4,12 @@ import com.geo.source.testmain.bean.Abc;
 
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.lang.System.*;
 
@@ -27,7 +30,30 @@ public class ObjectTest {
 //    m8();
 //    m9();
 //    m10();
-    m11();
+//    m11();
+//    m12();
+    m13();
+  }
+
+  private static void m13() {
+    out.println(StandardCharsets.UTF_8.name());
+  }
+
+  private static void m12() {
+    List<Aa> aas = new ArrayList<>();
+    aas.add(new Aa("1", "a"));
+    aas.add(new Aa("2", "b"));
+    final List<Field> collect = Arrays.stream(aas.get(0).getClass().getDeclaredFields()).collect(Collectors.toList());
+    for (Aa aa : aas) {
+      collect.forEach(field -> {
+        try {
+          field.setAccessible(true);
+          out.println(field.getName() + " : " + field.get(aa));
+        } catch (IllegalAccessException e) {
+          e.printStackTrace();
+        }
+      });
+    }
   }
 
   private static void m11() {

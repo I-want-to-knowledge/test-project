@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
@@ -18,7 +19,18 @@ public class DateTimeTest {
 //    m5();
 //    m6();
 //    m7();
-    m8();
+//    m8();
+    m9();
+  }
+
+  private static void m9() {
+    final LocalDateTime now = LocalDateTime.now();
+    final LocalDate now1 = LocalDate.now();
+    final LocalTime now2 = LocalTime.now();
+    System.out.println(now instanceof Temporal);
+    System.out.println(now1 instanceof Temporal);
+    System.out.println(now2 instanceof Temporal);
+    System.out.println(now1 + " " + now2.toString());
   }
 
   private static void m8() {
