@@ -2,6 +2,7 @@ package com.geo.source.testmain.publictest;
 
 import com.google.common.collect.Maps;
 
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,8 +13,24 @@ public class MapTest {
 //		m1();
         // m2();
 //        m3();
-        m4();
-        m5();
+//        m4();
+//        m5();
+        m6();
+    }
+
+    private static void m6() {
+        Map<String, Integer> map = new HashMap<>(5);
+        map.put("key1", 1);
+        map.put("key2", 2);
+        map.put("key3", 3);
+        map.put("key4", 4);
+        map.put("key5", 5);
+
+        final Class<? extends Map> aClass = map.getClass();
+        final Field[] fields = aClass.getFields();
+        for (Field field : fields) {
+            System.out.println(field.getName());
+        }
     }
 
     private static void m5() {

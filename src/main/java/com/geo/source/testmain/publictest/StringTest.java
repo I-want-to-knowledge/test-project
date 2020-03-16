@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,8 +45,13 @@ public class StringTest {
     }
 
     private static void m18() {
-        Long a = null;
-        System.out.println(Objects.toString(a, ""));
+        final DecimalFormat format = new DecimalFormat("#0.##%");
+        float a = 999.111111f;
+        float b = 999.996f;
+        System.out.println(format.format(a));
+        System.out.println(format.format(b));
+//        Long a = null;
+//        System.out.println(Objects.toString(a, ""));
     }
 
     private static void m17() {
