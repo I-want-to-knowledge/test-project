@@ -12,28 +12,26 @@ import java.util.stream.Stream;
 public class ListTest {
 
     public static void main(String[] args) {
-        // Collections.addAll(null);
-        // method4();
-        // method5();
-        // method6();
-        // method7();
-        // method8();
-        // method9();
-        // m10();
-        // m11();
-        // m12();
-        // method1(1);
-        // method1(2);
-        // method1(3);
-        // method1(4);
-//    m13();
-//    m14();
-//    m15();
-        // m16();
-        // m17();
-//        m18();
-//        m19();
-        m20();
+        m21();
+    }
+
+    /**
+     * 排序
+     */
+    private static void m21() {
+        List<Aa> aas = new ArrayList<>();
+        aas.add(new Aa("1", "1"));
+        aas.add(new Aa("3", "3"));
+        aas.add(new Aa("2", "2"));
+        aas.add(new Aa("4", "4"));
+
+        Map<Integer, Comparator<Aa>> functionMap = new HashMap<Integer, Comparator<Aa>>() {{
+            put(1, Comparator.comparing(Aa::getId));
+            put(2, Comparator.comparing(Aa::getName));
+        }};
+
+        aas.sort(functionMap.get(1).reversed());
+        System.out.println(aas);
     }
 
     /**

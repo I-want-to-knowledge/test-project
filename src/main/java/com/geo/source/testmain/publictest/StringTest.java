@@ -6,7 +6,12 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -41,7 +46,17 @@ public class StringTest {
 //        m15();
 //        m16();
 //        m17();
-        m18();
+//        m18();
+//        m19();
+    }
+
+    private static void m19() {
+        Boolean a = null;
+        if (a) {
+            System.out.println(a);
+        } else {
+            System.out.println(a);
+        }
     }
 
     private static void m18() {
