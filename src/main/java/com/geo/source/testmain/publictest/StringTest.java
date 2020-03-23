@@ -48,6 +48,12 @@ public class StringTest {
 //        m17();
 //        m18();
 //        m19();
+        m20();
+    }
+
+    private static void m20() {
+        String a = "ABCDEFG";
+        System.out.println(a);
     }
 
     private static void m19() {

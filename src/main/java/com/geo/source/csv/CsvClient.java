@@ -4,12 +4,12 @@ import com.geo.source.csv.annotation.CsvCell;
 import com.geo.source.csv.annotation.CsvRow;
 import com.geo.source.csv.dto.CsvFileInfo;
 import com.geo.source.csv.service.FieldAdaptor;
+import com.geo.source.csv.service.impl.DefaultFieldAdaptorImpl;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.http.util.Asserts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -17,12 +17,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 /**
  * 生成csv文件
+ *
  * @author YanZhen
  * @date 2020/03/16 11:04
  **/
@@ -51,7 +54,8 @@ public class CsvClient {
 
     /**
      * 获取csv文件流
-     * @param ts 数据源
+     *
+     * @param ts  数据源
      * @param <T> 数据源类型
      * @return csv文件流
      */
@@ -60,10 +64,23 @@ public class CsvClient {
     }
 
     /**
+     * 获取csv文件信息
+     *
+     * @param <T>      ts 数据源
+     * @param fileName 文件名
+     * @param titleMap 标题名
+     * @return 编码后字符串
+     */
+    public static <T> CsvFileInfo getCsvByteByMap(List<Map<String, T>> ts, String fileName, Map<String, String> titleMap) {
+        return doExportByMap(ts, fileName, titleMap);
+    }
+
+    /**
      * 获取csv文件流
-     * @param ts 数据源
+     *
+     * @param ts       数据源
      * @param fieldNos 数据源中需要筛选的字段编号
-     * @param <T> 数据源类型
+     * @param <T>      数据源类型
      * @return csv文件流
      */
     public static <T> CsvFileInfo getCsvByte(List<T> ts, List<Short> fieldNos) {
@@ -124,11 +141,12 @@ public class CsvClient {
 
     /**
      * 获取对象中的字段值，可筛选对象中的字段（需要使用@CsvCell注解，指定字段编号）
+     *
      * @param fieldNos 字段编号
-     * @param tClazz 对象类
+     * @param tClazz   对象类
      * @return 筛选后字段
      */
-    public static List<Field> getFields(List<Short> fieldNos, Class<?> tClazz) {
+    private static List<Field> getFields(List<Short> fieldNos, Class<?> tClazz) {
         final Field[] declaredFields = tClazz.getDeclaredFields();
         final List<Field> fields;
         // 字段全部显示
@@ -190,5 +208,59 @@ public class CsvClient {
             value = s + value + s;
         }
         return value;
+    }
+
+    /**
+     * 针对Map对象的导出
+     *
+     * @param ts       数据源
+     * @param fileName 文件名
+     * @param titleMap 标题信息
+     * @param <T>      只支持进本类型，（Number、String、Date、..）
+     * @return CSV的文件信息
+     */
+    private static <T> CsvFileInfo doExportByMap(List<Map<String, T>> ts, String fileName, Map<String, String> titleMap) {
+        Asserts.notNull(titleMap, "Title");
+        fileName = Objects.toString(fileName, "");
+        if (CollectionUtils.isEmpty(ts)) {
+            log.warn("csv导出失败，无数据导出！");
+            return null;
+        } else if (ts.size() > MAX_ROW_NUMBER) {
+            log.warn("csv导出失败，数据量太大（最大十万条，实际{}条）！", ts.size());
+            return null;
+        }
+
+        // 扩展名
+        String ext = ".csv";
+        // 文件名
+        fileName += new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        // 文件全称
+        String fileExtName = fileName + ext;
+
+        // csv文件内容
+        final StringJoiner csvFile = new StringJoiner("\r\n");
+
+        // csv数据标题
+        // key值
+        final Set<String> keys = ts.get(0).keySet();
+        final StringJoiner titleRow = new StringJoiner(",");
+        for (String field : keys) {
+            titleRow.add(titleMap.get(field));
+        }
+        csvFile.merge(titleRow);
+
+        // 生成csv格式的数据
+        FieldAdaptor adaptor = new DefaultFieldAdaptorImpl();
+        for (Map<String, T> t : ts) {
+            final StringJoiner row = new StringJoiner(",");
+            t.forEach((k, v) -> row.add(symbolManipulation(adaptor.process(v))));
+            csvFile.merge(row);
+        }
+
+        // 文件的byte信息
+        final byte[] b = csvFile.toString().getBytes(StandardCharsets.UTF_8);
+
+        // 设置文件格式
+        return new CsvFileInfo(b, b.length, fileExtName);
     }
 }
