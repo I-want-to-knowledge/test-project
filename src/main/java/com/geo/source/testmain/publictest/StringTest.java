@@ -53,7 +53,8 @@ public class StringTest {
 
     private static void m20() {
         String a = "ABCDEFG";
-        System.out.println(a);
+        System.out.println(a.substring(0, a.length()-1));
+        System.out.println(a.replace("G", ""));
     }
 
     private static void m19() {
