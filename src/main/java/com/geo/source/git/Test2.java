@@ -15,6 +15,7 @@ public class Test2 {
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
+        System.out.println("替换类测试！18");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
@@ -42,6 +43,7 @@ public class Test2 {
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
+        System.out.println("替换类测试！46");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
@@ -59,9 +61,7 @@ public class Test2 {
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
-        System.out.println("替换类测试！");
-        System.out.println("替换类测试！");
-        System.out.println("替换类测试！");
+        System.out.println("替换类测试！64");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
         System.out.println("替换类测试！");
