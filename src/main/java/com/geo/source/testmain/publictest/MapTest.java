@@ -15,7 +15,32 @@ public class MapTest {
 //        m3();
 //        m4();
 //        m5();
-        m6();
+//        m6();
+//        m7();
+        m8();
+    }
+
+    private static void m8() {
+        Map<String, Integer> map = new HashMap<>(3);
+        map.put("key1", 1);
+        map.put("key2", 2);
+        map.put("key3", 3);
+        map.put(null, 4);
+        System.out.println(map.get(null));
+    }
+
+    private static void m7() {
+        Map<String, Integer> map = new HashMap<>(3);
+        map.put("key1", 1);
+        map.put("key2", 2);
+        map.put("key3", 3);
+        final Map<String, Integer> map1 = new HashMap<>(map);
+        for (Map.Entry<String, Integer> o : map1.entrySet()) {
+            map.remove("key2");
+            System.out.println(o.getValue());
+        }
+
+        map.forEach((k, v)-> System.out.println(v));
     }
 
     private static void m6() {

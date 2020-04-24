@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -52,9 +53,29 @@ public class StringTest {
     }
 
     private static void m20() {
-        String a = "ABCDEFG";
-        System.out.println(a.substring(0, a.length()-1));
-        System.out.println(a.replace("G", ""));
+        final DecimalFormat format = new DecimalFormat("#0.##%");
+        String a = "0%";
+        try {
+            System.out.println(format.parse(a).doubleValue());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+//        final DecimalFormat format = new DecimalFormat("#0.##");
+//        String a = ".5";
+//        try {
+//            final Number parse = format.parse(a);
+//            System.out.println(parse);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
+//        long a1 = 1;
+//        long b = 3;
+//        System.out.println(Double.parseDouble(new DecimalFormat("#0.##").format((double) a1/b)));
+//        String a = "ABCDEFG";
+//        System.out.println(a.substring(0, a.length()-1));
+//        System.out.println(a.replace("G", ""));
     }
 
     private static void m19() {

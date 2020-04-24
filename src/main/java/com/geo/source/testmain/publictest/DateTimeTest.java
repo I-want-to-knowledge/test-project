@@ -25,6 +25,9 @@ public class DateTimeTest {
 
   private static void m9() {
     final LocalDateTime now = LocalDateTime.now();
+    System.out.println(now.toEpochSecond(ZoneOffset.of("+8")));
+    System.out.println(now.toEpochSecond(ZoneOffset.of("+8")));
+    System.out.println(System.currentTimeMillis());
     final LocalDate now1 = LocalDate.now();
     final LocalTime now2 = LocalTime.now();
     System.out.println(now instanceof Temporal);
