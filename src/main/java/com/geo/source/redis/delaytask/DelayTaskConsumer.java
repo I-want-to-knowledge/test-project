@@ -5,6 +5,10 @@ package com.geo.source.redis.delaytask;
  * @author YanZhen
  * @date 2020/04/16 00:20
  **/
+@FunctionalInterface
 public interface DelayTaskConsumer {
-
+    /**
+     * 消费任务
+     */
+    void consumer();
 }
