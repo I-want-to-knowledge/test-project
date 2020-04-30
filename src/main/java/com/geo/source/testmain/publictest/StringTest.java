@@ -1,6 +1,8 @@
 package com.geo.source.testmain.publictest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -17,10 +19,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SuppressWarnings("unused")
 public class StringTest {
+    private static final Logger log = LoggerFactory.getLogger(StringTest.class);
 
     public static void main(String[] args) {
         // method1();
@@ -29,14 +33,6 @@ public class StringTest {
         // method5();
 //		method6();
         // method7("0001");
-        /*String name = "123";
-        String a = "'Pizza3':{'name':'" + name + "'}";
-        String substring = a.substring(1, 4);
-        System.out.println("结果1：" + substring);
-        String substring1 = substring.substring(2, 2);
-        System.out.println("结果2：" + substring1);*/
-        // System.out.println(new Integer(1).equals(1));
-        /*System.out.println("Windows 7".startsWith("Windows"));*/
         // m8();
         // m9();
 //        m10();
@@ -49,7 +45,18 @@ public class StringTest {
 //        m17();
 //        m18();
 //        m19();
-        m20();
+//        m20();
+        m21();
+    }
+
+    private static void m21() {
+        final ArrayList<Aa> list = new ArrayList<>(4);
+        list.add(new Aa("1", "a"));
+        list.add(new Aa("2", "b"));
+        list.add(new Aa("3", "c"));
+        list.add(new Aa("4", "d"));
+        log.error("该医院关联数据异常，找到多家关联的门店，门店Id为（{}），默认随机选择一条下线！",
+                list.stream().map(Aa::getId).collect(Collectors.toList()));
     }
 
     private static void m20() {

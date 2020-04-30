@@ -1,5 +1,7 @@
 package com.geo.source.redis.delaytask;
 
+import java.util.Map;
+
 /**
  * 延迟任务-消费
  * @author YanZhen
@@ -9,6 +11,7 @@ package com.geo.source.redis.delaytask;
 public interface DelayTaskConsumer {
     /**
      * 消费任务
+     * @param params 传参
      */
-    void consumer();
+    void consumer(Map<String, Object> params);
 }

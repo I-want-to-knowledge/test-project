@@ -1,4 +1,6 @@
-package com.geo.source.redis.delaytask;
+package com.geo.source.redis.delaytask.dto;
+
+import com.geo.source.redis.delaytask.DelayTaskConsumer;
 
 import java.util.Map;
 
@@ -7,15 +9,15 @@ import java.util.Map;
  * @date 2020/04/24 13:28
  **/
 public class DelayTaskDto {
-    private Class<DelayTaskConsumer> clazz;
+    private Class<? extends DelayTaskConsumer> clazz;
     private Map<String, Object> params;
 
-    public DelayTaskDto(Class<DelayTaskConsumer> clazz, Map<String, Object> params) {
+    public DelayTaskDto(Class<? extends DelayTaskConsumer> clazz, Map<String, Object> params) {
         this.clazz = clazz;
         this.params = params;
     }
 
-    public Class<DelayTaskConsumer> getClazz() {
+    public Class<? extends DelayTaskConsumer> getClazz() {
         return clazz;
     }
 

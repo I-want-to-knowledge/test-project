@@ -32,7 +32,14 @@ public class ObjectTest {
 //    m10();
 //    m11();
 //    m12();
-    m13();
+//    m13();
+    m14();
+  }
+
+  private static void m14() {
+    final Aa aa = new Aa("1", "a");
+    aa.setId("1".equals(aa.getId()) ? "1.1" : "0");
+    out.println(aa.getId());
   }
 
   private static void m13() {

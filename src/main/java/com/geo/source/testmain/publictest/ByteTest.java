@@ -1,6 +1,8 @@
 package com.geo.source.testmain.publictest;
 
 import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -17,7 +19,13 @@ public class ByteTest {
 //    m3();
 //    m4();
 //    m5();
-    m6();
+//    m6();
+    m7();
+  }
+
+  private static void m7() {
+    byte b = 127;
+    System.out.println((int) b);
   }
 
   private static void m6() {

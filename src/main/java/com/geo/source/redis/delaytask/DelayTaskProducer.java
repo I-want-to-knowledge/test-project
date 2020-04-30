@@ -1,6 +1,8 @@
 package com.geo.source.redis.delaytask;
 
 import com.alibaba.fastjson.JSONObject;
+import com.geo.source.redis.delaytask.constant.Constant;
+import com.geo.source.redis.delaytask.dto.DelayTaskDto;
 import redis.clients.jedis.JedisCluster;
 
 import java.time.LocalDateTime;
@@ -13,11 +15,6 @@ import java.util.Map;
  * @date 2020/04/16 00:19
  **/
 public class DelayTaskProducer {
-
-    /**
-     * 延迟任务Redis key
-     */
-    private final static String REDIS_KEY = "TASK:DELAY_TASK";
 
     private JedisCluster redis;
 
@@ -32,7 +29,7 @@ public class DelayTaskProducer {
      * @param runTime 任务消费的时间
      * @return 是否生产
      */
-    public boolean producer(Class<DelayTaskConsumer> clazz, Map<String, Object> params, LocalDateTime runTime) {
+    public boolean producer(Class<? extends DelayTaskConsumer> clazz, Map<String, Object> params, LocalDateTime runTime) {
         // 大于当前时间
         if (runTime == null || runTime.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("需要一个未来的时间！");
@@ -40,7 +37,7 @@ public class DelayTaskProducer {
 
         final DelayTaskDto dto = new DelayTaskDto(clazz, params);
 
-        final Long aLong = redis.zadd(REDIS_KEY, runTime.toEpochSecond(ZoneOffset.of("+8")), JSONObject.toJSONString(dto));
+        final Long aLong = redis.zadd(Constant.REDIS_KEY, runTime.toEpochSecond(ZoneOffset.of("+8")), JSONObject.toJSONString(dto));
         return aLong != null && aLong > 0;
     }
 }
