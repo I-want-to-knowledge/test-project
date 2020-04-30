@@ -28,7 +28,7 @@ public class RedisClient {
      * 延迟任务测试
      */
     private static void m2() {
-//        timer();
+        timer();
         producerTask();
     }
 
