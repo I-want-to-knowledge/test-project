@@ -1,21 +1,19 @@
 package com.geo.source.testmain.publictest;
 
-import org.apache.commons.lang3.StringUtils;
+import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,7 +44,47 @@ public class StringTest {
 //        m18();
 //        m19();
 //        m20();
-        m21();
+//        m21();
+        m22();
+//        m23();
+//        m24();
+    }
+
+    private static void m24() {
+        final Charset utf8 = CharsetUtil.UTF_8;
+        char[] cs = {'H', 'e', 'l', 'l', 'o', '!'};
+        final CharBuffer buffer = CharBuffer.allocate(cs.length);
+        buffer.put(cs);
+        buffer.flip();
+        final ByteBuffer byteBuffer = utf8.encode(buffer);
+        System.out.println(byteBuffer.toString());
+        System.out.println(Arrays.toString(byteBuffer.array()));
+
+        final byte[] bs = {72, 101, 108, 108, 111, 33};
+        final ByteBuffer buffer1 = ByteBuffer.allocate(bs.length);
+        buffer1.put(bs);
+        buffer1.flip();
+        final CharBuffer decode = utf8.decode(buffer1);
+        System.out.println(decode.toString());
+        System.out.println(new String(decode.array()));
+
+    }
+
+    /**
+     * 全局变量自动初始化声明的对象，值为null
+     */
+    static String string_a;
+    private static void m23() {
+        System.out.println(string_a);
+    }
+
+    private static void m22() {
+        String a = " ";
+        boolean b = Pattern.matches("^\\S$", a);
+        System.out.println(b);
+        a = "";
+        b = Pattern.matches("^([3])|$", a);
+        System.out.println(b);
     }
 
     private static void m21() {
