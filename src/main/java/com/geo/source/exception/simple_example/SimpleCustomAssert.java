@@ -1,25 +1,23 @@
-package com.geo.source.exception.customassert;
-
-import com.geo.source.exception.customassert.exception.BaseException;
+package com.geo.source.exception.simple_example;
 
 /**
  * 自定义断言
  * @author YanZhen
  * @date 2020/05/08 13:24
  **/
-public interface CustomAssert {
+public interface SimpleCustomAssert {
     /**
      * 创建异常
      * @return 异常信息
      */
-    BaseException newException();
+    SimpleBaseException newException();
 
     /**
      * 创建异常
      * @param args 参数
      * @return 异常信息
      */
-    BaseException newException(Object args);
+    SimpleBaseException newException(Object args);
 
     /**
      * 创建异常
@@ -27,7 +25,7 @@ public interface CustomAssert {
      * @param args 参数
      * @return 异常信息
      */
-    BaseException newException(Throwable t, Object args);
+    SimpleBaseException newException(Throwable t, Object args);
 
     /**
      * 是否为空，抛出异常

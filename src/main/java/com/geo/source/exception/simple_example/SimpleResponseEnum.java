@@ -1,12 +1,10 @@
-package com.geo.source.exception.exceptinenum;
-
-import com.geo.source.exception.customassert.BusinessAssertException;
+package com.geo.source.exception.simple_example;
 
 /**
  * @author YanZhen
  * @date 2020/05/08 14:13
  **/
-public enum ResponseEnum implements BusinessAssertException {
+public enum SimpleResponseEnum implements SimpleCustomAssert {
     /**
      * Bad licence type
      */
@@ -25,18 +23,32 @@ public enum ResponseEnum implements BusinessAssertException {
     private int code;
     private String message;
 
-    ResponseEnum(int code, String message) {
+    SimpleResponseEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    @Override
     public int getCode() {
         return code;
     }
 
-    @Override
     public String getMessage() {
         return message;
+    }
+
+
+    @Override
+    public SimpleBaseException newException() {
+        return newException(null);
+    }
+
+    @Override
+    public SimpleBaseException newException(Object args) {
+        return newException(null, args);
+    }
+
+    @Override
+    public SimpleBaseException newException(Throwable t, Object args) {
+        return new SimpleBusinessException(this, args);
     }
 }
