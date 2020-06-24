@@ -3,6 +3,7 @@ package com.geo.source.testmain.publictest;
 import com.google.common.collect.Maps;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,65 @@ public class MapTest {
 //        m5();
 //        m6();
 //        m7();
-        m8();
+//        m8();
+
+        // 测试msp的扩容
+        m9();
+    }
+
+    /**
+     * 测试msp的扩容
+     */
+    private static void m9() {
+        Map a = new HashMap();
+        for (int i = 0; i < 12; i++) {
+            a.put(i, i);
+        }
+
+        Map b = new HashMap();
+        for (int i = 0; i < 13; i++) {
+            b.put(i, i);
+        }
+
+        Map c = new HashMap();
+        for (int i = 0; i < 24; i++) {
+            c.put(i, i);
+        }
+
+        Map d = new HashMap();
+        for (int i = 0; i < 25; i++) {
+            d.put(i, i);
+        }
+
+        Map e = new HashMap(5);
+        for (int i = 0; i < 5; i++) {
+            e.put(i, i);
+        }
+
+        Map f = new HashMap(5, 1);
+        for (int i = 0; i < 5; i++) {
+            f.put(i, i);
+        }
+
+        print(a);
+        print(b);
+        print(c);
+        print(d);
+        print(e);
+        print(f);
+
+    }
+
+    public static void print(Map a) {
+        try {
+            Class<?> mapType = a.getClass();
+            Method capacity = mapType.getDeclaredMethod("capacity");
+            capacity.setAccessible(true);
+            System.out.println("capacity : " + capacity.invoke(a) + "    size : " + a.size());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     private static void m8() {

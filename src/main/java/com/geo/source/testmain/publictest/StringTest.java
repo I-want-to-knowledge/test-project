@@ -1,5 +1,6 @@
 package com.geo.source.testmain.publictest;
 
+import com.alibaba.fastjson.JSONObject;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -45,9 +47,25 @@ public class StringTest {
 //        m19();
 //        m20();
 //        m21();
-        m22();
+//        m22();
 //        m23();
 //        m24();
+//        m25();
+        m26();
+    }
+
+    private static void m26() {
+        StringBuilder sb = new StringBuilder();
+        String json = sb.toString();
+        System.out.println(json);
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        System.out.println(jsonObject.getString("root"));
+    }
+
+    private static void m25() {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String uuid2 = UUID.randomUUID().toString().replaceAll("-", "");
+        System.out.println(uuid + "\n" + uuid2);
     }
 
     private static void m24() {
@@ -74,6 +92,7 @@ public class StringTest {
      * 全局变量自动初始化声明的对象，值为null
      */
     static String string_a;
+
     private static void m23() {
         System.out.println(string_a);
     }
