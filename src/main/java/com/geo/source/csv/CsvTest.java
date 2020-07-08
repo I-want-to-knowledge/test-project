@@ -27,16 +27,16 @@ public class CsvTest {
      * 模拟数据库
       */
     static Map<String, Integer> DATA_MAP = new HashMap<String, Integer>() {{
-        put("k1", 1);
-        put("k2", 2);
-        put("k3", 3);
-        put("k4", 4);
-        put("k5", 5);
+        for (int i = 0; i < 100000; i++) {
+            put("k"+i, i);
+        }
     }};
 
     public static void main(String[] args) {
+        long s = System.currentTimeMillis();
         method1();
 //        method2();
+        System.out.println(System.currentTimeMillis() - s);
     }
 
     /**

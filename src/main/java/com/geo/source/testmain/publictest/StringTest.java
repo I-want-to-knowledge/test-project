@@ -58,7 +58,20 @@ public class StringTest {
 //        m25();
 //        m26();
 //        m27();
-        m28();
+//        m28();
+        m29();
+    }
+
+    private static void m29() {
+        Aa aa = new Aa("咨询订单导出.csv", "咨询订单导出.csv");
+        System.out.println(aa.redisKey());
+        Aa a1 = new Aa("咨询订单导出.csv", "咨询订单导出.csv");
+        System.out.println(a1.redisKey());
+
+        String a = "";
+        String b = "";
+        System.out.println(a.hashCode());
+        System.out.println(b.hashCode());
     }
 
     private static void m28() {
