@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Set;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 延迟任务计时器
@@ -51,26 +52,28 @@ public class DelayTaskTimer {
      */
     public void afterPropertiesSet() {
         logger.info("延迟任务计时器已启动");
-        poolExecutor.execute(this::timer);
+        poolExecutor.scheduleWithFixedDelay(timer(),5, 1, TimeUnit.SECONDS);
     }
 
     /**
      * 计时器
      */
-    private void timer() {
-        while (true) {
+    private Runnable timer() {
+        return () -> {
+//        while (true) {
             try {
                 // 业务处理
                 logicalProces();
 
                 // 正常休眠1秒
-                Thread.sleep(1000);
+//                Thread.sleep(1000);
             } catch (Exception e) {
                 // 异常的情况
                 logger.error("逻辑处理时，延迟任务计时器异常停止！", e);
                 return;
             }
-        }
+//        }
+        };
     }
 
     /**
