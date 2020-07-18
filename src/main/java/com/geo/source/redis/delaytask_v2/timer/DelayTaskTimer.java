@@ -51,8 +51,12 @@ public class DelayTaskTimer {
      * 启动延迟任务计时器
      */
     public void afterPropertiesSet() {
-        logger.info("延迟任务计时器已启动");
+        // 核心线程5分钟后无任务终止
+        poolExecutor.setKeepAliveTime(5, TimeUnit.MINUTES);
+        poolExecutor.allowCoreThreadTimeOut(true);
+        // 5秒后开始执行，间隔1秒执行一次
         poolExecutor.scheduleWithFixedDelay(timer(),5, 1, TimeUnit.SECONDS);
+        logger.info("延迟任务计时器已启动");
     }
 
     /**

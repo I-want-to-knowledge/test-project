@@ -29,6 +29,8 @@ public class ThreadTest {
   private static void m3() {
     ThreadTest threadTest = new ThreadTest();
     threadTest.lanuchTimer();
+    threadTest.poolExecutor.setKeepAliveTime(5, TimeUnit.MINUTES);
+    threadTest.poolExecutor.allowCoreThreadTimeOut(true);
     try {
       Thread.sleep(1000*5);//5秒钟之后添加新任务
     } catch (InterruptedException e) {
