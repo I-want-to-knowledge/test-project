@@ -1,7 +1,10 @@
 package com.geo.source.testmain.publictest;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,6 +36,7 @@ public class ThreadTest {
     }
     threadTest.addOneTask2();
     threadTest.addOneTask3();
+    threadTest.addOneTask4();
   }
 
   //启动计时器
@@ -52,6 +56,20 @@ public class ThreadTest {
   public void addOneTask3(){
     Runnable task = () -> System.out.println(LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务3");
     poolExecutor.scheduleWithFixedDelay(task, 1000, 1000, TimeUnit.MILLISECONDS);
+  }
+  //添加新任务
+  public void addOneTask4(){
+    Runnable task = () -> System.out.println(LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务，看看是否只执行一遍！");
+    poolExecutor.execute(task);
+    Callable<String> task2 = () -> LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务，看看是否只执行一遍！";
+    Future<String> submit = poolExecutor.submit(task2);
+//    if (submit.isDone()) {
+      try {
+        System.out.println("------------->返回结果：" + submit.get());
+      } catch (InterruptedException | ExecutionException e) {
+        e.printStackTrace();
+      }
+//    }
   }
 
   /**
