@@ -10,6 +10,7 @@ import org.apache.http.util.Asserts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -51,6 +52,8 @@ public class CsvClient {
      * 纯数字正则表达式
      */
     public static final String NUMBER_EXPRESSION = "^[0-9]*$";
+
+    public static final String GB2312 = "GB2312";
 
     /**
      * 获取csv文件流
@@ -133,10 +136,25 @@ public class CsvClient {
             csvFile.merge(row);
         }
 
-        final byte[] b = csvFile.toString().getBytes(StandardCharsets.UTF_8);
+        final byte[] b = addStringEncode(csvFile.toString().getBytes(StandardCharsets.UTF_8));
 
         // 赋值文件信息
         return new CsvFileInfo(b, b.length, fileExtName);
+    }
+
+    /**
+     * 添加字符串编码，防止乱码
+     * @param b 字符串流
+     * @return 编码后
+     */
+    private static byte[] addStringEncode(byte[] b) {
+        byte[] bytes = new byte[b.length + 3];
+//        bytes[0] = (byte) 0xEF;
+//        bytes[1] = (byte) 0xBB;
+//        bytes[2] = (byte) 0xBF;
+        System.arraycopy(new byte[]{(byte) 0xEF, (byte) 0xBB, (byte) 0xBF}, 0, bytes, 0, 3);
+        System.arraycopy(b, 0, bytes, 3, b.length);
+        return bytes;
     }
 
     /**
