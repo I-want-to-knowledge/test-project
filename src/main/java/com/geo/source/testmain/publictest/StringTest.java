@@ -1,8 +1,12 @@
 package com.geo.source.testmain.publictest;
 
+import com.alibaba.fastjson.JSONObject;
 import io.netty.util.CharsetUtil;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.security.provider.MD5;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -14,7 +18,10 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -45,9 +52,49 @@ public class StringTest {
 //        m19();
 //        m20();
 //        m21();
-        m22();
+//        m22();
 //        m23();
 //        m24();
+//        m25();
+//        m26();
+//        m27();
+        m28();
+    }
+
+    private static void m28() {
+//        System.out.println(true ^ false);
+
+        StringJoiner joiner = new StringJoiner("|");
+        joiner.add(null);
+        joiner.add("一");
+        joiner.add("二");
+        joiner.add("三");
+        joiner.add(null);
+        joiner.add(StringUtils.EMPTY);
+        System.out.println(joiner.toString());
+    }
+
+    private static void m27() {
+        StringBuffer buffer = new StringBuffer();
+        System.out.println(buffer.toString());
+        String m1 = DigestUtils.md5Hex(buffer.toString());
+        String m2 = DigestUtils.md5Hex("");
+        System.out.println(Objects.equals(m1, m2));
+        System.out.println(m2);
+    }
+
+    private static void m26() {
+        StringBuilder sb = new StringBuilder();
+        String json = sb.toString();
+        System.out.println(json);
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        System.out.println(jsonObject.getString("root"));
+    }
+
+    private static void m25() {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String uuid2 = UUID.randomUUID().toString().replaceAll("-", "");
+        System.out.println(uuid + "\n" + uuid2);
     }
 
     private static void m24() {
@@ -74,6 +121,7 @@ public class StringTest {
      * 全局变量自动初始化声明的对象，值为null
      */
     static String string_a;
+
     private static void m23() {
         System.out.println(string_a);
     }

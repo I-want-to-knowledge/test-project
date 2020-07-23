@@ -1,15 +1,77 @@
 package com.geo.source.testmain.publictest;
 
+import java.time.LocalDateTime;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ThreadTest {
+  private ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(2, r -> {
+    Thread t = new Thread(r, "my-thread-" + r.hashCode());
+    System.out.println(t.getName() + " has been created");
+    return t;
+  });
 
   public static void main(String[] args) {
     // m1();
-    m2();
+//    m2();
+    m3();
+  }
+
+  /**
+   * 定时线程池
+   */
+  private static void m3() {
+    ThreadTest threadTest = new ThreadTest();
+    threadTest.lanuchTimer();
+    threadTest.poolExecutor.setKeepAliveTime(5, TimeUnit.MINUTES);
+    threadTest.poolExecutor.allowCoreThreadTimeOut(true);
+    try {
+      Thread.sleep(1000*5);//5秒钟之后添加新任务
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    threadTest.addOneTask2();
+    threadTest.addOneTask3();
+    threadTest.addOneTask4();
+  }
+
+  //启动计时器
+  public void lanuchTimer(){
+    Runnable task = () -> {
+      System.out.println("异常抛出！");
+      throw new RuntimeException("异常！");
+    };
+    poolExecutor.scheduleWithFixedDelay(task, 1000*5, 1000*10, TimeUnit.MILLISECONDS);
+  }
+  //添加新任务
+  public void addOneTask2(){
+    Runnable task = () -> System.out.println(LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务2");
+    poolExecutor.scheduleWithFixedDelay(task, 10000, 5000, TimeUnit.MILLISECONDS);
+  }
+  //添加新任务
+  public void addOneTask3(){
+    Runnable task = () -> System.out.println(LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务3");
+    poolExecutor.scheduleWithFixedDelay(task, 1000, 1000, TimeUnit.MILLISECONDS);
+  }
+  //添加新任务
+  public void addOneTask4(){
+    Runnable task = () -> System.out.println(LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务，看看是否只执行一遍！");
+    poolExecutor.execute(task);
+    Callable<String> task2 = () -> LocalDateTime.now().toString() + " [" + Thread.currentThread().getName() + "] : 添加的任务，看看是否只执行一遍！";
+    Future<String> submit = poolExecutor.submit(task2);
+//    if (submit.isDone()) {
+      try {
+        System.out.println("------------->返回结果：" + submit.get());
+      } catch (InterruptedException | ExecutionException e) {
+        e.printStackTrace();
+      }
+//    }
   }
 
   /**

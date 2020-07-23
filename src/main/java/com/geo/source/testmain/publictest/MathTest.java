@@ -27,7 +27,32 @@ public class MathTest {
 //		M11();
 //		m12();
 //		m13();
-		m14();
+//		m14();
+//		m15();
+		m16(5);
+	}
+
+	/**
+	 * 获取map的容量
+	 * 最多1万个
+	 */
+	private static void m16(int a) {
+		int n = a - 1;
+		n |= n >>> 1;
+//		System.out.println(n);
+		n |= n >>> 2;
+//		System.out.println(n);
+		n |= n >>> 4;
+//		System.out.println(n);
+		n |= n >>> 8;
+//		System.out.println(n);
+		n |= n >>> 16;
+//		System.out.println(n);
+		System.out.println((n < 0) ? 1 : (n >= 10000) ? 10000 : n + 1);
+	}
+
+	private static void m15() {
+		System.out.println((int) 1 == (short) 1);
 	}
 
 	private static void m14() {
