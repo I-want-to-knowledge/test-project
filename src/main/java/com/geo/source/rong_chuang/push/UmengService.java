@@ -30,6 +30,19 @@ public final class UmengService {
     private static String appMasterSecret_android = "sowabcng630hx3swloy1gyhl2gplfzdw";
 
     /**
+     * 发送的身份类型，身份证
+     */
+    private static String USER_TYPE_1 = "IDCARD";
+    /**
+     * 发送的身份类型，用户Id
+     */
+    private static String USER_TYPE_2 = "USERID";
+    /**
+     * 发送的身份类型
+     */
+    private static String USER_TYPE = USER_TYPE_2;
+
+    /**
      * Android普通推送
      *
      * @param alias 身份证号
@@ -41,7 +54,7 @@ public final class UmengService {
     public static boolean sendAndroidCustomizedcast(String alias, String str, String title) throws Exception {
         logger.info("Android的普通推送,参数：[alias={}, str={}]", alias, str);
         AndroidCustomizedcast customizedcast = new AndroidCustomizedcast(appkey_android, appMasterSecret_android);
-        customizedcast.setAlias(alias, "IDCARD");
+        customizedcast.setAlias(alias, USER_TYPE);
         customizedcast.setTicker(str);
         customizedcast.setTitle(title);
         customizedcast.setText(str);
@@ -62,7 +75,7 @@ public final class UmengService {
     public static boolean sendIOSCustomizedcast(String alias, String str) throws Exception {
         logger.info("IOS的普通推送,参数：[alias={}, str={}]", alias, str);
         IOSCustomizedcast customizedcast = new IOSCustomizedcast(appkey_ios, appMasterSecret_ios);
-        customizedcast.setAlias(alias, "IDCARD");
+        customizedcast.setAlias(alias, USER_TYPE);
         customizedcast.setAlert(str);
         customizedcast.setBadge(0);
         customizedcast.setSound("default");
@@ -83,7 +96,7 @@ public final class UmengService {
     public static boolean sendIOSCustomizedcast(String alias, String title, String subTitle, String body) throws Exception {
         logger.info("IOS的普通推送,参数：[alias={}, str={}]", alias, title);
         IOSCustomizedcast customizedcast = new IOSCustomizedcast(appkey_ios, appMasterSecret_ios);
-        customizedcast.setAlias(alias, "IDCARD");
+        customizedcast.setAlias(alias, USER_TYPE);
         customizedcast.setAlert(title, subTitle, body);
         customizedcast.setBadge(0);
         customizedcast.setSound("default");
@@ -110,7 +123,7 @@ public final class UmengService {
         }
 
         AndroidCustomizedcast customizedcast = new AndroidCustomizedcast(appkey_android, appMasterSecret_android);
-        customizedcast.setAlias(alias, "IDCARD");
+        customizedcast.setAlias(alias, USER_TYPE);
         customizedcast.setTicker(str);
         customizedcast.setTitle(title);
         customizedcast.setText(str);
@@ -156,7 +169,7 @@ public final class UmengService {
 
         IOSCustomizedcast customizedcast = new IOSCustomizedcast(appkey_ios, appMasterSecret_ios);
 
-        customizedcast.setAlias(alias, "IDCARD");
+        customizedcast.setAlias(alias, USER_TYPE);
         customizedcast.setAlert(str);
         customizedcast.setBadge(0);
         customizedcast.setSound("default");
@@ -554,7 +567,8 @@ public final class UmengService {
 //                    + jsonObject.getString(PushMessageConstants.IOS_TASK_ID));
             // final boolean b = sendAndroidCustomizedcast("66993322,412726199305191655", "你好", "这是一个标题");
 //            final PushMessageResponse response = androidSendAlias("412726199305191655", "IDCARD", "标题1", "标题2", "内容");
-            final boolean b = sendIOSCustomizedcast("412726199305191655,412726199305191655", "标题", "副标题", "消息体");
+//            final boolean b = sendIOSCustomizedcast("412726199305191655,412726199305191655", "标题", "副标题", "消息体");
+            final boolean b = sendIOSCustomizedcast("11959382,11959382", "标题", "副标题", "消息体");
             logger.info("是否成功：{}", b);
         } catch (Exception e) {
             e.printStackTrace();
