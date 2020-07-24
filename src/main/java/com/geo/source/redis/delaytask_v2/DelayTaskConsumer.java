@@ -1,10 +1,11 @@
 package com.geo.source.redis.delaytask_v2;
 
-import java.util.Map;
-
 /**
- * 延迟任务-消费者，实现该类的实现类不需要注解
- * 注意：通过注入DelayTaskProducer类，使用producer方法发布消息
+ * 延迟任务-消费者
+ * <pre>
+ * 消费任务：实现该接口，并注入spring容器中（例：使用@Service）；
+ * 如何生产任务：通过注入DelayTaskProducer类，使用producer方法生产延迟任务
+ * </pre>
  *
  * @author YanZhen
  * @date 2020/04/16 00:20
@@ -12,10 +13,10 @@ import java.util.Map;
 @FunctionalInterface
 public interface DelayTaskConsumer {
     /**
-     * 消费任务
-     * 注意：通过注入DelayTaskProducer类，使用producer方法生产延迟任务
+     * 实现该方法，消费任务；
+     * 任务执行失败不可恢复，请做好补偿机制；
      *
      * @param params 传参
      */
-    void consumer(Map<String, Object> params);
+    void consumer(String params);
 }

@@ -10,4 +10,12 @@ public interface DelayTaskConstant {
      * 延迟任务Redis key
      */
     String REDIS_KEY = "TASK:DELAY_TASK:";
+    /**
+     * 当意外终止，系统休息30分钟
+     */
+    long SYSTEM_ERROR_SLEEP = 1800_000;
+    /**
+     * 无任务时，系统休息10分钟
+     */
+    long SYSTEM_NOTHING_SLEEP = 600_000;
 }
