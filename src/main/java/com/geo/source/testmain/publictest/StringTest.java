@@ -63,15 +63,13 @@ public class StringTest {
     }
 
     private static void m29() {
-        Aa aa = new Aa("咨询订单导出.csv", "咨询订单导出.csv");
-        System.out.println(aa.redisKey());
-        Aa a1 = new Aa("咨询订单导出.csv", "咨询订单导出.csv");
-        System.out.println(a1.redisKey());
-
-        String a = "";
-        String b = "";
-        System.out.println(a.hashCode());
-        System.out.println(b.hashCode());
+        StringJoiner joiner1 = new StringJoiner("|");
+        joiner1.add("123");
+        joiner1.add("456");
+        StringJoiner joiner = new StringJoiner("|");
+        joiner.add("789");
+        joiner.add("000");
+        System.out.println(joiner1.toString().concat(joiner.toString()));
     }
 
     private static void m28() {

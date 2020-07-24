@@ -1,0 +1,95 @@
+// 插件
+plugins {
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.yz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+// 指定仓库路径
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral() // 默认使用中央仓库
+}
+
+ext {
+    set('springCloudVersion', "Hoxton.SR4")
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+    implementation 'org.springframework.cloud:spring-cloud-function-context'
+    implementation 'org.springframework.cloud:spring-cloud-starter'
+    implementation 'org.springframework.cloud:spring-cloud-starter-task'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// 下载包路径
+//buildscript {
+//    repositories {
+//        maven {
+//            url 'https://maven.google.com/'
+//            name 'Google'
+//        }
+//        mavenCentral()
+//        jcenter(){ url 'https://jcenter.bintray.com/'}
+//        google()
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:3.5.0'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+//        classpath 'com.novoda:bintray-release:0.9.1'
+//        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+//        // NOTE: Do not place your application dependencies here; they belong
+//        // in the individual module build.gradle files
+//    }
+//}
+//allprojects {
+//    repositories {
+//        jcenter()
+//        maven {
+//            url 'https://maven.google.com/'
+//            name 'Google'
+//        }
+//        mavenCentral()
+//        jcenter(){ url 'https://jcenter.bintray.com/'}
+//        maven { url 'https://jitpack.io' }
+//        google()
+//    }
+//}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+// 下载包路径
