@@ -4,7 +4,7 @@ package com.yz.testmodulegradle.constant;
  * @author YanZhen
  * @date 2020/07/27 13:10
  */
-public interface ApiPath {
+public interface TmgApiPath {
     /**
      * 服务名
      */
