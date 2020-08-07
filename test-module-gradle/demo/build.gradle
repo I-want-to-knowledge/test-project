@@ -1,59 +1,82 @@
-plugins {
-//    id 'org.springframework.boot' version '2.3.0.RELEASE'
-//    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
-}
-
 group = 'com.yz'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-repositories {
-    mavenLocal()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    mavenCentral()
-}
-
-ext {
-    set('springCloudVersion', "Hoxton.SR4")
-}
 
 dependencies {
-    compile project(':common-web')
+    compile project ':common-web'
+    compile ("org.springframework.boot:spring-boot-starter-web")
+//    compile ("io.springfox:springfox-swagger2:2.6.1")
+//    compile ("io.springfox:springfox-swagger-ui:2.6.1")
 
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web' //, version: '2.3.1.RELEASE'
-    // https://mvnrepository.com/artifact/org.springframework/spring-web
-    compile group: 'org.springframework', name: 'spring-web', version: '5.2.7.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-devtools'
-
-//    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-function-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter'
-    implementation 'org.springframework.cloud:spring-cloud-starter-task'
-//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    //swagger 自定义ui 调用地址：http://${host}:${port}/docs.html 新页面
+//    compile ("com.github.caspar-chen:swagger-ui-layer:0.0.6")
 }
 
-//dependencyManagement {
-//    imports {
-//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+
+
+
+
+
+
+
+//plugins {
+////    id 'org.springframework.boot' version '2.3.0.RELEASE'
+////    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+//    id 'java'
+//}
+//
+//group = 'com.yz'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+//
+//configurations {
+//    developmentOnly
+//    runtimeClasspath {
+//        extendsFrom developmentOnly
+//    }
+//    compileOnly {
+//        extendsFrom annotationProcessor
 //    }
 //}
-
-test {
-    useJUnitPlatform()
-}
+//
+//repositories {
+//    mavenLocal()
+//    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+//    mavenCentral()
+//}
+//
+//ext {
+//    set('springCloudVersion', "Hoxton.SR4")
+//}
+//
+//dependencies {
+//    compile project(':common-web')
+//
+//    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web' , version: '2.3.1.RELEASE'
+//    // https://mvnrepository.com/artifact/org.springframework/spring-web
+//    compile group: 'org.springframework', name: 'spring-web', version: '5.2.7.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.3.0.RELEASE'
+//
+//    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure
+//    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
+//
+////    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.cloud:spring-cloud-function-web'
+//    implementation 'org.springframework.cloud:spring-cloud-starter'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-task'
+////    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+//    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+//        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//    }
+//}
+//
+////dependencyManagement {
+////    imports {
+////        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+////    }
+////}
+//
+//test {
+//    useJUnitPlatform()
+//}

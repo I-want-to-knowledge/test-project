@@ -1,61 +1,132 @@
-// 插件
-plugins {
-    id 'org.springframework.boot' version '2.3.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
-}
-
-group = 'com.yz'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-jar.enabled = true
-
-configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
+//应用于gradle 编译
+buildscript {
+    //定义
+    ext {
+        springBootVersion = "2.3.0.RELEASE"
     }
-    compileOnly {
-        extendsFrom annotationProcessor
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral() // 默认使用中央仓库
+    }
+
+    dependencies {
+        // 指定gradle spring boot plugin 版本 用于spring boot 版本依赖控制
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
-// 指定仓库路径
-repositories {
-    mavenLocal()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    mavenCentral() // 默认使用中央仓库
-}
+// 所有子项目的通用配置
+subprojects {
 
-ext {
-    set('springCloudVersion', "Hoxton.SR4")
-}
+    //指定中央仓库 项目使用
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral() // 默认使用中央仓库
+    }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-//    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
-    implementation 'org.springframework.cloud:spring-cloud-function-context'
-    implementation 'org.springframework.cloud:spring-cloud-starter'
-    implementation 'org.springframework.cloud:spring-cloud-starter-task'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'mysql:mysql-connector-java'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    //应用插件
+    apply plugin: 'java'
+
+    apply plugin: 'org.springframework.boot'
+
+    //用于spring boot 版本jar依赖
+    apply plugin: 'io.spring.dependency-management'
+
+    //指定jdk版本
+    sourceCompatibility = 1.8
+
+    //设置group id
+    group 'com.yz'
+
+    //设置版本
+    version '0.0.1-SNAPSHOT'
+
+    description 'projec'
+
+    //依赖
+    dependencies {
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile('org.springframework.boot:spring-boot-starter')
+    }
+
+    //这里一定得要。在多模块下，不然编译失败，因为不会把信赖模块给打包。
+    jar {
+        enabled = true
     }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
-}
 
-test {
-    useJUnitPlatform()
-}
+
+
+
+
+
+
+
+
+//// 插件
+//plugins {
+//    id 'org.springframework.boot' version '2.3.0.RELEASE'
+//    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+//    id 'java'
+//}
+//
+//group = 'com.yz'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+//jar.enabled = true
+//
+//configurations {
+//    developmentOnly
+//    runtimeClasspath {
+//        extendsFrom developmentOnly
+//    }
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//}
+//
+//// 指定仓库路径
+//repositories {
+//    mavenLocal()
+//    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+//    mavenCentral() // 默认使用中央仓库
+//}
+//
+//ext {
+//    set('springCloudVersion', "Hoxton.SR4")
+//}
+//
+//dependencies {
+//    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure
+//    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.3.0.RELEASE'
+//
+//    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+////    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+//    implementation 'org.springframework.cloud:spring-cloud-function-context'
+//    implementation 'org.springframework.cloud:spring-cloud-starter'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-task'
+//    compileOnly 'org.projectlombok:lombok'
+//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    runtimeOnly 'mysql:mysql-connector-java'
+//    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+//    annotationProcessor 'org.projectlombok:lombok'
+//    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+//        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//    }
+//}
+//
+//dependencyManagement {
+//    imports {
+//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//    }
+//}
+//
+//test {
+//    useJUnitPlatform()
+//}
 
 // 下载包路径
 //buildscript {
