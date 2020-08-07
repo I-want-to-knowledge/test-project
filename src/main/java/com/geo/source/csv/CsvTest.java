@@ -26,8 +26,8 @@ public class CsvTest {
     /**
      * 模拟数据库
       */
-    static Map<String, Integer> DATA_MAP = new HashMap<String, Integer>() {{
-        for (int i = 0; i < 100000; i++) {
+    static Map<String, Integer> DATA_MAP = new LinkedHashMap<String, Integer>() {{
+        for (int i = 0; i < 10001; i++) {
             put("k"+i, i);
         }
     }};

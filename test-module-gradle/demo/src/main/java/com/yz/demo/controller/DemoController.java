@@ -1,9 +1,9 @@
-package com.yz.testmodulegradle.controller;
+package com.yz.demo.controller;
 
-import com.yz.testmodulegradle.common.BaseResult;
-import com.yz.testmodulegradle.constant.TmgApiPath;
-import com.yz.testmodulegradle.dto.TmgIdRequest;
-import com.yz.testmodulegradle.service.DemoService;
+import com.yz.commonweb.domain.BaseResult;
+import com.yz.demo.constant.TmgApiPath;
+import com.yz.demo.dto.TmgIdRequest;
+import com.yz.demo.service.DemoService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -12,7 +12,16 @@ import java.util.stream.Stream;
 public class ListTest {
 
     public static void main(String[] args) {
-        m21();
+        m22();
+    }
+
+    private static void m22() {
+        List<Short> list = new ArrayList<>();
+        list.add((short)1);
+        list.add((short)2);
+        list.add((short)3);
+
+        System.out.println("类型不对应时比对：" + list.contains(1));
     }
 
     /**

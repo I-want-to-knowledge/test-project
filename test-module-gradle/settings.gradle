@@ -1,1 +1,4 @@
 rootProject.name = 'test-module-gradle'
+
+include 'common-web'
+include 'demo'

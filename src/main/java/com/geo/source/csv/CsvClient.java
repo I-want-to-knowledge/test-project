@@ -10,18 +10,28 @@ import org.apache.http.util.Asserts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -44,6 +54,11 @@ public class CsvClient {
     public static final int MAX_SQL_NUMBER = 1000;
 
     /**
+     * 线程一次处理最大条数
+     */
+    private static final int MAX_HANDLE_NUMBER = 100;
+
+    /**
      * Excel正确显示数字的最大位数
      */
     public static final int MAX_EXCEL_SHOW_BITS = 11;
@@ -54,6 +69,21 @@ public class CsvClient {
     public static final String NUMBER_EXPRESSION = "^[0-9]*$";
 
     public static final String GB2312 = "GB2312";
+
+    /**
+     * 线程池
+     */
+    private static final ThreadPoolExecutor threadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
+
+    private static final ThreadPoolExecutor.DiscardOldestPolicy threadP = new ThreadPoolExecutor.DiscardOldestPolicy();
+
+
+    // 2分钟没有任务执行线程销毁
+    static {
+        threadPool.setKeepAliveTime(30, TimeUnit.SECONDS);
+        threadPool.allowCoreThreadTimeOut(true);
+        threadPool.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
+    }
 
     /**
      * 获取csv文件流
@@ -127,14 +157,16 @@ public class CsvClient {
         csvFile.merge(titleRow);
 
         // 生成csv格式的数据
-        for (T t : ts) {
-            final StringJoiner row = new StringJoiner(",");
-            for (Field field : fields) {
-                field.setAccessible(true);
-                row.add(getFieldValue(t, field));
-            }
-            csvFile.merge(row);
-        }
+        generateCsvDate(ts, fields, csvFile);
+//        generateCsvDate2(ts, fields, csvFile);
+//        for (T t : ts) {
+//            final StringJoiner row = new StringJoiner(",");
+//            for (Field field : fields) {
+//                field.setAccessible(true);
+//                row.add(getFieldValue(t, field));
+//            }
+//            csvFile.merge(row);
+//        }
 
         final byte[] b = addStringEncode(csvFile.toString().getBytes(StandardCharsets.UTF_8));
 
@@ -143,7 +175,44 @@ public class CsvClient {
     }
 
     /**
+     * 多线程处理数据
+     *
+     * @param <T>     ts 数据源
+     * @param fields  字段信息
+     * @param csvFile 字符串信息
+     */
+    private static <T> void generateCsvDate(List<T> ts, List<Field> fields, StringJoiner csvFile) {
+        ts.forEach(t -> {
+            final StringJoiner row = new StringJoiner(",");
+            for (Field field : fields) {
+                field.setAccessible(true);
+                row.add(getFieldValue(t, field));
+            }
+            csvFile.merge(row);
+        });
+    }
+
+    /**
+     * 多线程处理数据，并行执行
+     *
+     * @param <T>     ts 数据源
+     * @param fields  字段信息
+     * @param csvFile 字符串信息
+     */
+    private static <T> void generateCsvDate2(List<T> ts, List<Field> fields, StringJoiner csvFile) {
+        ts.stream().parallel().forEachOrdered(t -> {
+            final StringJoiner row = new StringJoiner(",");
+            for (Field field : fields) {
+                field.setAccessible(true);
+                row.add(getFieldValue(t, field));
+            }
+            csvFile.merge(row);
+        });
+    }
+
+    /**
      * 添加字符串编码，防止乱码
+     *
      * @param b 字符串流
      * @return 编码后
      */

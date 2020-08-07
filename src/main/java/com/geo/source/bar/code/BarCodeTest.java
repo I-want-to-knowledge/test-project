@@ -14,7 +14,7 @@ import java.util.Base64;
  */
 public class BarCodeTest {
     public static void main(String[] args) {
-        BufferedImage encode = BarCodeUtil.encode("1234567890", BarCodeUtil.GREY_COLOR);
+        BufferedImage encode = BarCodeUtil.encode("123456789012345678", BarCodeUtil.GREY_COLOR);
         if (encode == null) {
             System.out.println("转换失败");
             return;

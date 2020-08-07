@@ -1,4 +1,6 @@
-package com.yz.testmodulegradle.common;
+package com.yz.commonweb.domain;
+
+import com.yz.commonweb.constant.ResultBaseConstant;
 
 /**
  * 基本响应信息

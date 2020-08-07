@@ -57,7 +57,33 @@ public class BarCodeUtil {
      * @return 图片信息
      */
     public static BufferedImage encode(String contents, int lineColor) {
-        return encode(contents, lineColor, offColor);
+        try {
+            return encode(contents, lineColor, offColor);
+        } catch (IllegalArgumentException e) {
+            // 转换内容有问题
+            return null;
+        }
+    }
+
+    /**
+     * 为生成的条形码添加水印
+     * @param contents 内容
+     * @param lineColor 线条颜色
+     * @return 条形码
+     */
+    public static BufferedImage markEncode(String contents, int lineColor) {
+        BufferedImage image;
+        try {
+            image = encode(contents, lineColor, offColor);
+            if (image == null) {
+                return null;
+            }
+        } catch (IllegalArgumentException e) {
+            // 转换内容有问题
+            return null;
+        }
+
+        return mark(image, lineColor == GREY_COLOR ? Color.GRAY : Color.BLACK, contents);
     }
 
     /**
@@ -66,12 +92,7 @@ public class BarCodeUtil {
      * @param contents 数字串
      * @return 图片
      */
-    public static BufferedImage encode(String contents, int lineColor, int backgroundColor) {
-        // 数字校验
-        if (!Pattern.matches("^\\d*$", contents)) {
-            return null;
-        }
-
+    private static BufferedImage encode(String contents, int lineColor, int backgroundColor) throws IllegalArgumentException {
         //配置条码参数
         Map<EncodeHintType, Object> hints = new HashMap<>();
         //设置条码两边空白边距为0，默认为10，如果宽度不是条码自动生成宽度的倍数则MARGIN无效
@@ -80,9 +101,9 @@ public class BarCodeUtil {
         //为了无边距，需设置宽度为条码自动生成规则的宽度
         int width = new Code128Writer().encode(contents).length;
         //前端可控制高度，不影响识别
-        int height = 70;
+        int height = 150;
         //条码放大倍数
-        int codeMultiples = 1;
+        int codeMultiples = 5;
         //获取条码内容的宽，不含两边距，当EncodeHintType.MARGIN为0时即为条码宽度
         int codeWidth = width * codeMultiples;
 
@@ -105,8 +126,7 @@ public class BarCodeUtil {
 //            MatrixToImageWriter.writeToStream(bitMatrix, "png", new FileOutputStream("d:/code39.png"));
 
             // 转图片，并指定颜色
-            BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix, new MatrixToImageConfig(lineColor, backgroundColor));
-            return mark(image, lineColor == GREY_COLOR ? Color.GRAY : Color.BLACK, contents);
+            return MatrixToImageWriter.toBufferedImage(bitMatrix, new MatrixToImageConfig(lineColor, backgroundColor));
         } catch (WriterException e) {
             e.printStackTrace();
         }

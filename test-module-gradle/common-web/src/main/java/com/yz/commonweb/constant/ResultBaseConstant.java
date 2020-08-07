@@ -1,4 +1,4 @@
-package com.yz.testmodulegradle.common;
+package com.yz.commonweb.constant;
 
 /**
  * 响应结果枚举

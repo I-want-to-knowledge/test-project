@@ -1,4 +1,4 @@
-package com.yz.testmodulegradle.constant;
+package com.yz.demo.constant;
 
 /**
  * @author YanZhen

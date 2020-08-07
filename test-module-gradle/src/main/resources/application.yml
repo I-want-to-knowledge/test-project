@@ -9,6 +9,6 @@ spring:
 #alibaba.cloud.access-key=****
 #alibaba.cloud.secret-key=****
 #mybatis.mapper-locations=classpath:mapper/*Mapper.xml
-#mybatis.type-aliases-package=com.yz.testmodulegradle.dao
+#mybatis.type-aliases-package=com.yz.demo.dao
 
 

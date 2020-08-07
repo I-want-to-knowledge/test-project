@@ -1,7 +1,7 @@
-package com.yz.testmodulegradle.service.impl;
+package com.yz.demo.service.impl;
 
-import com.yz.testmodulegradle.dto.TmgIdRequest;
-import com.yz.testmodulegradle.service.DemoService;
+import com.yz.demo.dto.TmgIdRequest;
+import com.yz.demo.service.DemoService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,6 +1,6 @@
-package com.yz.testmodulegradle.service;
+package com.yz.demo.service;
 
-import com.yz.testmodulegradle.dto.TmgIdRequest;
+import com.yz.demo.dto.TmgIdRequest;
 
 /**
  * @author YanZhen

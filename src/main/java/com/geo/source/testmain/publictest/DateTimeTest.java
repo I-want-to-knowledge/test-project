@@ -20,7 +20,17 @@ public class DateTimeTest {
 //    m6();
 //    m7();
 //    m8();
-    m9();
+//    m9();
+    m10();
+  }
+
+  private static void m10() {
+    LocalDate now = LocalDate.now();
+    LocalDate localDate = now.plusDays(7);
+    Period between = Period.between(now, localDate);
+//    long l = Duration.between(now, localDate).toDays();
+    System.out.println(between.getDays());
+
   }
 
   private static void m9() {

@@ -1,4 +1,4 @@
-package com.yz.testmodulegradle.dto;
+package com.yz.demo.dto;
 
 /**
  * @author YanZhen
