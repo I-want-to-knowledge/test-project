@@ -20,8 +20,8 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * @date 2020/04/24 13:34
  **/
 public class DelayTaskTimer implements InitializingBean {
-    private Logger logger = LoggerFactory.getLogger(DelayTaskTimer.class);
-    private ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(2, r -> {
+    private final Logger logger = LoggerFactory.getLogger(DelayTaskTimer.class);
+    private final ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(2, r -> {
         Thread t = new Thread(r, "my-thread-" + r.hashCode());
         logger.info("{} has been created", t.getName());
         return t;
@@ -29,7 +29,7 @@ public class DelayTaskTimer implements InitializingBean {
 
     private JedisCluster redis;
 
-    public DelayTaskTimer() {
+    private DelayTaskTimer() {
     }
 
     public DelayTaskTimer(JedisCluster redis) {

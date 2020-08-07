@@ -47,6 +47,9 @@ subprojects {
 
     //依赖
     dependencies {
+//        compile project ':demo'
+//        compile project ':common-web'
+
         testCompile('org.springframework.boot:spring-boot-starter-test')
         compile('org.springframework.boot:spring-boot-starter')
     }

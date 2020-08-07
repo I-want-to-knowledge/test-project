@@ -20,12 +20,12 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/04/24 13:34
  **/
 public class DelayTaskTimer {
-    private Logger logger = LoggerFactory.getLogger(DelayTaskTimer.class);
+    private final Logger logger = LoggerFactory.getLogger(DelayTaskTimer.class);
 
     /**
      * 延迟任务线程池
      */
-    private ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(8, r -> {
+    private final ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(8, r -> {
         Thread t = new Thread(r, "Delay_Task_Timer-thread-" + r.hashCode());
         logger.info("{} has been created", t.getName());
         return t;
@@ -34,17 +34,17 @@ public class DelayTaskTimer {
     /**
      * redis初始化值
      */
-    private JedisCluster jedisClusterCache;
+    private final JedisCluster jedisClusterCache;
 
     /**
      * 获取服务初始化的redis key
      */
-    private String redisKey;
+    private final String redisKey;
 
     /**
      * spring上下文
      */
-    private ApplicationContext context;
+    private final ApplicationContext context;
 
     /**
      * 异常时，默认不终止计时器
