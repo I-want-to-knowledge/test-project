@@ -37,7 +37,7 @@ public class RedisClient {
      */
     private static void timer() {
         // 运转定时器
-        final DelayTaskTimer timer = new DelayTaskTimer();
+        final DelayTaskTimer timer = new DelayTaskTimer(getJedisCluster());
         try {
             timer.afterPropertiesSet();
         } catch (Exception e) {
