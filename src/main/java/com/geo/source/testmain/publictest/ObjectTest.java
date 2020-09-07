@@ -16,6 +16,7 @@ import static java.lang.System.*;
 /**
  * 对象
  * 基本数据类型和普通对象
+ * 类是对象的模板，对象是类的实例
  *
  * @author YanZhen
  * @since 2019-04-01 13:30

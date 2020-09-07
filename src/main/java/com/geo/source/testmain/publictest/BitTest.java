@@ -9,6 +9,13 @@ public class BitTest {
 
     }
 
+    /**
+     * 八皇后共存
+     * @param row
+     * @param column
+     * @param pie
+     * @param na
+     */
     static void queenSettle(int row, int column, int pie, int na) {
         int N = 8; // 8皇后
         int count = 0;
