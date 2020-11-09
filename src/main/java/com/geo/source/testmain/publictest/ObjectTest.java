@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.lang.System.*;
@@ -35,7 +36,14 @@ public class ObjectTest {
 //    m12();
 //    m13();
 //    m14();
-        m15();
+//        m15();
+        m16();
+    }
+
+    private static void m16() {
+        short a = 1;
+        out.println(Objects.equals(a, 1));
+        out.println(Objects.equals(a, (short) 1));
     }
 
     private static void m15() {

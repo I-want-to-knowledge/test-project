@@ -3,9 +3,9 @@ version = '0.0.1-SNAPSHOT'
 
 
 dependencies {
-    compile project ':common-web'
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
+//    compile project ':common-web'
+//    compile("org.springframework.boot:spring-boot-starter-web")
+//    compile("org.springframework.boot:spring-boot-starter-actuator")
 //    compile ("io.springfox:springfox-swagger2:2.6.1")
 //    compile ("io.springfox:springfox-swagger-ui:2.6.1")
 

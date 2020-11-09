@@ -59,7 +59,27 @@ public class StringTest {
 //        m26();
 //        m27();
 //        m28();
-        m29();
+//        m29();
+//        m30();
+//        m31();
+        m32();
+    }
+
+    private static void m32() {
+        char a = 'a';
+        System.out.println((byte) a);
+    }
+
+    private static void m31() {
+        String a = "{\"id\": \"1\"}";
+        Aa aa = JSONObject.parseObject(a, Aa.class);
+        System.out.println(aa);
+    }
+
+    private static void m30() {
+        String a = "1579";
+        String substring = a.substring(1, 4);
+        System.out.println(substring);
     }
 
     private static void m29() {
