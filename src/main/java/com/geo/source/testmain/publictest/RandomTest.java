@@ -18,20 +18,20 @@ public class RandomTest {
 	private static void m2() {
 		Map<String,Integer> map = new HashMap<>();
 		for (int i=0;i<10000;i++) {
-			String random= RandomStringUtils.random(6, "abcdefghijklmnopqrstuvwxyz1234567890");
+			String random= RandomStringUtils.random(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 			LocalDate now = LocalDate.now();
 			String yy = now.format(DateTimeFormatter.ofPattern("yy"));
 			int month = now.getMonthValue();
 			if (month > 9) {
 				switch (month) {
 					case 10:
-						yy += "a";
+						yy += "A";
 						break;
 					case 11:
-						yy += "b";
+						yy += "B";
 						break;
 					case 12:
-						yy += "c";
+						yy += "C";
 						break;
 					default:
 						yy += month;
