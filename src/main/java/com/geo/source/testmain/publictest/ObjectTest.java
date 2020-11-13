@@ -44,6 +44,14 @@ public class ObjectTest {
         short a = 1;
         out.println(Objects.equals(a, 1));
         out.println(Objects.equals(a, (short) 1));
+
+        Short aShort = Short.valueOf("10000");
+        Short aShort1 = Short.valueOf("10000");
+        out.println(Objects.toString(aShort));
+        out.println(Objects.toString(aShort1));
+        out.println(Objects.equals(aShort, aShort1));
+        Short aShort2 = null;
+        out.println(Objects.equals(aShort, aShort2));
     }
 
     private static void m15() {

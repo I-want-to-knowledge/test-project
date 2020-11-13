@@ -62,7 +62,12 @@ public class StringTest {
 //        m29();
 //        m30();
 //        m31();
-        m32();
+//        m32();
+        m33();
+    }
+
+    private static void m33() {
+        System.out.println(1+1+"km");
     }
 
     private static void m32() {
