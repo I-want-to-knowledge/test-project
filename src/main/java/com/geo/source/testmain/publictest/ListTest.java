@@ -12,7 +12,29 @@ import java.util.stream.Stream;
 public class ListTest {
 
     public static void main(String[] args) {
-        m22();
+        m24();
+    }
+
+    private static void m24() {
+        List<String> aas = new ArrayList<>();
+        aas.add("1");
+        aas.add("4");
+        aas.add("2");
+        aas.add("3");
+        System.out.println(aas.stream().collect(Collectors.joining()));
+        System.out.println(String.join("", aas));
+    }
+
+    private static void m23() {
+        List<Aa> aas = new ArrayList<>();
+        aas.add(new Aa("1", "1"));
+        aas.add(new Aa("4", "4"));
+        aas.add(new Aa("2", "2"));
+        aas.add(new Aa("3", "3"));
+
+        System.out.println(aas);
+        List<Aa> collect = aas.stream().sorted(Comparator.comparing(Aa::getId)).collect(Collectors.toList());
+        System.out.println(collect);
     }
 
     private static void m22() {

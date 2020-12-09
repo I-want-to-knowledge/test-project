@@ -32,38 +32,13 @@ public class StringTest {
     private static final Logger log = LoggerFactory.getLogger(StringTest.class);
 
     public static void main(String[] args) {
-        // method1();
-        // method2();
-        // method4();
-        // method5();
-//		method6();
-        // method7("0001");
-        // m8();
-        // m9();
-//        m10();
-        // m11();
-        // m12();
-        // m13();
-//        m14();
-//        m15();
-//        m16();
-//        m17();
-//        m18();
-//        m19();
-//        m20();
-//        m21();
-//        m22();
-//        m23();
-//        m24();
-//        m25();
-//        m26();
-//        m27();
-//        m28();
-//        m29();
-//        m30();
-//        m31();
-//        m32();
-        m33();
+        m34();
+    }
+
+    private static void m34() {
+        String a = "098";
+        int b = 2;
+        System.out.println(a.charAt(b));
     }
 
     private static void m33() {

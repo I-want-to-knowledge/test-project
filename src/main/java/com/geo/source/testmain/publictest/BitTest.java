@@ -1,12 +1,26 @@
 package com.geo.source.testmain.publictest;
 
+import sun.security.util.BitArray;
+
 /**
  * @author YanZhen
  * @date 2020/04/14 12:47
  **/
 public class BitTest {
     public static void main(String[] args) {
+        bitArray();
+    }
 
+    /**
+     * 测试bitArray
+     */
+    private static void bitArray() {
+        boolean[] bs = {false,true,false,false,false,false,false,false};
+        BitArray array = new BitArray(bs);
+        boolean b = array.get(1);
+        System.out.println(b);
+        System.out.println(1 << 7);
+        System.out.println(1 << 7 - 1 % 8);
     }
 
     /**
