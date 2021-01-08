@@ -32,7 +32,13 @@ public class StringTest {
     private static final Logger log = LoggerFactory.getLogger(StringTest.class);
 
     public static void main(String[] args) {
-        m34();
+        m35();
+    }
+
+    private static void m35() {
+        String a = "01101010";
+        String substring = a.substring(8 - 2);
+        System.out.println(substring);
     }
 
     private static void m34() {

@@ -1,10 +1,13 @@
 package com.geo.source.testmain.publictest;
 
+import com.google.common.base.Joiner;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 /**
  * 字节 测试
@@ -20,7 +23,18 @@ public class ByteTest {
 //    m4();
 //    m5();
 //    m6();
-    m7();
+    m8();
+  }
+
+  private static void m8() {
+    byte[] bytes = new byte[8];
+    System.out.println(Arrays.toString(bytes));
+    bytes[7] = 1;
+    StringJoiner joiner = new StringJoiner("");
+    for (byte b: bytes) {
+      joiner.add(String.valueOf(b));
+    }
+    System.out.println(joiner);
   }
 
   private static void m7() {

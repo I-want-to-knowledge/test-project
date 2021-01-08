@@ -21,7 +21,17 @@ public class DateTimeTest {
 //    m7();
 //    m8();
 //    m9();
-    m10();
+    m11();
+  }
+
+  private static void m11() {
+    Date date = new Date();
+    Instant instant = date.toInstant();
+    ZoneId zoneId = ZoneId.systemDefault();
+
+    LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
+    System.out.println("Date = " + date);
+    System.out.println("LocalDateTime = " + localDateTime);
   }
 
   private static void m10() {

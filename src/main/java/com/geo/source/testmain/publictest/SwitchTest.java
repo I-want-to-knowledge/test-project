@@ -7,7 +7,8 @@ package com.geo.source.testmain.publictest;
  */
 public class SwitchTest {
 	public static void main(String[] args) {
-		String a = "1";method1(a);
+		String a = "5";
+		method1(a);
 	}
 
 	/**
