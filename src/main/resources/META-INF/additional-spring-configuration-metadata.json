@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "fastdfs.network_timeout_in_seconds",
-      "type": "java.lang.String",
-      "description": "Description for fastdfs.network_timeout_in_seconds."
-  }
-] }
