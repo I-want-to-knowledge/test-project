@@ -1,11 +1,8 @@
 import com.intellij.database.model.DasTable
-import com.intellij.database.util.Case
-import com.intellij.database.util.DasUtil
-import com.intellij.database.model.DasTable
 import com.intellij.database.model.ObjectKind
 import com.intellij.database.util.Case
 import com.intellij.database.util.DasUtil
-import java.io.*
+
 import java.text.SimpleDateFormat
 
 /*
@@ -86,12 +83,8 @@ def generate(out, className, fields, table) {
         out.println "import java.io.InputStream;"
     }
     out.println ""
-    out.println "/**\n" +
-//          " * @Description  \n" +
-            " * " + tableName + "\u8868\n" +
-            " * @author YanZhen\n" +
-            " * @date " + new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()) + " \n" +
-            " */"
+    def formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())
+    out.println "/**\n * $tableName \u8868\n * @author YanZhen\n * @date $formatDate \n */"
 //  out.println ""
     out.println "@Data"
 //  out.println "@Getter"
@@ -108,9 +101,9 @@ def generate(out, className, fields, table) {
 
 
     // 判断自增
-    if ((tableName + "_id").equalsIgnoreCase(fields[0].colum) || "id".equalsIgnoreCase(fields[0].colum)) {
-        out.println "    @Id"
-    }
+//    if ((tableName + "_id").equalsIgnoreCase(fields[0].colum) || "id".equalsIgnoreCase(fields[0].colum)) {
+//        out.println "    @Id"
+//    }
 
 
     fields.each() {
@@ -189,20 +182,21 @@ def calcFields(table) {
 //        if ("id".equals(Case.LOWER.apply(col.getName())))
 //            comm.annos += ["@Id"]
         fields += [comm]
+        return fields
     }
 }
 
 // 处理类名（这里是因为我的表都是以t_命名的，所以需要处理去掉生成类名时的开头的T，
 // 如果你不需要那么请查找用到了 javaClassName这个方法的地方修改为 javaName 即可）
-def javaClassName(str, capitalize) {
-    def s = com.intellij.psi.codeStyle.NameUtil.splitNameIntoWords(str)
-            .collect { Case.LOWER.apply(it).capitalize() }
-            .join("")
-            .replaceAll(/[^\p{javaJavaIdentifierPart}[_]]/, "_")
-    // 去除开头的T  http://developer.51cto.com/art/200906/129168.htm
-    s = s[1..s.size() - 1]
-    capitalize || s.length() == 1 ? s : Case.LOWER.apply(s[0]) + s[1..-1]
-}
+//def javaClassName(str, capitalize) {
+//    def s = com.intellij.psi.codeStyle.NameUtil.splitNameIntoWords(str)
+//            .collect { Case.LOWER.apply(it).capitalize() }
+//            .join("")
+//            .replaceAll(/[^\p{javaJavaIdentifierPart}[_]]/, "_")
+//    // 去除开头的T  http://developer.51cto.com/art/200906/129168.htm
+//    s = s[1..s.size() - 1]
+//    capitalize || s.length() == 1 ? s : Case.LOWER.apply(s[0 as String]) + s[1..-1 as String]
+//}
 
 def javaName(str, capitalize) {
 //    def s = str.split(/(?<=[^\p{IsLetter}])/).collect { Case.LOWER.apply(it).capitalize() }
@@ -219,18 +213,18 @@ def isNotEmpty(content) {
     return content != null && content.toString().trim().length() > 0
 }
 
-static String changeStyle(String str, boolean toCamel) {
-    if (!str || str.size() <= 1)
-        return str
-
-    if (toCamel) {
-        String r = str.toLowerCase().split('_').collect { cc -> Case.LOWER.apply(cc).capitalize() }.join('')
-        return r[0].toLowerCase() + r[1..-1]
-    } else {
-        str = str[0].toLowerCase() + str[1..-1]
-        return str.collect { cc -> ((char) cc).isUpperCase() ? '_' + cc.toLowerCase() : cc }.join('')
-    }
-}
+//static String changeStyle(String str, boolean toCamel) {
+//    if (!str || str.size() <= 1)
+//        return str
+//
+//    if (toCamel) {
+//        String r = str.toLowerCase().split('_').collect { cc -> Case.LOWER.apply(cc).capitalize() }.join('')
+//        return r[0].toLowerCase() + r[1..-1]
+//    } else {
+//        str = str[0].toLowerCase() + str[1..-1]
+//        return str.collect { cc -> cc.isUpperCase() ? '_' + cc.toLowerCase() : cc }.join('')
+//    }
+//}
 
 static String genSerialID() {
     return "    private static final long serialVersionUID =  " + Math.abs(new Random().nextLong()) + "L;"
